@@ -1,15 +1,20 @@
+import Image from "next/image";
 import Link from "next/link";
-import { navLinks, siteConfig } from "@/data/site";
+import { navLinks } from "@/data/site";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-black/5 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#1c1c1c]">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          className="font-heading text-lg font-semibold tracking-tight text-[#1c1c1c]"
-        >
-          {siteConfig.name}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/main-logo.png"
+            alt="Jonifer Seragam"
+            width={180}
+            height={93}
+            priority
+            className="h-10 w-auto"
+          />
         </Link>
 
         <nav
@@ -20,7 +25,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-[#1c1c1c]/70 transition-colors hover:text-[#51ACAD]"
+              className="text-sm font-medium text-white/70 transition-colors hover:text-white"
             >
               {link.label}
             </Link>
@@ -53,7 +58,7 @@ function MobileNav() {
           stroke="currentColor"
           strokeWidth={2}
           strokeLinecap="round"
-          className="h-6 w-6 text-[#1c1c1c]"
+          className="h-6 w-6 text-white"
           aria-hidden="true"
         >
           <path d="M4 6h16M4 12h16M4 18h16" />
