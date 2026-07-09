@@ -8,22 +8,24 @@ import {
   orderQuantity,
   pricePerColor,
   pricePerEmbroideryPoint,
-  productCategories,
+  type ProductCategory,
 } from "@/data/catalog";
 import { buildWhatsAppLink } from "@/data/site";
 import { calculateTotal, formatRupiah } from "@/lib/calculator";
 import { OptionDropdown } from "@/components/katalog/option-dropdown";
 
 export function PriceCalculator({
+  categories,
   fixedCategoryId,
 }: {
+  categories: ProductCategory[];
   fixedCategoryId?: string;
-} = {}) {
+}) {
   const [categoryId, setCategoryId] = useState(
-    fixedCategoryId ?? productCategories[0].id
+    fixedCategoryId ?? categories[0].id
   );
   const category = useMemo(
-    () => productCategories.find((c) => c.id === categoryId)!,
+    () => categories.find((c) => c.id === categoryId)!,
     [categoryId]
   );
   const stepOffset = fixedCategoryId ? 1 : 0;
@@ -41,7 +43,7 @@ export function PriceCalculator({
 
   function handleSelectCategory(nextCategoryId: string) {
     setCategoryId(nextCategoryId);
-    const nextCategory = productCategories.find((c) => c.id === nextCategoryId)!;
+    const nextCategory = categories.find((c) => c.id === nextCategoryId)!;
     setFabricId(nextCategory.fabricTypes[0].id);
   }
 
@@ -89,7 +91,7 @@ export function PriceCalculator({
               1. Pilih Kategori Produk
             </h2>
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {productCategories.map((c) => (
+              {categories.map((c) => (
                 <button
                   key={c.id}
                   type="button"

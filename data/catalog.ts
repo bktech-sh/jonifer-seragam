@@ -1,3 +1,5 @@
+import { csvToObjects } from "@/lib/csv";
+
 export type FabricType = {
   id: string;
   name: string;
@@ -17,7 +19,8 @@ export type ProductCategory = {
 
 // NOTE: all prices below are placeholders pending real data from the client (deadline Jul 15).
 // Data is kept modular here so it can be swapped without touching component/calculator logic.
-export const productCategories: ProductCategory[] = [
+// Fallback data used when the Google Sheet URLs below are unset or the fetch fails.
+export const fallbackProductCategories: ProductCategory[] = [
   {
     id: "pdh-standar",
     name: "PDH Standar",
@@ -223,10 +226,93 @@ export const embroideryPointOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 export const colorVariationOptions = [1, 2, 3, 4, 5, 6, 7, 8];
 export const orderQuantity = { min: 20, max: 1000, default: 20 };
 
-export function getCategoryBySlug(slug: string): ProductCategory | undefined {
-  return productCategories.find((category) => category.id === slug);
+export function getCategoryBySlug(
+  categories: ProductCategory[],
+  slug: string
+): ProductCategory | undefined {
+  return categories.find((category) => category.id === slug);
 }
 
 export function getStartingPrice(category: ProductCategory): number {
   return Math.min(...category.fabricTypes.map((fabric) => fabric.pricePerPc));
+}
+
+// Public Google Sheet (CSV export) — same spreadsheet as the portfolio sheet,
+// different tabs (gid). The sheet only contains publicly-displayed catalog
+// data, so the URLs themselves are not sensitive.
+const KATEGORI_SHEET_CSV_URL =
+  "https://docs.google.com/spreadsheets/d/1yWL7rxMMSPI57xVXCUk2Bl4tW3RyaIN0AbVgjt3X400/export?format=csv&gid=268143483";
+const BAHAN_SHEET_CSV_URL =
+  "https://docs.google.com/spreadsheets/d/1yWL7rxMMSPI57xVXCUk2Bl4tW3RyaIN0AbVgjt3X400/export?format=csv&gid=241352106";
+
+function rowToCategory(row: Record<string, string>): Omit<ProductCategory, "fabricTypes"> | null {
+  if (!row.id || !row.name) return null;
+
+  const galleryImages = [row.gallery_1, row.gallery_2, row.gallery_3].filter(
+    (url): url is string => Boolean(url)
+  );
+
+  return {
+    id: row.id,
+    name: row.name,
+    description: row.description || "",
+    explanation: row.explanation || row.description || "",
+    image: row.image || "",
+    galleryImages,
+  };
+}
+
+function rowToFabric(row: Record<string, string>): (FabricType & { categoryId: string }) | null {
+  const price = Number(row.price_per_pc);
+  if (!row.category_id || !row.id || !row.name || !Number.isFinite(price)) {
+    return null;
+  }
+
+  return {
+    categoryId: row.category_id,
+    id: row.id,
+    name: row.name,
+    pricePerPc: price,
+    image: row.image || "",
+  };
+}
+
+// Fetches categories + fabric types from two public Google Sheets and joins
+// them by category_id. Falls back to fallbackProductCategories if either URL
+// is unset, either fetch fails, or the joined result has no usable categories.
+export async function getProductCategories(): Promise<ProductCategory[]> {
+  if (!KATEGORI_SHEET_CSV_URL || !BAHAN_SHEET_CSV_URL) {
+    return fallbackProductCategories;
+  }
+
+  try {
+    const [categoriesRes, fabricsRes] = await Promise.all([
+      fetch(KATEGORI_SHEET_CSV_URL, { next: { revalidate: false } }),
+      fetch(BAHAN_SHEET_CSV_URL, { next: { revalidate: false } }),
+    ]);
+
+    if (!categoriesRes.ok || !fabricsRes.ok) return fallbackProductCategories;
+
+    const categoryRows = csvToObjects(await categoriesRes.text());
+    const fabricRows = csvToObjects(await fabricsRes.text());
+
+    const allFabrics = fabricRows
+      .map(rowToFabric)
+      .filter((f): f is FabricType & { categoryId: string } => f !== null);
+
+    const categories = categoryRows
+      .map(rowToCategory)
+      .filter((c): c is Omit<ProductCategory, "fabricTypes"> => c !== null)
+      .map((category) => ({
+        ...category,
+        fabricTypes: allFabrics
+          .filter((fabric) => fabric.categoryId === category.id)
+          .map(({ id, name, pricePerPc, image }) => ({ id, name, pricePerPc, image })),
+      }))
+      .filter((category) => category.fabricTypes.length > 0);
+
+    return categories.length > 0 ? categories : fallbackProductCategories;
+  } catch {
+    return fallbackProductCategories;
+  }
 }

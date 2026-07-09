@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCategoryBySlug, productCategories } from "@/data/catalog";
+import { getCategoryBySlug, getProductCategories } from "@/data/catalog";
 import { PriceCalculator } from "@/components/katalog/price-calculator";
 
-export function generateStaticParams() {
-  return productCategories.map((category) => ({ slug: category.id }));
+export async function generateStaticParams() {
+  const categories = await getProductCategories();
+  return categories.map((category) => ({ slug: category.id }));
 }
 
 export async function generateMetadata({
@@ -15,7 +16,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const category = getCategoryBySlug(slug);
+  const categories = await getProductCategories();
+  const category = getCategoryBySlug(categories, slug);
 
   if (!category) {
     return { title: "Kategori Tidak Ditemukan — Jonifer Seragam" };
@@ -33,7 +35,8 @@ export default async function KatalogDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const category = getCategoryBySlug(slug);
+  const categories = await getProductCategories();
+  const category = getCategoryBySlug(categories, slug);
 
   if (!category) {
     notFound();
@@ -83,7 +86,7 @@ export default async function KatalogDetailPage({
             Hitung Estimasi Harga
           </h2>
           <div className="mt-6">
-            <PriceCalculator fixedCategoryId={category.id} />
+            <PriceCalculator categories={categories} fixedCategoryId={category.id} />
           </div>
         </div>
       </section>

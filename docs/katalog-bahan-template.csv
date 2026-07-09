@@ -1,0 +1,14 @@
+category_id,id,name,price_per_pc,image
+pdh-standar,cotton-cardet,Cotton Cardet,50000,https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70
+pdh-standar,cotton-combed-30,Cotton Combed 30,55000,https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70
+pdh-standar,cotton-combed-24s,Cotton Combed 24s,60000,https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=70
+pdh-tunik,cotton-combed-30-tunik,Cotton Combed 30,58000,https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70
+pdh-tunik,cotton-combed-20s-tunik,Cotton Combed 20s,65000,https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=70
+pdh-tactical,cotton-bambu,Cotton Bambu,70000,https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=70
+pdh-tactical,cotton-combed-20s-tactical,Cotton Combed 20s,68000,https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=70
+almamater,drill-almamater,Drill American,85000,https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=600&q=70
+rompi,parasut-rompi,Parasut,45000,https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=70
+rompi,canvas-rompi,Canvas,60000,https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70
+jaket-custom,fleece-jaket,Fleece,75000,https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70
+jaket-custom,taslan-jaket,Taslan,90000,https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70
+bordir,cotton-combed-30-bordir,Cotton Combed 30,55000,https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=70

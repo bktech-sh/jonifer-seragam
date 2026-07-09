@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getStartingPrice, productCategories } from "@/data/catalog";
+import { getProductCategories, getStartingPrice } from "@/data/catalog";
 import { formatRupiah } from "@/lib/calculator";
 
 export const metadata: Metadata = {
@@ -10,7 +10,9 @@ export const metadata: Metadata = {
     "Jelajahi katalog kaos, seragam, PDH, almamater, rompi, jaket custom, dan bordir dari Jonifer Seragam. Lihat pilihan bahan dan estimasi harga tiap kategori.",
 };
 
-export default function KatalogPage() {
+export default async function KatalogPage() {
+  const productCategories = await getProductCategories();
+
   return (
     <div className="flex flex-col">
       <section className="relative flex min-h-[320px] items-center overflow-hidden sm:min-h-[380px]">
