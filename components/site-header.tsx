@@ -76,7 +76,7 @@ function MobileNav() {
           <Link
             key={link.href}
             href={link.href}
-            className="rounded-xl px-4 py-2.5 text-sm font-medium text-[#1c1c1c] transition-colors hover:bg-[#EEE5E1]"
+            className="rounded-xl px-4 py-2.5 text-sm font-medium text-[#1c1c1c] transition-colors hover:bg-[#EEF5F5]"
           >
             {link.label}
           </Link>

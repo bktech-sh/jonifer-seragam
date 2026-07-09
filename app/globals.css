@@ -9,6 +9,8 @@
   --color-brand-teal-light: #a9d6d6;
   --color-brand-sand: #eee5e1;
   --color-brand-sand-dark: #ded1ca;
+  --color-brand-teal-tint: #eef5f5;
+  --color-brand-teal-tint-dark: #dfeded;
 }
 
 @theme inline {
@@ -19,6 +21,8 @@
   --color-brand-teal-light: var(--color-brand-teal-light);
   --color-brand-sand: var(--color-brand-sand);
   --color-brand-sand-dark: var(--color-brand-sand-dark);
+  --color-brand-teal-tint: var(--color-brand-teal-tint);
+  --color-brand-teal-tint-dark: var(--color-brand-teal-tint-dark);
   --font-heading: var(--font-outfit);
   --font-sans: var(--font-work-sans);
 }

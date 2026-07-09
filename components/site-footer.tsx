@@ -7,7 +7,7 @@ export function SiteFooter() {
   );
 
   return (
-    <footer className="border-t border-black/5 bg-[#EEE5E1]">
+    <footer className="border-t border-black/5 bg-[#EEF5F5]">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           <div>
@@ -16,6 +16,9 @@ export function SiteFooter() {
             </p>
             <p className="mt-2 max-w-xs text-sm text-[#1c1c1c]/70">
               {siteConfig.tagline}
+            </p>
+            <p className="mt-1 text-xs tracking-wide text-[#1c1c1c]/50 italic">
+              Your Trustworthy Uniform Vendor
             </p>
           </div>
 
