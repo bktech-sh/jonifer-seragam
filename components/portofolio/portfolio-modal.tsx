@@ -77,7 +77,7 @@ export function PortfolioModal({
                 type="button"
                 onClick={goToPrev}
                 aria-label="Foto sebelumnya"
-                className="absolute top-1/2 left-2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-[#1c1c1c] transition-colors hover:bg-white"
+                className="absolute top-1/2 left-2 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/80 text-[#1c1c1c] transition-colors hover:bg-white"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -96,7 +96,7 @@ export function PortfolioModal({
                 type="button"
                 onClick={goToNext}
                 aria-label="Foto berikutnya"
-                className="absolute top-1/2 right-2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-[#1c1c1c] transition-colors hover:bg-white"
+                className="absolute top-1/2 right-2 flex h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/80 text-[#1c1c1c] transition-colors hover:bg-white"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -118,7 +118,7 @@ export function PortfolioModal({
                     type="button"
                     onClick={() => setActiveIndex(index)}
                     aria-label={`Ke foto ${index + 1}`}
-                    className={`h-1.5 rounded-full transition-all ${
+                    className={`h-1.5 cursor-pointer rounded-full transition-all ${
                       index === activeIndex ? "w-5 bg-white" : "w-1.5 bg-white/50"
                     }`}
                   />
@@ -138,7 +138,7 @@ export function PortfolioModal({
               type="button"
               onClick={onClose}
               aria-label="Tutup"
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#1c1c1c]/60 transition-colors hover:bg-[#EEF5F5] hover:text-[#1c1c1c]"
+              className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full text-[#1c1c1c]/60 transition-colors hover:bg-[#EEF5F5] hover:text-[#1c1c1c]"
             >
               <svg
                 viewBox="0 0 24 24"

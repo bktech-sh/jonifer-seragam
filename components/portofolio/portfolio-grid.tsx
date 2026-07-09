@@ -16,7 +16,7 @@ export function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
             key={item.product}
             type="button"
             onClick={() => setActiveItem(item)}
-            className="group flex flex-col gap-2 overflow-hidden rounded-xl border border-black/5 text-left transition-all hover:border-[#51ACAD]/40 hover:shadow-lg hover:shadow-black/5 sm:gap-3 sm:rounded-2xl"
+            className="group flex cursor-pointer flex-col gap-2 overflow-hidden rounded-xl border border-black/5 text-left transition-all hover:border-[#51ACAD]/40 hover:shadow-lg hover:shadow-black/5 sm:gap-3 sm:rounded-2xl"
           >
             <div className="relative aspect-4/3 w-full overflow-hidden">
               <Image
