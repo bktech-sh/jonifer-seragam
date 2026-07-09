@@ -1,3 +1,5 @@
+import { csvToObjects } from "@/lib/csv";
+
 export type PortfolioItem = {
   images: string[];
   client: string;
@@ -7,7 +9,10 @@ export type PortfolioItem = {
   specs: { label: string; value: string }[];
 };
 
-export const portfolioItems: PortfolioItem[] = [
+// Fallback data used when PORTFOLIO_SHEET_CSV_URL is not set or the fetch fails.
+// Once the client's Google Sheet is live, set the env var and this array becomes
+// a safety net rather than the primary source.
+export const fallbackPortfolioItems: PortfolioItem[] = [
   {
     images: [
       "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1000&q=75",
@@ -213,3 +218,54 @@ export const portfolioItems: PortfolioItem[] = [
     ],
   },
 ];
+
+function rowToPortfolioItem(row: Record<string, string>): PortfolioItem | null {
+  if (!row.client || !row.product) return null;
+
+  const images = [row.image_1, row.image_2, row.image_3].filter(
+    (url): url is string => Boolean(url)
+  );
+  if (images.length === 0) return null;
+
+  const specs = [
+    { label: "Bahan", value: row.spec_bahan },
+    { label: "Jumlah", value: row.spec_jumlah },
+    { label: "Detail", value: row.spec_detail },
+    { label: "Durasi", value: row.spec_durasi },
+  ].filter((spec) => Boolean(spec.value));
+
+  return {
+    images,
+    client: row.client,
+    product: row.product,
+    category: row.category || "Lainnya",
+    description: row.description || "",
+    specs,
+  };
+}
+
+// Public Google Sheet (CSV export). The sheet only contains publicly-displayed
+// portfolio data, so the URL itself is not sensitive.
+const PORTFOLIO_SHEET_CSV_URL =
+  "https://docs.google.com/spreadsheets/d/1yWL7rxMMSPI57xVXCUk2Bl4tW3RyaIN0AbVgjt3X400/export?format=csv&gid=278327958";
+
+// Falls back to fallbackPortfolioItems if the fetch fails, so the page never
+// breaks due to a sheet outage or misconfiguration.
+export async function getPortfolioItems(): Promise<PortfolioItem[]> {
+  try {
+    const response = await fetch(PORTFOLIO_SHEET_CSV_URL, {
+      next: { revalidate: false },
+    });
+    if (!response.ok) return fallbackPortfolioItems;
+
+    const csvText = await response.text();
+    const rows = csvToObjects(csvText);
+    const items = rows
+      .map(rowToPortfolioItem)
+      .filter((item): item is PortfolioItem => item !== null);
+
+    return items.length > 0 ? items : fallbackPortfolioItems;
+  } catch {
+    return fallbackPortfolioItems;
+  }
+}

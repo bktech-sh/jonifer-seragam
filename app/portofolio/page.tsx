@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { portfolioItems } from "@/data/portofolio";
+import { getPortfolioItems } from "@/data/portofolio";
 import { PortfolioGrid } from "@/components/portofolio/portfolio-grid";
 
 export const metadata: Metadata = {
@@ -9,7 +9,9 @@ export const metadata: Metadata = {
     "Lihat hasil produksi kaos, seragam, PDH, almamater, rompi, jaket custom, dan bordir dari Jonifer Seragam untuk berbagai klien.",
 };
 
-export default function PortofolioPage() {
+export default async function PortofolioPage() {
+  const portfolioItems = await getPortfolioItems();
+
   return (
     <div className="flex flex-col">
       <section className="relative flex min-h-[320px] items-center overflow-hidden sm:min-h-[380px]">
