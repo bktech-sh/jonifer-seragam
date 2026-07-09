@@ -66,7 +66,7 @@ export function MobileNav() {
             onClick={() => setOpen(false)}
             className="mt-1 rounded-xl bg-[#51ACAD] px-4 py-2.5 text-center text-sm font-semibold text-white"
           >
-            Hitung Estimasi
+            Lihat Katalog
           </Link>
         </nav>
       )}

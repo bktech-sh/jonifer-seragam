@@ -35,7 +35,7 @@ export function HeroSection() {
             href="/katalog"
             className="inline-flex items-center justify-center rounded-full bg-[#51ACAD] px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#3b8384]"
           >
-            Hitung Estimasi Harga
+            Lihat Katalog
           </Link>
           <a
             href={waHref}

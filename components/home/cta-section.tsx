@@ -11,7 +11,7 @@ export function CtaSection() {
           href="/katalog"
           className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#3b8384] transition-colors hover:bg-[#EEF5F5]"
         >
-          Buka Kalkulator Harga
+          Lihat Katalog
         </Link>
       </div>
     </section>

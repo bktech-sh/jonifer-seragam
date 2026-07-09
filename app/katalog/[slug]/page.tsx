@@ -74,36 +74,6 @@ export default async function KatalogDetailPage({
               </div>
             ))}
           </div>
-
-          <h2 className="font-heading mt-8 text-lg font-semibold tracking-tight text-[#1c1c1c] sm:text-xl">
-            Pilihan Bahan
-          </h2>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {category.fabricTypes.map((fabric) => (
-              <div
-                key={fabric.id}
-                className="flex items-center gap-4 rounded-xl border border-black/5 p-3"
-              >
-                <div className="relative aspect-square w-16 shrink-0 overflow-hidden rounded-lg">
-                  <Image
-                    src={fabric.image}
-                    alt={fabric.name}
-                    fill
-                    sizes="64px"
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-[#1c1c1c]">
-                    {fabric.name}
-                  </p>
-                  <p className="text-xs text-[#1c1c1c]/60">
-                    Rp{fabric.pricePerPc.toLocaleString("id-ID")}/pcs
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

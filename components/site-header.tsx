@@ -40,7 +40,7 @@ export function SiteHeader() {
           href="/katalog"
           className="hidden rounded-full bg-[#51ACAD] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3b8384] md:inline-flex"
         >
-          Hitung Estimasi
+          Lihat Katalog
         </Link>
 
         <MobileNav />

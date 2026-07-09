@@ -124,25 +124,36 @@ export function PriceCalculator({
           <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
             {2 - stepOffset}. Pilih Jenis Bahan
           </h2>
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {category.fabricTypes.map((f) => (
               <button
                 key={f.id}
                 type="button"
                 onClick={() => setFabricId(f.id)}
                 aria-pressed={f.id === fabricId}
-                className={`flex flex-col gap-1 rounded-xl border p-3 text-left transition-colors ${
+                className={`flex items-center gap-3 rounded-xl border p-3 text-left transition-colors ${
                   f.id === fabricId
                     ? "border-[#51ACAD] bg-[#EEF5F5]"
                     : "border-black/10 bg-white hover:border-[#51ACAD]/50"
                 }`}
               >
-                <span className="text-sm font-semibold text-[#1c1c1c]">
-                  {f.name}
-                </span>
-                <span className="text-xs text-[#1c1c1c]/60">
-                  {formatRupiah(f.pricePerPc)}/pcs
-                </span>
+                <div className="relative aspect-square w-14 shrink-0 overflow-hidden rounded-lg">
+                  <Image
+                    src={f.image}
+                    alt={f.name}
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-[#1c1c1c]">
+                    {f.name}
+                  </p>
+                  <p className="text-xs text-[#1c1c1c]/60">
+                    {formatRupiah(f.pricePerPc)}/pcs
+                  </p>
+                </div>
               </button>
             ))}
           </div>
