@@ -31,7 +31,7 @@ export default function HomePage() {
       <section className="relative flex min-h-[600px] items-center overflow-hidden sm:min-h-[680px]">
         <Image
           src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=2000&q=80"
-          alt="Suasana produksi di pabrik garmen Jonifer Seragam"
+          alt="Tumpukan kaos custom hasil produksi Jonifer Seragam"
           fill
           priority
           sizes="100vw"
@@ -40,11 +40,12 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-linear-to-r from-[#1c1c1c]/85 via-[#1c1c1c]/60 to-[#1c1c1c]/30" />
 
         <div className="relative mx-auto flex w-full max-w-6xl flex-col items-start gap-6 px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-          <span className="rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white uppercase backdrop-blur-sm ring-1 ring-white/20">
+          <span className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-[#a9d6d6] uppercase">
+            <span className="h-px w-4 bg-[#a9d6d6]" />
             Konveksi Custom
           </span>
           <h1 className="font-heading max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            {siteConfig.tagline}
+            {siteConfig.name} — {siteConfig.tagline}
           </h1>
           <p className="max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
             {siteConfig.description}

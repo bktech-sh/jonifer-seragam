@@ -1,20 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
-import { navLinks } from "@/data/site";
+import { navLinks, siteConfig } from "@/data/site";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#1c1c1c]">
+    <header className="sticky top-0 z-40 border-b border-black/5 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/main-logo.png"
-            alt="Jonifer Seragam"
-            width={180}
-            height={93}
+            src="/logo-small.png"
+            alt=""
+            width={188}
+            height={178}
             priority
-            className="h-10 w-auto"
+            className="h-9 w-9 rounded-lg object-cover"
           />
+          <span className="font-heading text-lg font-semibold tracking-tight text-[#1c1c1c]">
+            {siteConfig.name}
+          </span>
         </Link>
 
         <nav
@@ -25,7 +28,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-white/70 transition-colors hover:text-white"
+              className="text-sm font-medium text-[#1c1c1c]/70 transition-colors hover:text-[#51ACAD]"
             >
               {link.label}
             </Link>
@@ -58,7 +61,7 @@ function MobileNav() {
           stroke="currentColor"
           strokeWidth={2}
           strokeLinecap="round"
-          className="h-6 w-6 text-white"
+          className="h-6 w-6 text-[#1c1c1c]"
           aria-hidden="true"
         >
           <path d="M4 6h16M4 12h16M4 18h16" />
