@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { categories } from "@/data/home-content";
+import { productCategories } from "@/data/catalog";
 
 export function CategoriesSection() {
   return (
@@ -10,10 +10,10 @@ export function CategoriesSection() {
           Kategori Produk
         </h2>
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-8 lg:grid-cols-3">
-          {categories.map((category) => (
+          {productCategories.map((category) => (
             <Link
-              key={category.name}
-              href="/katalog"
+              key={category.id}
+              href={`/katalog/${category.id}`}
               className="group flex flex-col gap-2 overflow-hidden rounded-xl border border-black/5 transition-all duration-150 active:scale-[0.97] sm:gap-4 sm:rounded-2xl sm:active:scale-100 hover:shadow-lg hover:shadow-black/10"
             >
               <div className="relative aspect-4/3 w-full overflow-hidden">

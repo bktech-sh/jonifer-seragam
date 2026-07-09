@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "Produksi kaos, seragam, dan selempang custom dengan bahan pilihan, sablon presisi, dan harga transparan. Hitung estimasi harga langsung, pesan lewat WhatsApp.",
   domain: "joniferseragam.id",
-  whatsapp: "6281234567890", // TODO: ganti dengan nomor WhatsApp admin asli
+  whatsapp: "6281268529556", // TODO: ganti dengan nomor WhatsApp admin asli
   social: {
     instagram: "https://instagram.com/joniferseragam",
   },
