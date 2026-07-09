@@ -1,65 +1,115 @@
-import Image from "next/image";
+import Link from "next/link";
+import { buildWhatsAppLink, siteConfig } from "@/data/site";
 
-export default function Home() {
+const usps = [
+  {
+    title: "Bahan Pilihan",
+    description:
+      "Cotton Combed hingga Cotton Bambu — kami hanya pakai bahan yang sudah teruji nyaman dan awet.",
+  },
+  {
+    title: "Sablon & Bordir Presisi",
+    description:
+      "Detail rapi, warna tajam, tahan lama — dikerjakan tim berpengalaman dengan quality control ketat.",
+  },
+  {
+    title: "Harga Transparan",
+    description:
+      "Hitung estimasi harga sendiri sebelum order. Tidak ada biaya tersembunyi.",
+  },
+];
+
+export default function HomePage() {
+  const waHref = buildWhatsAppLink(
+    "Hi Admin Jonifer Seragam, saya ingin tanya-tanya soal produk."
+  );
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-col">
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-[#EEE5E1]">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+          <span className="rounded-full bg-white px-4 py-1.5 text-xs font-semibold tracking-wide text-[#3b8384] uppercase">
+            Konveksi Custom
+          </span>
+          <h1 className="font-heading max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-[#1c1c1c] sm:text-5xl lg:text-6xl">
+            {siteConfig.tagline}
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+          <p className="max-w-xl text-base leading-relaxed text-[#1c1c1c]/70 sm:text-lg">
+            {siteConfig.description}
+          </p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/katalog"
+              className="inline-flex items-center justify-center rounded-full bg-[#51ACAD] px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#3b8384]"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              Hitung Estimasi Harga
+            </Link>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href={waHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-[#1c1c1c]/15 bg-white px-7 py-3.5 text-sm font-semibold text-[#1c1c1c] transition-colors hover:border-[#51ACAD] hover:text-[#3b8384]"
             >
-              Learning
-            </a>{" "}
-            center.
+              Chat via WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Ringkasan singkat */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-2 md:items-center">
+          <div>
+            <h2 className="font-heading text-2xl font-semibold tracking-tight text-[#1c1c1c] sm:text-3xl">
+              Partner produksi kaos, seragam, dan selempang custom.
+            </h2>
+          </div>
+          <p className="text-base leading-relaxed text-[#1c1c1c]/70">
+            {siteConfig.name} melayani produksi kaos, seragam komunitas/perusahaan,
+            hingga selempang dengan proses yang jelas dari pemilihan bahan sampai
+            estimasi harga. Cocok untuk kebutuhan personal, komunitas, hingga
+            korporat.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* USP */}
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-2xl font-semibold tracking-tight text-[#1c1c1c] sm:text-3xl">
+            Kenapa Jonifer Seragam
+          </h2>
+          <div className="mt-10 grid gap-8 sm:grid-cols-3">
+            {usps.map((usp) => (
+              <div key={usp.title} className="flex flex-col gap-2">
+                <div className="h-1.5 w-10 rounded-full bg-[#51ACAD]" />
+                <h3 className="font-heading text-lg font-semibold text-[#1c1c1c]">
+                  {usp.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-[#1c1c1c]/70">
+                  {usp.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-[#51ACAD] py-16 sm:py-20">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading max-w-lg text-2xl font-semibold leading-tight text-white sm:text-3xl">
+            Sudah tahu bahan dan jumlah pesanan? Cek estimasi harganya sekarang.
+          </h2>
+          <Link
+            href="/katalog"
+            className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#3b8384] transition-colors hover:bg-[#EEE5E1]"
+          >
+            Buka Kalkulator Harga
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
