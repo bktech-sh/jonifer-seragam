@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { buildWhatsAppLink, siteConfig } from "@/data/site";
 
@@ -28,31 +29,44 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#EEE5E1]">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-          <span className="rounded-full bg-white px-4 py-1.5 text-xs font-semibold tracking-wide text-[#3b8384] uppercase">
-            Konveksi Custom
-          </span>
-          <h1 className="font-heading max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-[#1c1c1c] sm:text-5xl lg:text-6xl">
-            {siteConfig.tagline}
-          </h1>
-          <p className="max-w-xl text-base leading-relaxed text-[#1c1c1c]/70 sm:text-lg">
-            {siteConfig.description}
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/katalog"
-              className="inline-flex items-center justify-center rounded-full bg-[#51ACAD] px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#3b8384]"
-            >
-              Hitung Estimasi Harga
-            </Link>
-            <a
-              href={waHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-[#1c1c1c]/15 bg-white px-7 py-3.5 text-sm font-semibold text-[#1c1c1c] transition-colors hover:border-[#51ACAD] hover:text-[#3b8384]"
-            >
-              Chat via WhatsApp
-            </a>
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:items-center lg:px-8">
+          <div className="flex flex-col items-start gap-6">
+            <span className="rounded-full bg-white px-4 py-1.5 text-xs font-semibold tracking-wide text-[#3b8384] uppercase">
+              Konveksi Custom
+            </span>
+            <h1 className="font-heading max-w-xl text-4xl font-semibold leading-tight tracking-tight text-[#1c1c1c] sm:text-5xl lg:text-6xl">
+              {siteConfig.tagline}
+            </h1>
+            <p className="max-w-xl text-base leading-relaxed text-[#1c1c1c]/70 sm:text-lg">
+              {siteConfig.description}
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/katalog"
+                className="inline-flex items-center justify-center rounded-full bg-[#51ACAD] px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#3b8384]"
+              >
+                Hitung Estimasi Harga
+              </Link>
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-[#1c1c1c]/15 bg-white px-7 py-3.5 text-sm font-semibold text-[#1c1c1c] transition-colors hover:border-[#51ACAD] hover:text-[#3b8384]"
+              >
+                Chat via WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div className="relative aspect-4/3 w-full overflow-hidden rounded-3xl shadow-xl shadow-black/10">
+            <Image
+              src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80"
+              alt="Tumpukan kaos custom hasil produksi Jonifer Seragam"
+              fill
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
