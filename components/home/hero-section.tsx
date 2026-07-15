@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { buildWhatsAppLink, siteConfig } from "@/data/site";
 import { heroImages } from "@/data/home-content";
-import { HeroBackgroundCarousel } from "@/components/home/hero-background-carousel";
+import { ImageCarousel } from "@/components/home/image-carousel";
 
 export function HeroSection() {
   const waHref = buildWhatsAppLink(
@@ -10,7 +10,7 @@ export function HeroSection() {
 
   return (
     <section className="relative flex min-h-[600px] items-center overflow-hidden sm:min-h-[680px]">
-      <HeroBackgroundCarousel images={heroImages} />
+      <ImageCarousel images={heroImages} />
       <div className="absolute inset-0 bg-linear-to-r from-[#1c1c1c]/60 via-[#1c1c1c]/35 to-[#1c1c1c]/10" />
 
       <div className="relative mx-auto flex w-full max-w-6xl flex-col items-start gap-6 px-4 py-20 sm:px-6 sm:py-28 lg:px-8">

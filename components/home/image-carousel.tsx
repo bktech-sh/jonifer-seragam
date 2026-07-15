@@ -5,7 +5,15 @@ import Image from "next/image";
 
 const SLIDE_INTERVAL_MS = 5000;
 
-export function HeroBackgroundCarousel({ images }: { images: string[] }) {
+export function ImageCarousel({
+  images,
+  alt = "",
+  sizes = "100vw",
+}: {
+  images: string[];
+  alt?: string;
+  sizes?: string;
+}) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -24,11 +32,11 @@ export function HeroBackgroundCarousel({ images }: { images: string[] }) {
         <Image
           key={image}
           src={image}
-          alt=""
+          alt={alt}
           fill
           unoptimized
           preload={index === 0}
-          sizes="100vw"
+          sizes={sizes}
           className={`object-cover transition-opacity duration-1000 ease-in-out ${
             index === activeIndex ? "opacity-100" : "opacity-0"
           }`}

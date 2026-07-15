@@ -94,7 +94,7 @@ export const fallbackProductCategories: ProductCategory[] = [
     explanation:
       "PDH Tactical dibuat dari bahan yang lebih kuat dan jahitan ekstra kokoh, ditujukan untuk aktivitas lapangan yang butuh daya tahan lebih dari seragam biasa.",
     image:
-      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/pdh-tactical/DSC04350.JPG?tr=w-800,q-75,f-auto",
     galleryImages: [
       "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=700&q=70",
       "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=700&q=70",
