@@ -1,6 +1,5 @@
+import Image from "next/image";
 import { siteConfig } from "@/data/site";
-import { heroImages } from "@/data/home-content";
-import { ImageCarousel } from "@/components/home/image-carousel";
 
 export function AboutSection() {
   return (
@@ -25,10 +24,13 @@ export function AboutSection() {
           </p>
         </div>
         <div className="relative aspect-4/3 w-full overflow-hidden rounded-3xl">
-          <ImageCarousel
-            images={heroImages}
+          <Image
+            src="https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3060.JPG?tr=w-1000,q-75,f-auto"
             alt="Ruang produksi dan showroom Jonifer Seragam"
+            fill
+            loading="lazy"
             sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
           />
         </div>
       </div>

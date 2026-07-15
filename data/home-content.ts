@@ -66,34 +66,24 @@ export const testimonials = [
 export const portfolioPreview = [
   {
     image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=70",
-    caption: "Kaos polos custom",
-    tag: "Kaos",
+      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3074.JPG?tr=w-1000,q-75,f-auto",
     large: true,
   },
   {
     image:
-      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=70",
-    caption: "Seragam komunitas",
-    tag: "Seragam",
+      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC04502.JPG?tr=w-800,q-75,f-auto",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=800&q=70",
-    caption: "PDH formal instansi",
-    tag: "PDH",
+      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/IMG_5378.HEIC?tr=w-800,q-75,f-auto",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=800&q=70",
-    caption: "Setelan jas & jaket",
-    tag: "Jaket Custom",
+      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC04469.JPG?tr=w-800,q-75,f-auto",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=70",
-    caption: "Variasi warna & bahan",
-    tag: "Bordir",
+      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/IMG_5588.HEIC?tr=w-800,q-75,f-auto",
   },
 ];
 
@@ -103,20 +93,20 @@ export const usps = [
     description:
       "Cotton Combed hingga Cotton Bambu — kami hanya pakai bahan yang sudah teruji nyaman dan awet, tidak mudah melar, dan warnanya tahan lama meski dicuci berkali-kali.",
     image:
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3391.JPG?tr=w-800,q-75,f-auto",
   },
   {
     title: "Sablon & Bordir Presisi",
     description:
       "Detail rapi, warna tajam, tahan lama — dikerjakan tim berpengalaman dengan quality control di setiap tahap, dari desain sampai finishing akhir.",
     image:
-      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3074.JPG?tr=w-800,q-75,f-auto",
   },
   {
     title: "Harga Transparan",
     description:
       "Hitung estimasi harga sendiri di halaman katalog sebelum order. Tidak ada biaya tersembunyi, tidak perlu nego bolak-balik lewat chat.",
     image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/logo/DSC_1523.JPG?tr=w-800,q-75,f-auto",
   },
 ];
