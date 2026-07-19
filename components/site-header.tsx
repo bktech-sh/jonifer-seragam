@@ -7,18 +7,15 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-black/5 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center">
           <Image
-            src="/logo-small.png"
-            alt=""
+            src="https://ik.imagekit.io/jgcvqpss3/Fix%20%20Katalog%20PDH%20Final%20(1)%20(1).png"
+            alt={siteConfig.name}
             width={188}
             height={178}
             priority
-            className="h-9 w-9 rounded-lg object-cover"
+            className="h-10 w-auto object-contain"
           />
-          <span className="font-heading text-lg font-semibold tracking-tight text-[#1c1c1c]">
-            {siteConfig.name}
-          </span>
         </Link>
 
         <nav
