@@ -177,7 +177,7 @@ export function PortfolioModal({
 
           <a
             href={buildWhatsAppLink(
-              `Hi Admin Jonifer Seragam, saya tertarik dengan pesanan seperti "${item.product}" untuk ${item.client}. Boleh minta info lebih lanjut?`
+              `Hi Admin Jonifer Seragam, saya ingin buat pesanan seperti "${item.product}" yang dibuat untuk ${item.client}. Boleh minta info lebih lanjut?`
             )}
             target="_blank"
             rel="noopener noreferrer"
