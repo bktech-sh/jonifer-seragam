@@ -19,7 +19,7 @@ export function HeroSection() {
           Your Trustworthy Uniform Vendor
         </span>
         <h1 className="font-heading max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-          {siteConfig.name} — {siteConfig.tagline}
+          {siteConfig.heroTitle}
         </h1>
         <p className="max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
           {siteConfig.description}

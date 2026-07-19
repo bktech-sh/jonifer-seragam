@@ -1,8 +1,9 @@
 export const siteConfig = {
   name: "Jonifer Seragam",
   tagline: "Konveksi Kaos & Seragam Custom Kualitas Premium",
+  heroTitle: "Vendor Seragam Kerja Custom Terdepan di Kota Bukittinggi",
   description:
-    "Produksi kaos, seragam, dan selempang custom dengan bahan pilihan, sablon presisi, dan harga transparan. Hitung estimasi harga langsung, pesan lewat WhatsApp.",
+    "Konveksi penyedia Seragam PDH, PDH 2in1, Tactical, Rompi, Jaket dengan kualitas premium dan harga spesial. Hitung estimasi harga langsung, konsultasikan atau pesan langsung melalui WhatsApp.",
   domain: "joniferseragam.id",
   whatsapp: "6285121242420",
   social: {
