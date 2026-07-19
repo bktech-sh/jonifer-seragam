@@ -95,12 +95,136 @@ export const stats = [
 ];
 
 export const clients = [
-  { name: "Klien 1" },
-  { name: "Klien 2" },
-  { name: "Klien 3" },
-  { name: "Klien 4" },
-  { name: "Klien 5" },
-  { name: "Klien 6" },
+  {
+    name: "Klien 1",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/Desain%20tanpa%20judul.png?updatedAt=1784483870276",
+  },
+  {
+    name: "Geopark",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/logo%20geopark.png?updatedAt=1784483870051",
+  },
+  {
+    name: "Kabupaten Tanah Datar",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/Lambang_Kabupaten_Tanah_Datar.png?updatedAt=1784483869634",
+  },
+  {
+    name: "Klien 2",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/image_2023-06-22_145647010.png?updatedAt=1784483869589",
+  },
+  {
+    name: "Institut Seni Indonesia Padangpanjang",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/Logo_Institut_Seni_Indonesia_Padangpanjang.png?updatedAt=1784483869203",
+  },
+  {
+    name: "Klien 3",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/cropped-icon.png?updatedAt=1784483868363",
+  },
+  {
+    name: "Klien 4",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/657_1.jpeg?updatedAt=1784483867875",
+  },
+  {
+    name: "Kota Sawahlunto",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/Lambang_Kota_Sawahlunto.png?updatedAt=1784483867711",
+  },
+  {
+    name: "Klien 5",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/2020-01-08.png?updatedAt=1784483867485",
+  },
+  {
+    name: "Mayora",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/452-4525089_logo-mayora-png-mayora-indah-transparent-png.png?updatedAt=1784483867380",
+  },
+  {
+    name: "Klien 6",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/images%20(7).jpeg?updatedAt=1784483866336",
+  },
+  {
+    name: "Klien 7",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/images%20(2).jpeg?updatedAt=1784483866267",
+  },
+  {
+    name: "Klien 8",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/images%20(1).jpeg?updatedAt=1784483866004",
+  },
+  {
+    name: "Klien 9",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/logonew.png?updatedAt=1784483865994",
+  },
+  {
+    name: "UIN",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/logouin.png?updatedAt=1784483865937",
+  },
+  {
+    name: "Klien 10",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/images%20(6).jpeg?updatedAt=1784483865722",
+  },
+  {
+    name: "Jotun",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/lg-66101cfb31815-JOTUN.webp?updatedAt=1784483865772",
+  },
+  {
+    name: "Klien 11",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/images%20(3).jpeg?updatedAt=1784483865691",
+  },
+  {
+    name: "Mahkamah Agung",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/Mahkamah_Agung_insignia.svg.webp?updatedAt=1784483865674",
+  },
+  {
+    name: "Klien 12",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/images%20(5).jpeg?updatedAt=1784483865343",
+  },
+  {
+    name: "Klien 13",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/images%20(4).jpeg?updatedAt=1784483865271",
+  },
+  {
+    name: "Klien 14",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/images.jpeg?updatedAt=1784483865082",
+  },
+  {
+    name: "Yarsi",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/yarsi.png?updatedAt=1784483865018",
+  },
+  {
+    name: "Klien 15",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/logo.jpeg?updatedAt=1784483865011",
+  },
+  {
+    name: "The Valmont",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/The%20Valmont%20horizontal%20.png?updatedAt=1784483865019",
+  },
+  {
+    name: "Universitas Syiah Kuala",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/client-list/Unsyiah-logo.svg?updatedAt=1784483864652",
+  },
 ];
 
 export const usps = [

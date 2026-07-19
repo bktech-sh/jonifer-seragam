@@ -1,32 +1,47 @@
 export const faqs = [
   {
-    question: "Berapa minimal jumlah pemesanan?",
+    question: "Apakah PDH di Jonifer Seragam selalu ready stok?",
     answer:
-      "Minimal order bervariasi tergantung jenis produk, umumnya mulai dari 12 pcs untuk kaos dan seragam custom. Hubungi admin via WhatsApp untuk konfirmasi minimal order sesuai kebutuhanmu.",
+      "Tidak. Sebagian besar PDH kami diproduksi by order agar ukuran, warna, dan detail bisa disesuaikan dengan kebutuhan anda.",
   },
   {
-    question: "Berapa lama proses produksi?",
+    question: "Apakah ada minimal pemesanan?",
     answer:
-      "Proses produksi umumnya 7-14 hari kerja tergantung jumlah pesanan, jenis bahan, dan kompleksitas desain (sablon atau bordir). Estimasi pasti akan diinformasikan admin setelah order dikonfirmasi.",
+      "Ya. Minimal pemesanan untuk PDH adalah 6 pcs per desain agar produksi lebih efisien dan harga tetap kompetitif.",
   },
   {
-    question: "Apakah bisa request desain sendiri?",
+    question: "Berapa lama waktu produksi?",
     answer:
-      "Bisa. Kamu bisa kirim desain, logo, atau referensi warna sendiri lewat WhatsApp, tim kami akan bantu sesuaikan dengan bahan dan teknik sablon/bordir yang dipilih.",
+      "Waktu produksi standar adalah 7-20 hari kerja sejak desain disetujui dan DP diterima. Lama produksi tergantung dari antrian produksi.",
   },
   {
-    question: "Metode pembayaran apa saja yang diterima?",
+    question: "Bisa custom warna dan desain sesuai permintaan?",
     answer:
-      "Kami menerima transfer bank dan pembayaran digital. Umumnya diperlukan DP di awal untuk memulai produksi, sisanya dilunasi sebelum atau saat barang selesai.",
+      "Bisa. Anda dapat menentukan warna kain, pola jahit, bordir dan kombinasi warna atau list.",
   },
   {
-    question: "Apakah melayani pengiriman ke luar kota?",
+    question: "Bahan apa saja yang tersedia untuk PDH?",
     answer:
-      "Ya, kami melayani pengiriman ke seluruh Indonesia menggunakan ekspedisi pilihan. Ongkos kirim ditanggung pemesan dan dihitung sesuai kota tujuan.",
+      "American Drill, Ventura, dan Verlando. Pemilihan bahan bisa disesuaikan dengan kebutuhan aktivitas.",
   },
   {
-    question: "Bagaimana cara menghitung estimasi harga?",
+    question: "Apakah bisa request ukuran khusus?",
     answer:
-      "Buka halaman Katalog, pilih jenis bahan, jumlah pesanan, dan detail custom seperti titik bordir atau jumlah warna sablon — estimasi harga akan muncul otomatis sebelum kamu order.",
+      "Bisa. Kami menerima size custom diluar size chart standar dengan biaya tambahan 10.000.",
+  },
+  {
+    question: "Darimana pengiriman dilakukan?",
+    answer:
+      "Pengiriman dilakukan dari workshop Jonifer Seragam Bukittinggi dan bisa dikirim ke seluruh Indonesia.",
+  },
+  {
+    question: "Apakah harus deposit untuk pembayarannya?",
+    answer:
+      "Ya. Sebelum pemesanan wajib melakukan DP minimal 50% dari total harga pesanan.",
+  },
+  {
+    question: "Adakah garansi untuk pelanggan?",
+    answer:
+      "Kami memberikan jaminan garansi jika jenis dan warna bahan tidak sesuai dengan kesepakatan, adanya kesalahan pada teks atau posisi bordiran dan atribut baju, dan terakhir ukuran baju tidak sesuai dengan kesepakatan.",
   },
 ];

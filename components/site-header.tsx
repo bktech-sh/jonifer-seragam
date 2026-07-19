@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { navLinks, siteConfig } from "@/data/site";
+import { desktopNavItems, siteConfig } from "@/data/site";
 import { MobileNav } from "@/components/mobile-nav";
+import { DesktopNavGroup } from "@/components/desktop-nav-group";
 
 export function SiteHeader() {
   return (
@@ -22,15 +23,19 @@ export function SiteHeader() {
           aria-label="Navigasi utama"
           className="hidden items-center gap-8 md:flex"
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-[#1c1c1c]/70 transition-colors hover:text-[#51ACAD]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {desktopNavItems.map((item) =>
+            item.type === "group" ? (
+              <DesktopNavGroup key={item.href} item={item} />
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-[#1c1c1c]/70 transition-colors hover:text-[#51ACAD]"
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
 
         <Link

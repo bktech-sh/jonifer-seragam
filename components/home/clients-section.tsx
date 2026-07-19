@@ -1,7 +1,17 @@
+import Image from "next/image";
 import { clients } from "@/data/home-content";
 
-function ClientRow({ reverse = false }: { reverse?: boolean }) {
-  const track = [...clients, ...clients];
+const row1 = clients.slice(0, 15);
+const row2 = clients.slice(15);
+
+function ClientRow({
+  items,
+  reverse = false,
+}: {
+  items: typeof clients;
+  reverse?: boolean;
+}) {
+  const track = [...items, ...items];
 
   return (
     <div className="relative [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
@@ -12,9 +22,15 @@ function ClientRow({ reverse = false }: { reverse?: boolean }) {
         {track.map((client, index) => (
           <div
             key={`${client.name}-${index}`}
-            className="flex aspect-video w-40 shrink-0 items-center justify-center rounded-xl border border-[#1c1c1c]/10 bg-[#f7f7f7] px-3 text-center text-xs font-medium text-[#1c1c1c]/50 sm:w-48"
+            className="flex aspect-video w-40 shrink-0 items-center justify-center sm:w-48"
           >
-            {client.name}
+            <Image
+              src={client.image}
+              alt={client.name}
+              width={160}
+              height={90}
+              className="h-full w-full object-contain"
+            />
           </div>
         ))}
       </div>
@@ -30,9 +46,9 @@ export function ClientsSection() {
           Dipercaya Oleh
         </h2>
       </div>
-      <div className="mx-auto mt-6 flex max-w-6xl flex-col gap-4 sm:mt-10 sm:gap-6">
-        <ClientRow />
-        <ClientRow />
+      <div className="mx-auto mt-6 flex max-w-6xl flex-col gap-8 sm:mt-10 sm:gap-12">
+        <ClientRow items={row1} />
+        <ClientRow items={row2} reverse />
       </div>
     </section>
   );

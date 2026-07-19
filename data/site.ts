@@ -18,7 +18,34 @@ export const navLinks = [
   { href: "/portofolio", label: "Portofolio" },
   { href: "/toko", label: "Toko" },
   { href: "/artikel", label: "Artikel" },
+  { href: "/cara-pemesanan", label: "Cara Pemesanan" },
   { href: "/faq", label: "FAQ" },
+];
+
+export const desktopNavItems: Array<
+  | { type: "link"; href: string; label: string }
+  | {
+      type: "group";
+      label: string;
+      href: string;
+      children: { href: string; label: string }[];
+    }
+> = [
+  { type: "link", href: "/", label: "Beranda" },
+  { type: "link", href: "/profil", label: "Profil" },
+  { type: "link", href: "/katalog", label: "Katalog" },
+  { type: "link", href: "/portofolio", label: "Portofolio" },
+  { type: "link", href: "/artikel", label: "Artikel" },
+  {
+    type: "group",
+    href: "/toko",
+    label: "Bantuan",
+    children: [
+      { href: "/toko", label: "Toko" },
+      { href: "/cara-pemesanan", label: "Cara Pemesanan" },
+      { href: "/faq", label: "FAQ" },
+    ],
+  },
 ];
 
 export function buildWhatsAppLink(message: string) {
