@@ -16,6 +16,7 @@ export const navLinks = [
   { href: "/profil", label: "Profil" },
   { href: "/katalog", label: "Katalog" },
   { href: "/portofolio", label: "Portofolio" },
+  { href: "/faq", label: "FAQ" },
 ];
 
 export function buildWhatsAppLink(message: string) {
