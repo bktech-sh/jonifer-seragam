@@ -3,6 +3,8 @@ import { AboutSection } from "@/components/home/about-section";
 import { CategoriesSection } from "@/components/home/categories-section";
 import { OrderStepsSection } from "@/components/home/order-steps-section";
 import { UspSection } from "@/components/home/usp-section";
+import { ClientsSection } from "@/components/home/clients-section";
+import { StatsSection } from "@/components/home/stats-section";
 import { PortfolioPreviewSection } from "@/components/home/portfolio-preview-section";
 import { TestimonialSection } from "@/components/home/testimonial-section";
 import { CtaSection } from "@/components/home/cta-section";
@@ -15,6 +17,8 @@ export default function HomePage() {
       <CategoriesSection />
       <OrderStepsSection />
       <UspSection />
+      <ClientsSection />
+      <StatsSection />
       <PortfolioPreviewSection />
       <TestimonialSection />
       <CtaSection />

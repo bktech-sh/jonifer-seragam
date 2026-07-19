@@ -87,6 +87,22 @@ export const portfolioPreview = [
   },
 ];
 
+export const stats = [
+  { value: 1200, suffix: "+", label: "Klien Puas" },
+  { value: 3500, suffix: "+", label: "Proyek Selesai" },
+  { value: 8, suffix: " Tahun", label: "Pengalaman" },
+  { value: 25, suffix: "+", label: "Kota Terjangkau" },
+];
+
+export const clients = [
+  { name: "Klien 1" },
+  { name: "Klien 2" },
+  { name: "Klien 3" },
+  { name: "Klien 4" },
+  { name: "Klien 5" },
+  { name: "Klien 6" },
+];
+
 export const usps = [
   {
     title: "Bahan Pilihan",
