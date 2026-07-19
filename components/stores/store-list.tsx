@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { stores } from "@/data/stores";
+import { ImageCarousel } from "@/components/home/image-carousel";
 
 export function StoreList() {
   return (
@@ -12,13 +12,10 @@ export function StoreList() {
               className="flex flex-col overflow-hidden rounded-2xl border border-[#1c1c1c]/10"
             >
               <div className="relative aspect-video w-full">
-                <Image
-                  src={store.image}
+                <ImageCarousel
+                  images={store.images}
                   alt={store.name}
-                  fill
-                  loading="lazy"
                   sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
                 />
               </div>
               <div className="flex flex-col gap-4 p-6 sm:p-8">
