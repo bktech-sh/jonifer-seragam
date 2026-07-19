@@ -17,6 +17,7 @@ export const navLinks = [
   { href: "/katalog", label: "Katalog" },
   { href: "/portofolio", label: "Portofolio" },
   { href: "/toko", label: "Toko" },
+  { href: "/artikel", label: "Artikel" },
   { href: "/faq", label: "FAQ" },
 ];
 
