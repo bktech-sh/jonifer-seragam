@@ -8,7 +8,7 @@ export const siteConfig = {
   social: {
     instagram: "https://instagram.com/joniferseragam",
   },
-  address: "Jakarta, Indonesia", // TODO: alamat lengkap dari klien
+  address: "Jl. Perintis Kemerdekaan, Bukittinggi, Sumatera Barat",
 };
 
 export const navLinks = [
