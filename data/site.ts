@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "Jonifer Seragam",
-  tagline: "Konveksi Kaos & Seragam Custom Kualitas Premium",
+  tagline:
+    "Konveksi penyedia Seragam PDH, PDH 2in1, Tactical, Almamater, Rompi, Jaket dengan kualitas premium dan harga spesial.",
   heroTitle: "Vendor Seragam Kerja Custom Terdepan di Kota Bukittinggi",
   description:
     "Konveksi penyedia Seragam PDH, PDH 2in1, Tactical, Rompi, Jaket dengan kualitas premium dan harga spesial. Hitung estimasi harga langsung, konsultasikan atau pesan langsung melalui WhatsApp.",
@@ -8,6 +9,7 @@ export const siteConfig = {
   whatsapp: "6285121242420",
   social: {
     instagram: "https://instagram.com/joniferseragam",
+    tiktok: "https://www.tiktok.com/@jonifer_seragam",
   },
   address: "Jl. Perintis Kemerdekaan, Bukittinggi, Sumatera Barat",
 };

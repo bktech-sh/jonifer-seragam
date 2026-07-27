@@ -1,10 +1,11 @@
 export const heroImages = [
-  "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3491.JPG?tr=w-1920,q-75,f-auto",
-  "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3370.JPG?tr=w-1920,q-75,f-auto",
-  "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3060.JPG?tr=w-1920,q-75,f-auto",
-  "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_1804.JPG?tr=w-1920,q-75,f-auto",
-  "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_1810.JPG?tr=w-1920,q-75,f-auto",
-  "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_1852.JPG?tr=w-1920,q-75,f-auto",
+  // "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3491.JPG?tr=w-1920,q-75,f-auto",
+  // "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3370.JPG?tr=w-1920,q-75,f-auto",
+  // "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3060.JPG?tr=w-1920,q-75,f-auto",
+  // "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_1804.JPG?tr=w-1920,q-75,f-auto",
+  // "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_1810.JPG?tr=w-1920,q-75,f-auto",
+  // "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_1852.JPG?tr=w-1920,q-75,f-auto",
+  "https://ik.imagekit.io/jgcvqpss3/DSC_5488.jpg?tr=w-1920,q-75,f-auto",
 ];
 
 export const steps = [

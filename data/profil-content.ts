@@ -24,18 +24,21 @@ export const differentiators = [
 
 export const timeline = [
   {
-    year: "2018",
-    title: "Awal Mula",
-    description: "Jonifer Seragam mulai melayani produksi kaos dan seragam skala kecil di Jakarta.",
+    year: "2001",
+    title: "Awal mula",
+    description:
+      '"Jonifer Group mulai berkiprah dalam industri bordir di Kota Bukittinggi dengan fokus sebagai vendor jasa bordir"',
   },
   {
-    year: "2021",
+    year: "2023",
+    title: "Lahirnya Jonifer Seragam",
+    description:
+      '"Dengan berpengalaman dalam industri tekstil selama lebih dari 20 tahun, Jonifer Group telah mengembangkan sayap untuk meluncurkan unit bisnis-salah satunya Jonifer Seragam untuk melayani sektor pembuatan pakaian seragam"',
+  },
+  {
+    year: "2025",
     title: "Perluasan Kapasitas",
-    description: "Menambah kapasitas produksi untuk melayani pesanan instansi dan korporat dalam jumlah besar.",
-  },
-  {
-    year: "2026",
-    title: "Digitalisasi Layanan",
-    description: "Meluncurkan kalkulator estimasi harga online agar pelanggan bisa menghitung biaya sendiri.",
+    description:
+      '"Menambah kapasitas produksi untuk melayani permintaan pasar dengan jumlah besar". Saat ini kami telah memiliki puluhan mesin jahit dan 5 mesin bordir',
   },
 ];

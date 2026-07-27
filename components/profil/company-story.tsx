@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { siteConfig } from "@/data/site";
 
 export function CompanyStory() {
   return (
@@ -24,11 +23,16 @@ export function CompanyStory() {
               Dari konveksi kecil menjadi partner produksi terpercaya
             </h2>
             <p className="mt-6 text-base leading-relaxed text-[#1c1c1c]/70">
-              {siteConfig.name} berawal dari kebutuhan sederhana: membantu
-              komunitas dan bisnis kecil mendapatkan kaos dan seragam custom
-              tanpa proses yang berbelit. Seiring waktu, kami memperluas kapasitas
-              produksi untuk melayani pesanan dalam jumlah besar, mulai dari
-              instansi hingga perusahaan.
+              <span className="font-semibold text-[#1c1c1c]">Awal mula</span>{" "}
+              Jonifer Group mulai berkiprah dalam industri bordir di Kota
+              Bukittinggi dengan fokus sebagai vendor jasa bordir.{" "}
+              <span className="font-semibold text-[#1c1c1c]">
+                Lahirnya Jonifer Seragam
+              </span>{" "}
+              Dengan berpengalaman dalam industri tekstil selama lebih dari 20
+              tahun, Jonifer Group telah mengembangkan sayap untuk meluncurkan
+              unit bisnis-salah satunya Jonifer Seragam untuk melayani sektor
+              pembuatan pakaian seragam untuk instansi/mahasiswa.
             </p>
             <p className="mt-4 text-base leading-relaxed text-[#1c1c1c]/70">
               Yang tidak berubah adalah komitmen kami terhadap kualitas bahan,

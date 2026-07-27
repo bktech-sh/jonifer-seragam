@@ -13,10 +13,10 @@ export function TimelineSection() {
               <span className="font-heading text-3xl font-semibold text-[#51ACAD]">
                 {item.year}
               </span>
-              <h3 className="font-heading text-lg font-semibold text-[#1c1c1c]">
-                {item.title}
-              </h3>
               <p className="text-sm leading-relaxed text-[#1c1c1c]/70">
+                <span className="font-semibold text-[#1c1c1c]">
+                  {item.title}
+                </span>{" "}
                 {item.description}
               </p>
             </div>
