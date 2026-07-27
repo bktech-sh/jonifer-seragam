@@ -13,7 +13,7 @@ export function StatsSection() {
           mempercayakan kebutuhan seragam dan kaos custom mereka kepada kami.
         </p>
       </div>
-      <div className="mx-auto mt-10 grid max-w-6xl grid-cols-2 gap-6 px-4 sm:grid-cols-4 sm:gap-10 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-10 grid max-w-6xl grid-cols-3 gap-6 px-4 sm:gap-10 sm:px-6 lg:px-8">
         {stats.map((stat) => (
           <div key={stat.label} className="flex flex-col items-center text-center">
             <span className="font-heading text-3xl font-semibold tracking-tight text-[#51ACAD] sm:text-5xl">

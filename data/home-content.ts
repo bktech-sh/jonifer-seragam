@@ -88,10 +88,9 @@ export const portfolioPreview = [
 ];
 
 export const stats = [
-  { value: 1200, suffix: "+", label: "Klien Puas" },
-  { value: 3500, suffix: "+", label: "Proyek Selesai" },
-  { value: 8, suffix: " Tahun", label: "Pengalaman" },
-  { value: 25, suffix: "+", label: "Kota Terjangkau" },
+  { value: 1000, suffix: "+", label: "Klien Puas" },
+  { value: 2000, suffix: "+", label: "Proyek Selesai" },
+  { value: 3, suffix: " Tahun", label: "Pengalaman" },
 ];
 
 export const clients = [
