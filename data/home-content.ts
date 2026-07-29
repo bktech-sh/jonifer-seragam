@@ -6,6 +6,12 @@ export const heroImages = [
   // "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_1810.JPG?tr=w-1920,q-75,f-auto",
   // "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_1852.JPG?tr=w-1920,q-75,f-auto",
   "https://ik.imagekit.io/jgcvqpss3/DSC_5488.jpg?tr=w-1920,q-75,f-auto",
+  "https://ik.imagekit.io/jgcvqpss3/fa0960c6-2b6a-46e2-8488-d0ae45e04def.jpg?tr=w-1920,q-75,f-auto",
+];
+
+export const profilHeroImages = [
+  "https://ik.imagekit.io/jgcvqpss3/fa0960c6-2b6a-46e2-8488-d0ae45e04def.jpg?tr=w-1920,q-75,f-auto",
+  "https://ik.imagekit.io/jgcvqpss3/DSC_4525.jpg?tr=w-1920,q-75,f-auto",
 ];
 
 export const steps = [
