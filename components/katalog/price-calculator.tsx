@@ -3,16 +3,23 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import {
-  colorVariationOptions,
-  embroideryPointOptions,
+  embroideryOptions,
   orderQuantity,
-  pricePerColor,
-  pricePerEmbroideryPoint,
   type ProductCategory,
 } from "@/data/catalog";
 import { buildWhatsAppLink } from "@/data/site";
 import { calculateTotal, formatRupiah } from "@/lib/calculator";
 import { OptionDropdown } from "@/components/katalog/option-dropdown";
+
+function formatDeadline(value: string): string {
+  const date = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return value;
+  return new Intl.DateTimeFormat("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+}
 
 export function PriceCalculator({
   categories,
@@ -37,9 +44,13 @@ export function PriceCalculator({
   );
 
   const [qty, setQty] = useState(orderQuantity.default);
-  const [embroideryPoints, setEmbroideryPoints] = useState(0);
-  const [colorCount, setColorCount] = useState(1);
+  const [embroideryIndex, setEmbroideryIndex] = useState(0);
+  const [isTimbul, setIsTimbul] = useState(false);
+  const [deadline, setDeadline] = useState("");
   const [qtyError, setQtyError] = useState<string | null>(null);
+
+  const embroidery = embroideryOptions[embroideryIndex] ?? embroideryOptions[0];
+  const embroideryPrice = isTimbul ? embroidery.priceTimbul : embroidery.price;
 
   function handleSelectCategory(nextCategoryId: string) {
     setCategoryId(nextCategoryId);
@@ -62,8 +73,7 @@ export function PriceCalculator({
   const total = calculateTotal({
     fabricPrice: fabric.pricePerPc,
     qty,
-    embroideryPoints,
-    colorCount,
+    embroideryPrice,
   });
 
   const waMessage = [
@@ -71,9 +81,9 @@ export function PriceCalculator({
     `- Kategori: ${category.name}`,
     `- Jenis Bahan: ${fabric.name}`,
     `- Jumlah: ${qty} pcs`,
-    `- Titik Bordir: ${embroideryPoints} titik`,
-    `- Jumlah Warna: ${colorCount} warna`,
+    `- Bordir: ${embroidery.label}${isTimbul ? " (Timbul)" : ""}`,
     `- Estimasi Total: ${formatRupiah(total)}`,
+    ...(deadline ? [`- Deadline: ${formatDeadline(deadline)}`] : []),
     ``,
     `Mohon info langkah selanjutnya, terima kasih.`,
   ].join("\n");
@@ -211,45 +221,55 @@ export function PriceCalculator({
           )}
         </div>
 
-        {/* Step 4: Embroidery + Color */}
-        <div className="grid gap-6 sm:grid-cols-2">
-          <div>
-            <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
-              {4 - stepOffset}. Titik Bordir
-            </h2>
-            <div className="mt-4">
+        {/* Step 4: Embroidery */}
+        <div>
+          <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
+            {4 - stepOffset}. Pilih Bordir
+          </h2>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-start">
+            <div className="flex-1">
               <OptionDropdown
-                label="Titik Bordir"
-                value={embroideryPoints}
-                onChange={setEmbroideryPoints}
-                options={embroideryPointOptions.map((point) => ({
-                  value: point,
-                  label: `${point} titik`,
+                label="Bordir"
+                value={embroideryIndex}
+                onChange={setEmbroideryIndex}
+                options={embroideryOptions.map((option, index) => ({
+                  value: index,
+                  label: option.label,
                   priceLabel:
-                    point === 0
+                    (isTimbul ? option.priceTimbul : option.price) === 0
                       ? "Gratis"
-                      : `+${formatRupiah(pricePerEmbroideryPoint * point * qty)}`,
+                      : `+${formatRupiah((isTimbul ? option.priceTimbul : option.price) * qty)}`,
                 }))}
               />
             </div>
-          </div>
-          <div>
-            <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
-              {5 - stepOffset}. Jumlah Warna
-            </h2>
-            <div className="mt-4">
-              <OptionDropdown
-                label="Jumlah Warna"
-                value={colorCount}
-                onChange={setColorCount}
-                options={colorVariationOptions.map((count) => ({
-                  value: count,
-                  label: `${count} warna`,
-                  priceLabel: `+${formatRupiah(pricePerColor * count * qty)}`,
-                }))}
+            <label className="flex h-11 shrink-0 items-center gap-2 rounded-xl border border-black/10 px-4 text-sm font-medium text-[#1c1c1c]">
+              <input
+                type="checkbox"
+                checked={isTimbul}
+                onChange={(e) => setIsTimbul(e.target.checked)}
+                className="h-4 w-4 accent-[#51ACAD]"
               />
-            </div>
+              Bordir Timbul
+            </label>
           </div>
+        </div>
+
+        {/* Step 5: Deadline (optional, informational only) */}
+        <div>
+          <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
+            {5 - stepOffset}. Deadline (Opsional)
+          </h2>
+          <div className="mt-4">
+            <input
+              type="date"
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
+              className="h-11 w-full max-w-xs rounded-xl border border-black/10 px-4 text-sm font-medium text-[#1c1c1c] focus:border-[#51ACAD] focus:outline-none sm:w-auto"
+            />
+          </div>
+          <p className="mt-2 text-xs text-[#1c1c1c]/50">
+            Tanggal ini hanya untuk informasi ke admin, tidak memengaruhi estimasi harga.
+          </p>
         </div>
       </div>
 
@@ -278,15 +298,20 @@ export function PriceCalculator({
             <dd className="text-right font-medium text-white">{qty} pcs</dd>
           </div>
           <div className="flex justify-between gap-4">
-            <dt className="text-white/60">Titik Bordir</dt>
+            <dt className="text-white/60">Bordir</dt>
             <dd className="text-right font-medium text-white">
-              {embroideryPoints} titik
+              {embroidery.label}
+              {isTimbul ? " (Timbul)" : ""}
             </dd>
           </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-white/60">Jumlah Warna</dt>
-            <dd className="text-right font-medium text-white">{colorCount} warna</dd>
-          </div>
+          {deadline && (
+            <div className="flex justify-between gap-4">
+              <dt className="text-white/60">Deadline</dt>
+              <dd className="text-right font-medium text-white">
+                {formatDeadline(deadline)}
+              </dd>
+            </div>
+          )}
         </dl>
 
         <div className="mt-6 border-t border-white/10 pt-6">

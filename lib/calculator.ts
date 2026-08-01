@@ -1,21 +1,13 @@
-import { pricePerColor, pricePerEmbroideryPoint } from "@/data/catalog";
-
 export function calculateTotal({
   fabricPrice,
   qty,
-  embroideryPoints,
-  colorCount,
+  embroideryPrice,
 }: {
   fabricPrice: number;
   qty: number;
-  embroideryPoints: number;
-  colorCount: number;
+  embroideryPrice: number;
 }): number {
-  return (
-    fabricPrice * qty +
-    pricePerEmbroideryPoint * embroideryPoints * qty +
-    pricePerColor * colorCount * qty
-  );
+  return fabricPrice * qty + embroideryPrice * qty;
 }
 
 export function formatRupiah(value: number): string {

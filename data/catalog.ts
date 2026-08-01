@@ -501,10 +501,71 @@ export const fallbackProductCategories: ProductCategory[] = [
   },
 ];
 
-export const pricePerEmbroideryPoint = 2500;
-export const pricePerColor = 5000;
-export const embroideryPointOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-export const colorVariationOptions = [1, 2, 3, 4, 5, 6, 7, 8];
+export type EmbroideryOption = {
+  id: string;
+  label: string;
+  price: number;
+  priceTimbul: number;
+};
+
+export const embroideryOptions: EmbroideryOption[] = [
+  { id: "none", label: "Tanpa Bordir", price: 0, priceTimbul: 0 },
+  {
+    id: "1-titik-standar",
+    label: "1 Titik Standar (Dada/Lengan)",
+    price: 5000,
+    priceTimbul: 10000,
+  },
+  {
+    id: "2-titik-standar",
+    label: "2 Titik Standar (Dada/Lengan)",
+    price: 10000,
+    priceTimbul: 20000,
+  },
+  {
+    id: "3-titik-standar",
+    label: "3 Titik Standar (Dada/Lengan)",
+    price: 15000,
+    priceTimbul: 30000,
+  },
+  {
+    id: "4-titik-standar",
+    label: "4 Titik Standar (Dada/Lengan)",
+    price: 20000,
+    priceTimbul: 40000,
+  },
+  {
+    id: "1-titik-punggung",
+    label: "1 Titik Punggung",
+    price: 10000,
+    priceTimbul: 15000,
+  },
+  {
+    id: "1-titik-standar-punggung",
+    label: "1 Titik Standar + Punggung",
+    price: 15000,
+    priceTimbul: 25000,
+  },
+  {
+    id: "2-titik-standar-punggung",
+    label: "2 Titik Standar + Punggung",
+    price: 20000,
+    priceTimbul: 35000,
+  },
+  {
+    id: "3-titik-standar-punggung",
+    label: "3 Titik Standar + Punggung",
+    price: 25000,
+    priceTimbul: 45000,
+  },
+  {
+    id: "promo-paket-lengkap",
+    label: "Promo! Paket Lengkap (5 Titik)",
+    price: 20000,
+    priceTimbul: 40000,
+  },
+];
+
 export const orderQuantity = { min: 20, max: 1000, default: 20 };
 
 export function getCategoryBySlug(
