@@ -10,8 +10,9 @@ export function VisionMission() {
               Visi
             </p>
             <h2 className="font-heading mt-4 text-2xl font-semibold tracking-tight text-[#1c1c1c] sm:text-3xl">
-              Menjadi konveksi custom pilihan utama yang mengutamakan kualitas
-              dan transparansi harga.
+              Menjadi vendor seragam custom terpercaya dan pilihan utama di
+              Sumatera Barat melalui kualitas produk, pelayanan profesional,
+              dan inovasi yang berkelanjutan.
             </h2>
           </div>
           <div>

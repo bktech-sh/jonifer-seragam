@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ProfilHero } from "@/components/profil/profil-hero";
 import { CompanyStory } from "@/components/profil/company-story";
 import { VisionMission } from "@/components/profil/vision-mission";
+import { CustomerExperienceSection } from "@/components/profil/customer-experience-section";
 import { DifferentiatorsSection } from "@/components/profil/differentiators-section";
 import { TimelineSection } from "@/components/profil/timeline-section";
 import { CtaSection } from "@/components/home/cta-section";
@@ -18,6 +19,7 @@ export default function ProfilPage() {
       <ProfilHero />
       <CompanyStory />
       <VisionMission />
+      <CustomerExperienceSection />
       <DifferentiatorsSection />
       <TimelineSection />
       <CtaSection />

@@ -1,25 +1,37 @@
 export const missionPoints = [
-  "Menyediakan produk kaos, seragam, dan selempang custom dengan kualitas konsisten.",
-  "Memberikan estimasi harga yang transparan sebelum pelanggan memutuskan order.",
-  "Menjaga ketepatan waktu produksi tanpa mengorbankan detail sablon dan bordir.",
+  "Memberikan solusi seragam custom yang sesuai dengan kebutuhan mahasiswa, instansi, perusahaan, dan komunitas.",
+  "Menjaga kualitas produk melalui proses produksi yang terintegrasi dalam satu atap.",
+  "Menghasilkan bordir dan jahitan yang rapi, presisi, serta menggunakan material yang nyaman dan berkualitas.",
+  "Memberikan pelayanan yang transparan, komunikatif, dan tepat waktu mulai dari konsultasi hingga pesanan selesai.",
+  "Terus meningkatkan kualitas sumber daya manusia, teknologi produksi, dan pelayanan agar mampu menjadi mitra jangka panjang bagi setiap pelanggan.",
 ];
 
 export const differentiators = [
   {
-    title: "Produksi Terkontrol",
+    title: "Bebas Custom",
     description:
-      "Setiap tahap produksi, dari pemilihan bahan hingga finishing, melalui quality control internal sebelum dikirim ke pelanggan.",
+      "Desain, warna, model, hingga bordir dapat disesuaikan dengan identitas sekolah, instansi, perusahaan, maupun komunitas Anda.",
   },
   {
-    title: "Harga Transparan",
+    title: "Konveksi Satu Atap",
     description:
-      "Pelanggan bisa menghitung sendiri estimasi biaya di halaman katalog, tanpa perlu menunggu penawaran manual dari admin.",
+      "Mulai dari konsultasi, desain, pemilihan bahan, penjahitan, bordir, hingga quality control, seluruh proses ditangani langsung oleh tim Jonifer Seragam. Dengan proses produksi yang terintegrasi dalam satu atap, kualitas lebih terkontrol, komunikasi lebih mudah, dan hasil lebih konsisten.",
   },
   {
-    title: "Fleksibel untuk Segala Skala",
+    title: "Bordir Premium",
     description:
-      "Melayani pesanan personal, komunitas, hingga instansi dengan jumlah bervariasi — mulai dari puluhan hingga ribuan pcs.",
+      "Kami tidak hanya fokus pada kerapian bordir, tetapi juga pada akurasi warna benang. Setiap logo diusahakan menggunakan warna yang mendekati desain asli, sehingga identitas instansi, maupun perusahaan tetap terjaga dengan baik. Selain itu kami didukung",
   },
+  {
+    title: "Berpengalaman",
+    description:
+      "Dengan berpengalaman dalam industri tekstil selama lebih dari 20 tahun, kami telah dipercaya berbagai instansi, sekolah, perusahaan, dan komunitas di Sumatera Barat.",
+  },
+];
+
+export const customerExperiencePoints = [
+  "Tidak khawatir proses produksi karena kami memberikan pendampingan dari awal hingga selesai.",
+  "Tidak perlu berpindah-pindah vendor karena semua proses dikerjakan dalam satu atap.",
 ];
 
 export const timeline = [
