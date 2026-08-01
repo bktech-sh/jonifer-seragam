@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCategoryBySlug, getProductCategories } from "@/data/catalog";
+import { fallbackProductCategories, getCategoryBySlug } from "@/data/catalog";
 import { PriceCalculator } from "@/components/katalog/price-calculator";
+import { ProductGallery } from "@/components/katalog/product-gallery";
 
 export async function generateStaticParams() {
-  const categories = await getProductCategories();
+  const categories = fallbackProductCategories;
   return categories.map((category) => ({ slug: category.id }));
 }
 
@@ -16,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const categories = await getProductCategories();
+  const categories = fallbackProductCategories;
   const category = getCategoryBySlug(categories, slug);
 
   if (!category) {
@@ -35,7 +35,7 @@ export default async function KatalogDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const categories = await getProductCategories();
+  const categories = fallbackProductCategories;
   const category = getCategoryBySlug(categories, slug);
 
   if (!category) {
@@ -59,24 +59,7 @@ export default async function KatalogDetailPage({
             {category.explanation}
           </p>
 
-          <div className="mt-6 grid grid-cols-3 gap-3">
-            {category.galleryImages.map((src, index) => (
-              <div
-                key={src}
-                className="relative aspect-square w-full overflow-hidden rounded-xl"
-              >
-                <Image
-                  src={src}
-                  alt={`${category.name} ${index + 1}`}
-                  fill
-                  loading={index === 0 ? undefined : "lazy"}
-                  priority={index === 0}
-                  sizes="(min-width: 1024px) 200px, 33vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          <ProductGallery name={category.name} images={category.galleryImages} />
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getProductCategories, getStartingPrice } from "@/data/catalog";
+import { fallbackProductCategories, getStartingPrice } from "@/data/catalog";
 import { formatRupiah } from "@/lib/calculator";
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function KatalogPage() {
-  const productCategories = await getProductCategories();
+  const productCategories = fallbackProductCategories;
 
   return (
     <div className="flex flex-col">
