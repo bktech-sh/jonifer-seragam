@@ -8,7 +8,7 @@ export function UspSection() {
         <h2 className="font-heading text-2xl font-semibold tracking-tight text-[#1c1c1c] sm:text-3xl">
           Kenapa Jonifer Seragam
         </h2>
-        <div className="mt-6 flex flex-col gap-5 sm:mt-10 sm:grid sm:grid-cols-3 sm:gap-10">
+        <div className="mt-6 flex flex-col gap-5 sm:mt-10 sm:grid sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
           {usps.map((usp, index) => (
             <div
               key={usp.title}

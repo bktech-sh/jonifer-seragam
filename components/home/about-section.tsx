@@ -10,22 +10,20 @@ export function AboutSection() {
             Tentang Kami
           </p>
           <h2 className="font-heading mt-4 text-2xl font-semibold tracking-tight text-[#1c1c1c] sm:text-4xl">
-            Partner produksi kaos, seragam, dan selempang custom.
+            Di balik setiap seragam yang kami produksi, ada tanggung jawab untuk menjaga kepercayaan pelanggan.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-[#1c1c1c]/70">
-            {siteConfig.name} melayani produksi dengan proses yang jelas dari
-            pemilihan bahan sampai estimasi harga — cocok untuk kebutuhan
-            personal, komunitas, hingga korporat.
+            Kepercayaan pelanggan adalah alasan kami terus berkembang. Karena bagi kami, setiap seragam yang kami produksi akan menjadi bagian dari cerita, identitas, dan kebanggaan tim yang memakainya.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-[#1c1c1c]/50">
             Pilih bahan, tentukan detail sablon atau bordir, lalu produksi dengan
             quality control di setiap tahap. Cek estimasi biaya sendiri di halaman
-            katalog sebelum menghubungi admin — tidak ada kejutan harga di akhir.
+            katalog sebelum menghubungi admin
           </p>
         </div>
         <div className="relative aspect-4/3 w-full overflow-hidden rounded-3xl">
           <Image
-            src="https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3060.JPG?tr=w-1000,q-75,f-auto"
+            src="https://ik.imagekit.io/jgcvqpss3/DSC_5457.jpg"
             alt="Ruang produksi dan showroom Jonifer Seragam"
             fill
             loading="lazy"

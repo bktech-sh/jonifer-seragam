@@ -235,24 +235,28 @@ export const clients = [
 
 export const usps = [
   {
-    title: "Bahan Pilihan",
+    title: "Bebas Custom",
     description:
-      "Cotton Combed hingga Cotton Bambu — kami hanya pakai bahan yang sudah teruji nyaman dan awet, tidak mudah melar, dan warnanya tahan lama meski dicuci berkali-kali.",
-    image:
-      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3391.JPG?tr=w-800,q-75,f-auto",
+      "Desain, warna, model, hingga bordir dapat disesuaikan dengan identitas sekolah, instansi, perusahaan, maupun komunitas Anda.",
+    image: "https://ik.imagekit.io/jgcvqpss3/DSC_4855.jpg?tr=w-800,q-75,f-auto",
   },
   {
-    title: "Sablon & Bordir Presisi",
+    title: "Konveksi Satu Atap",
     description:
-      "Detail rapi, warna tajam, tahan lama — dikerjakan tim berpengalaman dengan quality control di setiap tahap, dari desain sampai finishing akhir.",
+      "Mulai dari konsultasi, desain, pemilihan bahan, penjahitan, bordir, hingga quality control, seluruh proses ditangani langsung oleh tim Jonifer Seragam. Dengan proses produksi yang terintegrasi dalam satu atap, kualitas lebih terkontrol, komunikasi lebih mudah, dan hasil akhir lebih konsisten sesuai standar yang telah disepakati.",
     image:
-      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/DSC_3074.JPG?tr=w-800,q-75,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/c0492b3a-9918-4e46-acf2-158a86a47cf2.jpg?tr=w-800,q-75,f-auto",
   },
   {
-    title: "Harga Transparan",
+    title: "Bordir Premium",
     description:
-      "Hitung estimasi harga sendiri di halaman katalog sebelum order. Tidak ada biaya tersembunyi, tidak perlu nego bolak-balik lewat chat.",
-    image:
-      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/logo/DSC_1523.JPG?tr=w-800,q-75,f-auto",
+      "Kami tidak hanya fokus pada kerapian bordir, tetapi juga pada akurasi warna benang. Setiap logo diusahakan menggunakan warna yang mendekati desain asli, sehingga identitas sekolah, instansi, maupun perusahaan tetap terjaga dengan baik. Selain itu kami didukung dengan armada 5 mesin bordir dengan total 48 kepala bordir agar pesanan dapat selesai sesuai deadline.",
+    image: "https://ik.imagekit.io/jgcvqpss3/IMG_5433.PNG?tr=w-800,q-75,f-auto",
+  },
+  {
+    title: "Berpengalaman",
+    description:
+      "Dengan berpengalaman dalam industri tekstil selama lebih dari 20 tahun, kami telah dipercaya berbagai instansi, sekolah, perusahaan, dan komunitas di Sumatera Barat.",
+    image: "https://ik.imagekit.io/jgcvqpss3/DSC_3493.JPG?tr=w-800,q-75,f-auto",
   },
 ];
