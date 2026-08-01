@@ -68,7 +68,7 @@ export function ProductGallery({ name, images }: ProductGalleryProps) {
 
   return (
     <>
-      <div className="mt-6 grid grid-cols-4 auto-rows-27.5 gap-3 sm:auto-rows-32.5 lg:auto-rows-37.5">
+      <div className="mt-6 grid grid-cols-4 auto-rows-50 gap-3 sm:auto-rows-60 lg:auto-rows-70">
         {visible.map((src, index) => {
           const isOverlayTile = index === visibleCount - 1 && remaining > 0;
           const video = isVideoUrl(src);
