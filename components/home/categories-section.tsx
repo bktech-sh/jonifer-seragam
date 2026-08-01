@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getProductCategories } from "@/data/catalog";
+import { fallbackProductCategories } from "@/data/catalog";
 
-export async function CategoriesSection() {
-  const productCategories = await getProductCategories();
+export function CategoriesSection() {
+  const productCategories = fallbackProductCategories;
 
   return (
     <section className="bg-white py-16 sm:py-20">

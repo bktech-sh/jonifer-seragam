@@ -24,11 +24,12 @@ export const fallbackProductCategories: ProductCategory[] = [
   {
     id: "pdh-standar",
     name: "PDH Standar",
-    description: "Pakaian Dinas Harian dengan potongan standar, rapi untuk kebutuhan kantor.",
+    description:
+      "Seragam organisasi yang dirancang untuk mencerminkan identitas dan profesionalisme tim. Cocok untuk himpunan mahasiswa, BEM, UKM, komunitas, maupun instansi.",
     explanation:
-      "PDH Standar dirancang untuk kebutuhan seragam harian kantor maupun instansi. Potongannya rapi dan formal, cocok dipakai rutin tanpa mengurangi kenyamanan sepanjang hari kerja.",
+      "Seragam organisasi yang dirancang untuk mencerminkan identitas dan profesionalisme tim. Cocok untuk himpunan mahasiswa, BEM, UKM, komunitas, maupun instansi.",
     image:
-      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4850.HEIC?updatedAt=1785600611644?auto=format&fit=crop&w=800&q=70",
     galleryImages: [
       "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=700&q=70",
       "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=700&q=70",
@@ -61,11 +62,12 @@ export const fallbackProductCategories: ProductCategory[] = [
   {
     id: "pdh-tunik",
     name: "PDH Tunik",
-    description: "PDH model tunik untuk seragam instansi maupun organisasi.",
+    description:
+      "Seragam dengan potongan lebih panjang sekitar 10 cm dibanding model standar, memberikan kenyamanan dan tampilan yang lebih sesuai untuk muslimah tanpa mengurangi kesan profesional.",
     explanation:
-      "PDH Tunik mengikuti model seragam instansi dengan siluet tunik yang lebih tertutup dan formal. Pilihan tepat untuk organisasi yang butuh keseragaman tampilan di acara resmi.",
+      "Seragam dengan potongan lebih panjang sekitar 10 cm dibanding model standar, memberikan kenyamanan dan tampilan yang lebih sesuai untuk muslimah tanpa mengurangi kesan profesional.",
     image:
-      "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_8429.HEIC?updatedAt=1785600682836?auto=format&fit=crop&w=800&q=70",
     galleryImages: [
       "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=700&q=70",
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=70",
@@ -90,11 +92,12 @@ export const fallbackProductCategories: ProductCategory[] = [
   {
     id: "pdh-tactical",
     name: "PDH Tactical",
-    description: "PDH tactical dengan bahan dan jahitan yang lebih kuat untuk lapangan.",
+    description:
+      "Seragam dengan desain yang lebih fungsional untuk aktivitas lapangan. Dilengkapi saku tambahan dan ventilasi pada bagian punggung untuk meningkatkan kenyamanan, mobilitas, dan kemudahan membawa perlengkapan kerja.",
     explanation:
-      "PDH Tactical dibuat dari bahan yang lebih kuat dan jahitan ekstra kokoh, ditujukan untuk aktivitas lapangan yang butuh daya tahan lebih dari seragam biasa.",
+      "Seragam dengan desain yang lebih fungsional untuk aktivitas lapangan. Dilengkapi saku tambahan dan ventilasi pada bagian punggung untuk meningkatkan kenyamanan, mobilitas, dan kemudahan membawa perlengkapan kerja.",
     image:
-      "https://ik.imagekit.io/xx3lt58x5/jonifer-seragam/pdh-tactical/DSC04350.JPG?tr=w-800,q-75,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/pdh-tactical/IMG_5369.HEIC?updatedAt=1785600705045?tr=w-800,q-75,f-auto",
     galleryImages: [
       "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=700&q=70",
       "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=700&q=70",
@@ -117,13 +120,37 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
   },
   {
+    id: "pdh-2in1",
+    name: "PDH 2in1",
+    description:
+      "Inovasi PDH yang dapat digunakan sebagai kemeja maupun rompi dalam satu produk. Lebih fleksibel untuk berbagai kebutuhan kegiatan formal maupun lapangan tanpa perlu membuat dua seragam terpisah.",
+    explanation:
+      "Inovasi PDH yang dapat digunakan sebagai kemeja maupun rompi dalam satu produk. Lebih fleksibel untuk berbagai kebutuhan kegiatan formal maupun lapangan tanpa perlu membuat dua seragam terpisah.",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/pdh-2in1/IMG_4387.HEIC?updatedAt=1785600771149?auto=format&fit=crop&w=800&q=70",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=700&q=70",
+      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=700&q=70",
+    ],
+    fabricTypes: [
+      {
+        id: "cotton-combed-30-2in1",
+        name: "Cotton Combed 30",
+        pricePerPc: 60000,
+        image:
+          "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70",
+      },
+    ],
+  },
+  {
     id: "almamater",
     name: "Almamater",
-    description: "Jaket almamater untuk kampus, sekolah, atau organisasi kemahasiswaan.",
+    description:
+      "Almamater custom yang dirancang untuk memperkuat identitas organisasi, kampus, maupun komunitas dengan tampilan yang rapi dan berkelas.",
     explanation:
-      "Jaket Almamater menjadi identitas kebanggaan angkatan atau institusi. Kami produksi dengan bahan yang adem dipakai lama dan bordir logo yang presisi.",
+      "Almamater custom yang dirancang untuk memperkuat identitas organisasi, kampus, maupun komunitas dengan tampilan yang rapi dan berkelas.",
     image:
-      "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/almamater/IMG_8516.HEIC?updatedAt=1785600940661?auto=format&fit=crop&w=800&q=70",
     galleryImages: [
       "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=700&q=70",
       "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=70",
@@ -141,11 +168,12 @@ export const fallbackProductCategories: ProductCategory[] = [
   {
     id: "rompi",
     name: "Rompi",
-    description: "Rompi custom untuk kerja lapangan, event, atau seragam komunitas.",
+    description:
+      "Rompi custom yang praktis digunakan untuk kegiatan lapangan, KKN, pengabdian masyarakat, maupun aktivitas komunitas. Memberikan identitas tim yang jelas tanpa mengurangi kenyamanan saat beraktivitas.",
     explanation:
-      "Rompi custom cocok untuk kebutuhan kerja lapangan, panitia event, atau identitas komunitas. Praktis dipakai di atas pakaian apa pun dengan tetap terlihat rapi.",
+      "Rompi custom yang praktis digunakan untuk kegiatan lapangan, KKN, pengabdian masyarakat, maupun aktivitas komunitas. Memberikan identitas tim yang jelas tanpa mengurangi kenyamanan saat beraktivitas.",
     image:
-      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/rompi/IMG_4915.HEIC?updatedAt=1785600805246?auto=format&fit=crop&w=800&q=70",
     galleryImages: [
       "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=700&q=70",
       "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=70",
@@ -168,13 +196,37 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
   },
   {
-    id: "jaket-custom",
-    name: "Jaket Custom",
-    description: "Jaket custom dengan desain dan bahan sesuai kebutuhan.",
+    id: "polo",
+    name: "Polo",
+    description:
+      "Pilihan seragam yang nyaman dengan tampilan semi formal. Cocok digunakan untuk kegiatan kantor, gathering, komunitas, maupun instansi.",
     explanation:
-      "Jaket custom bisa disesuaikan modelnya, mulai dari bomber hingga hoodie zipper, dengan pilihan bahan yang menyesuaikan cuaca dan kebutuhan aktivitas.",
+      "Pilihan seragam yang nyaman dengan tampilan semi formal. Cocok digunakan untuk kegiatan kantor, gathering, komunitas, maupun instansi.",
     image:
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/polo/Salinan%20DSC04909.JPG?updatedAt=1785600889462?auto=format&fit=crop&w=800&q=70",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=700&q=70",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=70",
+    ],
+    fabricTypes: [
+      {
+        id: "cotton-pique-polo",
+        name: "Cotton Pique",
+        pricePerPc: 65000,
+        image:
+          "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70",
+      },
+    ],
+  },
+  {
+    id: "jaket",
+    name: "Jaket",
+    description:
+      "Jaket custom untuk angkatan sekolah, universitas, komunitas, dan perusahaan yang ingin tampil lebih kompak, profesional, dan memiliki identitas yang kuat.",
+    explanation:
+      "Jaket custom untuk angkatan sekolah, universitas, komunitas, dan perusahaan yang ingin tampil lebih kompak, profesional, dan memiliki identitas yang kuat.",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/jaket/IMG_4991.PNG?updatedAt=1785600830338?auto=format&fit=crop&w=800&q=70",
     galleryImages: [
       "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=70",
       "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=700&q=70",
@@ -197,13 +249,36 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
   },
   {
-    id: "bordir",
-    name: "Bordir",
-    description: "Layanan bordir presisi untuk logo, nama, atau detail lainnya.",
+    id: "lanyard",
+    name: "Lanyard",
+    description:
+      "Lanyard custom untuk kebutuhan identitas organisasi, seminar, event, dan instansi dengan desain yang dapat disesuaikan.",
     explanation:
-      "Layanan bordir kami mengerjakan logo, nama, atau detail kecil dengan presisi tinggi dan warna benang yang tahan lama meski sering dicuci.",
+      "Lanyard custom untuk kebutuhan identitas organisasi, seminar, event, dan instansi dengan desain yang dapat disesuaikan.",
     image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/lanyard/IMG_6018.HEIC?updatedAt=1785600968089?auto=format&fit=crop&w=800&q=70",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=700&q=70",
+    ],
+    fabricTypes: [
+      {
+        id: "polyester-lanyard",
+        name: "Polyester",
+        pricePerPc: 15000,
+        image:
+          "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=600&q=70",
+      },
+    ],
+  },
+  {
+    id: "bordir-seragam",
+    name: "Bordir Seragam",
+    description:
+      "Layanan bordir untuk berbagai kebutuhan seragam organisasi, instansi, perusahaan, sekolah, dan komunitas.",
+    explanation:
+      "Layanan bordir untuk berbagai kebutuhan seragam organisasi, instansi, perusahaan, sekolah, dan komunitas.",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/IMG_5433%20(1).PNG?auto=format&fit=crop&w=800&q=70",
     galleryImages: [
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=70",
       "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=700&q=70",
@@ -215,6 +290,28 @@ export const fallbackProductCategories: ProductCategory[] = [
         pricePerPc: 55000,
         image:
           "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=70",
+      },
+    ],
+  },
+  {
+    id: "vendor-bordir",
+    name: "Vendor Bordir",
+    description:
+      "Melayani bordir untuk kebutuhan partai besar berbagai produk seperti logo instansi, atribut sekolah, mukena, baju kurung.",
+    explanation:
+      "Melayani bordir untuk kebutuhan partai besar berbagai produk seperti logo instansi, atribut sekolah, mukena, baju kurung.",
+    image:
+      "https://ik.imagekit.io/jgcvqpss3/IMG_20211019_105431-01.jpeg?auto=format&fit=crop&w=800&q=70",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=700&q=70",
+    ],
+    fabricTypes: [
+      {
+        id: "cotton-combed-30-vendor-bordir",
+        name: "Cotton Combed 30",
+        pricePerPc: 55000,
+        image:
+          "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=70",
       },
     ],
   },
