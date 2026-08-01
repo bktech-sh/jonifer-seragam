@@ -3,6 +3,7 @@ import { csvToObjects } from "@/lib/csv";
 export type FabricType = {
   id: string;
   name: string;
+  description?: string;
   pricePerPc: number;
   image: string;
 };
@@ -64,23 +65,26 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "cotton-cardet",
-        name: "Cotton Cardet",
-        pricePerPc: 50000,
+        id: "american-drill-standar",
+        name: "American Drill",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 110000,
         image:
           "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70",
       },
       {
-        id: "cotton-combed-30",
-        name: "Cotton Combed 30",
-        pricePerPc: 55000,
+        id: "ventura-standar",
+        name: "Ventura",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 130000,
         image:
           "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70",
       },
       {
-        id: "cotton-combed-24s",
-        name: "Cotton Combed 24s",
-        pricePerPc: 60000,
+        id: "verlando-standar",
+        name: "Verlando",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 130000,
         image:
           "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=70",
       },
@@ -121,16 +125,26 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "cotton-combed-30-tunik",
-        name: "Cotton Combed 30",
-        pricePerPc: 58000,
+        id: "american-drill-tunik",
+        name: "American Drill",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 120000,
         image:
           "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70",
       },
       {
-        id: "cotton-combed-20s-tunik",
-        name: "Cotton Combed 20s",
-        pricePerPc: 65000,
+        id: "ventura-tunik",
+        name: "Ventura",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 140000,
+        image:
+          "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-tunik",
+        name: "Verlando",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 140000,
         image:
           "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=70",
       },
@@ -157,16 +171,26 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "cotton-bambu",
-        name: "Cotton Bambu",
-        pricePerPc: 70000,
+        id: "american-drill-tactical",
+        name: "American Drill",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 160000,
         image:
           "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=70",
       },
       {
-        id: "cotton-combed-20s-tactical",
-        name: "Cotton Combed 20s",
-        pricePerPc: 68000,
+        id: "ventura-tactical",
+        name: "Ventura",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 180000,
+        image:
+          "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-tactical",
+        name: "Verlando",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 180000,
         image:
           "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=70",
       },
@@ -220,11 +244,52 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "drill-almamater",
-        name: "Drill American",
-        pricePerPc: 85000,
+        id: "american-drill-almamater-furing-setengah",
+        name: "American Drill - Furing Setengah",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 130000,
         image:
           "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "ventura-almamater-furing-setengah",
+        name: "Ventura - Furing Setengah",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 150000,
+        image:
+          "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-almamater-furing-setengah",
+        name: "Verlando - Furing Setengah",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 150000,
+        image:
+          "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "american-drill-almamater-full-furing",
+        name: "American Drill - Full Furing",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 145000,
+        image:
+          "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "ventura-almamater-full-furing",
+        name: "Ventura - Full Furing",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 165000,
+        image:
+          "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-almamater-full-furing",
+        name: "Verlando - Full Furing",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 165000,
+        image:
+          "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
       },
     ],
   },
@@ -246,16 +311,50 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "parasut-rompi",
-        name: "Parasut",
-        pricePerPc: 45000,
+        id: "american-drill-rompi-tanpa-furing",
+        name: "American Drill - Tanpa Furing",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 80000,
         image:
           "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=70",
       },
       {
-        id: "canvas-rompi",
-        name: "Canvas",
-        pricePerPc: 60000,
+        id: "ventura-rompi-tanpa-furing",
+        name: "Ventura - Tanpa Furing",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 100000,
+        image:
+          "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-rompi-tanpa-furing",
+        name: "Verlando - Tanpa Furing",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 100000,
+        image:
+          "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "american-drill-rompi-full-furing",
+        name: "American Drill - Full Furing",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 90000,
+        image:
+          "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "ventura-rompi-full-furing",
+        name: "Ventura - Full Furing",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 110000,
+        image:
+          "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-rompi-full-furing",
+        name: "Verlando - Full Furing",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 110000,
         image:
           "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
       },
@@ -304,18 +403,28 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "fleece-jaket",
-        name: "Fleece",
-        pricePerPc: 75000,
+        id: "american-drill-jaket",
+        name: "American Drill",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 175000,
         image:
           "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
       },
       {
-        id: "taslan-jaket",
-        name: "Taslan",
-        pricePerPc: 90000,
+        id: "ventura-jaket",
+        name: "Ventura",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 195000,
         image:
           "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-jaket",
+        name: "Verlando",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 195000,
+        image:
+          "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
       },
     ],
   },

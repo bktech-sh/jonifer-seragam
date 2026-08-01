@@ -155,6 +155,11 @@ export function PriceCalculator({
                   <p className="text-xs text-[#1c1c1c]/60">
                     {formatRupiah(f.pricePerPc)}/pcs
                   </p>
+                  {f.description && (
+                    <p className="mt-1 text-xs text-[#1c1c1c]/50">
+                      {f.description}
+                    </p>
+                  )}
                 </div>
               </button>
             ))}
