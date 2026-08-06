@@ -217,9 +217,26 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "cotton-combed-30-2in1",
-        name: "Cotton Combed 30",
-        pricePerPc: 60000,
+        id: "american-drill-2in1",
+        name: "American Drill",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 120000,
+        image:
+          "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "ventura-2in1",
+        name: "Ventura",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 140000,
+        image:
+          "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-2in1",
+        name: "Verlando",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 140000,
         image:
           "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70",
       },
@@ -426,6 +443,84 @@ export const fallbackProductCategories: ProductCategory[] = [
         pricePerPc: 195000,
         image:
           "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
+      },
+    ],
+  },
+  {
+    id: "celana",
+    name: "Celana",
+    description:
+      "Celana seragam custom yang dirancang untuk kenyamanan dan ketahanan pemakaian harian, cocok untuk organisasi, instansi, maupun komunitas.",
+    explanation:
+      "Celana seragam custom yang dirancang untuk kenyamanan dan ketahanan pemakaian harian, cocok untuk organisasi, instansi, maupun komunitas.",
+    image:
+      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=800&q=70",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=700&q=70",
+    ],
+    fabricTypes: [
+      {
+        id: "american-drill-celana",
+        name: "American Drill",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 130000,
+        image:
+          "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "ventura-celana",
+        name: "Ventura",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 150000,
+        image:
+          "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-celana",
+        name: "Verlando",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 150000,
+        image:
+          "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70",
+      },
+    ],
+  },
+  {
+    id: "rok",
+    name: "Rok",
+    description:
+      "Rok seragam custom dengan potongan rapi dan nyaman, cocok untuk organisasi, instansi, maupun komunitas.",
+    explanation:
+      "Rok seragam custom dengan potongan rapi dan nyaman, cocok untuk organisasi, instansi, maupun komunitas.",
+    image:
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=70",
+    galleryImages: [
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=70",
+    ],
+    fabricTypes: [
+      {
+        id: "american-drill-rok",
+        name: "American Drill",
+        description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
+        pricePerPc: 115000,
+        image:
+          "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "ventura-rok",
+        name: "Ventura",
+        description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
+        pricePerPc: 135000,
+        image:
+          "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "verlando-rok",
+        name: "Verlando",
+        description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
+        pricePerPc: 135000,
+        image:
+          "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70",
       },
     ],
   },
