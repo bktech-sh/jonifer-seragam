@@ -35,7 +35,13 @@ export function PriceCalculator({
     () => categories.find((c) => c.id === categoryId)!,
     [categoryId]
   );
-  const stepOffset = fixedCategoryId ? 1 : 0;
+  const hideEmbroidery = category.id === "celana" || category.id === "rok";
+  const hideFabric = category.id === "vendor-bordir";
+  const unlimitedQty = category.id === "vendor-bordir";
+  const requireEmbroidery = category.id === "vendor-bordir";
+  const embroideryChoices = requireEmbroidery
+    ? embroideryOptions.filter((option) => option.id !== "none")
+    : embroideryOptions;
 
   const [fabricId, setFabricId] = useState(category.fabricTypes[0].id);
   const fabric = useMemo(
@@ -49,16 +55,22 @@ export function PriceCalculator({
   const [deadline, setDeadline] = useState("");
   const [qtyError, setQtyError] = useState<string | null>(null);
 
-  const embroidery = embroideryOptions[embroideryIndex] ?? embroideryOptions[0];
-  const embroideryPrice = isTimbul ? embroidery.priceTimbul : embroidery.price;
+  const embroidery = embroideryChoices[embroideryIndex] ?? embroideryChoices[0];
+  const embroideryPrice = hideEmbroidery ? 0 : isTimbul ? embroidery.priceTimbul : embroidery.price;
 
   function handleSelectCategory(nextCategoryId: string) {
     setCategoryId(nextCategoryId);
     const nextCategory = categories.find((c) => c.id === nextCategoryId)!;
     setFabricId(nextCategory.fabricTypes[0].id);
+    setEmbroideryIndex(0);
   }
 
   function handleQtyChange(value: number) {
+    if (unlimitedQty) {
+      setQty(Math.max(1, value));
+      setQtyError(null);
+      return;
+    }
     const clamped = Math.min(orderQuantity.max, Math.max(orderQuantity.min, value));
     setQty(clamped);
     if (value < orderQuantity.min || value > orderQuantity.max) {
@@ -79,9 +91,11 @@ export function PriceCalculator({
   const waMessage = [
     `Hi Admin Jonifer Seragam, saya ingin memesan dengan detail berikut:`,
     `- Kategori: ${category.name}`,
-    `- Jenis Bahan: ${fabric.name}`,
+    ...(hideFabric ? [] : [`- Jenis Bahan: ${fabric.name}`]),
     `- Jumlah: ${qty} pcs`,
-    `- Bordir: ${embroidery.label}${isTimbul ? " (Timbul)" : ""}`,
+    ...(hideEmbroidery
+      ? []
+      : [`- Bordir: ${embroidery.label}${isTimbul ? " (Timbul)" : ""}`]),
     `- Estimasi Total: ${formatRupiah(total)}`,
     ...(deadline ? [`- Deadline: ${formatDeadline(deadline)}`] : []),
     ``,
@@ -89,6 +103,13 @@ export function PriceCalculator({
   ].join("\n");
 
   const waHref = buildWhatsAppLink(waMessage);
+
+  let stepCounter = fixedCategoryId ? 0 : 1;
+  const embroideryFirstStep = hideFabric && !hideEmbroidery ? ++stepCounter : 0;
+  const fabricStep = hideFabric ? 0 : ++stepCounter;
+  const qtyStep = ++stepCounter;
+  const embroideryStep = !hideFabric && !hideEmbroidery ? ++stepCounter : 0;
+  const deadlineStep = ++stepCounter;
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_380px] lg:items-start lg:gap-10">
@@ -131,55 +152,92 @@ export function PriceCalculator({
           </div>
         )}
 
-        {/* Step 2: Fabric */}
-        <div>
-          <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
-            {2 - stepOffset}. Pilih Jenis Bahan
-          </h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {category.fabricTypes.map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setFabricId(f.id)}
-                aria-pressed={f.id === fabricId}
-                className={`flex items-center gap-3 rounded-xl border p-3 text-left transition-colors ${
-                  f.id === fabricId
-                    ? "border-[#51ACAD] bg-[#EEF5F5]"
-                    : "border-black/10 bg-white hover:border-[#51ACAD]/50"
-                }`}
-              >
-                <div className="relative aspect-square w-14 shrink-0 overflow-hidden rounded-lg">
-                  <Image
-                    src={f.image}
-                    alt={f.name}
-                    fill
-                    sizes="56px"
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-[#1c1c1c]">
-                    {f.name}
-                  </p>
-                  <p className="text-xs text-[#1c1c1c]/60">
-                    {formatRupiah(f.pricePerPc)}/pcs
-                  </p>
-                  {f.description && (
-                    <p className="mt-1 text-xs text-[#1c1c1c]/50">
-                      {f.description}
-                    </p>
-                  )}
-                </div>
-              </button>
-            ))}
+        {/* Embroidery first when fabric step is hidden */}
+        {embroideryFirstStep > 0 && (
+          <div>
+            <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
+              {embroideryFirstStep}. Pilih Bordir
+            </h2>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-start">
+              <div className="flex-1">
+                <OptionDropdown
+                  label="Bordir"
+                  value={embroideryIndex}
+                  onChange={setEmbroideryIndex}
+                  options={embroideryChoices.map((option, index) => ({
+                    value: index,
+                    label: option.label,
+                    priceLabel:
+                      (isTimbul ? option.priceTimbul : option.price) === 0
+                        ? "Gratis"
+                        : `+${formatRupiah(isTimbul ? option.priceTimbul : option.price)}`,
+                  }))}
+                />
+              </div>
+              <label className="flex h-11 shrink-0 items-center gap-2 rounded-xl border border-black/10 px-4 text-sm font-medium text-[#1c1c1c]">
+                <input
+                  type="checkbox"
+                  checked={isTimbul}
+                  onChange={(e) => setIsTimbul(e.target.checked)}
+                  className="h-4 w-4 accent-[#51ACAD]"
+                />
+                Bordir Timbul
+              </label>
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Step 3: Qty */}
+        {/* Fabric */}
+        {!hideFabric && (
+          <div>
+            <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
+              {fabricStep}. Pilih Jenis Bahan
+            </h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {category.fabricTypes.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  onClick={() => setFabricId(f.id)}
+                  aria-pressed={f.id === fabricId}
+                  className={`flex items-center gap-3 rounded-xl border p-3 text-left transition-colors ${
+                    f.id === fabricId
+                      ? "border-[#51ACAD] bg-[#EEF5F5]"
+                      : "border-black/10 bg-white hover:border-[#51ACAD]/50"
+                  }`}
+                >
+                  <div className="relative aspect-square w-14 shrink-0 overflow-hidden rounded-lg">
+                    <Image
+                      src={f.image}
+                      alt={f.name}
+                      fill
+                      sizes="56px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-[#1c1c1c]">
+                      {f.name}
+                    </p>
+                    <p className="text-xs text-[#1c1c1c]/60">
+                      {formatRupiah(f.pricePerPc)}/pcs
+                    </p>
+                    {f.description && (
+                      <p className="mt-1 text-xs text-[#1c1c1c]/50">
+                        {f.description}
+                      </p>
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Qty */}
         <div>
           <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
-            {3 - stepOffset}. Jumlah Pesanan
+            {qtyStep}. Jumlah Pesanan
           </h2>
           <div className="mt-4 flex items-center gap-3">
             <button
@@ -195,8 +253,8 @@ export function PriceCalculator({
               inputMode="numeric"
               value={qty}
               onChange={(e) => handleQtyChange(Number(e.target.value))}
-              min={orderQuantity.min}
-              max={orderQuantity.max}
+              min={unlimitedQty ? 1 : orderQuantity.min}
+              max={unlimitedQty ? undefined : orderQuantity.max}
               aria-describedby={qtyError ? "qty-error" : undefined}
               className="h-11 w-24 rounded-full border border-black/10 text-center text-base font-semibold text-[#1c1c1c] focus:border-[#51ACAD] focus:outline-none"
             />
@@ -214,50 +272,52 @@ export function PriceCalculator({
             <p id="qty-error" role="alert" className="mt-2 text-sm text-red-600">
               {qtyError}
             </p>
-          ) : (
+          ) : !unlimitedQty ? (
             <p className="mt-2 text-xs text-[#1c1c1c]/50">
               Minimal {orderQuantity.min} pcs, maksimal {orderQuantity.max} pcs.
             </p>
-          )}
+          ) : null}
         </div>
 
-        {/* Step 4: Embroidery */}
-        <div>
-          <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
-            {4 - stepOffset}. Pilih Bordir
-          </h2>
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-start">
-            <div className="flex-1">
-              <OptionDropdown
-                label="Bordir"
-                value={embroideryIndex}
-                onChange={setEmbroideryIndex}
-                options={embroideryOptions.map((option, index) => ({
-                  value: index,
-                  label: option.label,
-                  priceLabel:
-                    (isTimbul ? option.priceTimbul : option.price) === 0
-                      ? "Gratis"
-                      : `+${formatRupiah((isTimbul ? option.priceTimbul : option.price) * qty)}`,
-                }))}
-              />
+        {/* Embroidery (after fabric) */}
+        {embroideryStep > 0 && (
+          <div>
+            <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
+              {embroideryStep}. Pilih Bordir
+            </h2>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-start">
+              <div className="flex-1">
+                <OptionDropdown
+                  label="Bordir"
+                  value={embroideryIndex}
+                  onChange={setEmbroideryIndex}
+                  options={embroideryChoices.map((option, index) => ({
+                    value: index,
+                    label: option.label,
+                    priceLabel:
+                      (isTimbul ? option.priceTimbul : option.price) === 0
+                        ? "Gratis"
+                        : `+${formatRupiah(isTimbul ? option.priceTimbul : option.price)}`,
+                  }))}
+                />
+              </div>
+              <label className="flex h-11 shrink-0 items-center gap-2 rounded-xl border border-black/10 px-4 text-sm font-medium text-[#1c1c1c]">
+                <input
+                  type="checkbox"
+                  checked={isTimbul}
+                  onChange={(e) => setIsTimbul(e.target.checked)}
+                  className="h-4 w-4 accent-[#51ACAD]"
+                />
+                Bordir Timbul
+              </label>
             </div>
-            <label className="flex h-11 shrink-0 items-center gap-2 rounded-xl border border-black/10 px-4 text-sm font-medium text-[#1c1c1c]">
-              <input
-                type="checkbox"
-                checked={isTimbul}
-                onChange={(e) => setIsTimbul(e.target.checked)}
-                className="h-4 w-4 accent-[#51ACAD]"
-              />
-              Bordir Timbul
-            </label>
           </div>
-        </div>
+        )}
 
-        {/* Step 5: Deadline (optional, informational only) */}
+        {/* Deadline (optional, informational only) */}
         <div>
           <h2 className="font-heading text-lg font-semibold text-[#1c1c1c]">
-            {5 - stepOffset}. Deadline (Opsional)
+            {deadlineStep}. Deadline (Opsional)
           </h2>
           <div className="mt-4">
             <input
@@ -283,27 +343,33 @@ export function PriceCalculator({
             <dt className="text-white/60">Kategori</dt>
             <dd className="text-right font-medium text-white">{category.name}</dd>
           </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-white/60">Jenis Bahan</dt>
-            <dd className="text-right font-medium text-white">{fabric.name}</dd>
-          </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-white/60">Harga/pcs</dt>
-            <dd className="text-right font-medium text-white">
-              {formatRupiah(fabric.pricePerPc)}
-            </dd>
-          </div>
+          {!hideFabric && (
+            <div className="flex justify-between gap-4">
+              <dt className="text-white/60">Jenis Bahan</dt>
+              <dd className="text-right font-medium text-white">{fabric.name}</dd>
+            </div>
+          )}
+          {!hideFabric && (
+            <div className="flex justify-between gap-4">
+              <dt className="text-white/60">Harga/pcs</dt>
+              <dd className="text-right font-medium text-white">
+                {formatRupiah(fabric.pricePerPc)}
+              </dd>
+            </div>
+          )}
           <div className="flex justify-between gap-4">
             <dt className="text-white/60">Jumlah</dt>
             <dd className="text-right font-medium text-white">{qty} pcs</dd>
           </div>
-          <div className="flex justify-between gap-4">
-            <dt className="text-white/60">Bordir</dt>
-            <dd className="text-right font-medium text-white">
-              {embroidery.label}
-              {isTimbul ? " (Timbul)" : ""}
-            </dd>
-          </div>
+          {!hideEmbroidery && (
+            <div className="flex justify-between gap-4">
+              <dt className="text-white/60">Bordir</dt>
+              <dd className="text-right font-medium text-white">
+                {embroidery.label}
+                {isTimbul ? " (Timbul)" : ""}
+              </dd>
+            </div>
+          )}
           {deadline && (
             <div className="flex justify-between gap-4">
               <dt className="text-white/60">Deadline</dt>

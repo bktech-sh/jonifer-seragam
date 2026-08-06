@@ -398,9 +398,23 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "cotton-pique-polo",
-        name: "Cotton Pique",
-        pricePerPc: 65000,
+        id: "lacoste-polo",
+        name: "Lacoste",
+        pricePerPc: 55000,
+        image:
+          "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "lacoste-pique-polo",
+        name: "Lacoste Pique",
+        pricePerPc: 85000,
+        image:
+          "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70",
+      },
+      {
+        id: "cvc-polo",
+        name: "CVC",
+        pricePerPc: 100000,
         image:
           "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=70",
       },
@@ -565,9 +579,10 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "cotton-combed-30-bordir",
-        name: "Cotton Combed 30",
-        pricePerPc: 55000,
+        id: "jasa-bordir",
+        name: "Jasa Bordir",
+        description: "Harga dihitung per titik bordir, tanpa biaya bahan.",
+        pricePerPc: 0,
         image:
           "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=70",
       },
@@ -587,9 +602,10 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
     fabricTypes: [
       {
-        id: "cotton-combed-30-vendor-bordir",
-        name: "Cotton Combed 30",
-        pricePerPc: 55000,
+        id: "jasa-bordir-vendor",
+        name: "Jasa Bordir",
+        description: "Harga dihitung per titik bordir, tanpa biaya bahan.",
+        pricePerPc: 0,
         image:
           "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=70",
       },

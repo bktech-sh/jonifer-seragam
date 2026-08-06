@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 type Option = {
   value: number;
   label: string;
-  priceLabel: string;
+  priceLabel?: string;
 };
 
 export function OptionDropdown({
@@ -51,7 +51,9 @@ export function OptionDropdown({
       >
         <span>
           {selected.label}
-          <span className="ml-1.5 text-[#1c1c1c]/50">{selected.priceLabel}</span>
+          {selected.priceLabel && (
+            <span className="ml-1.5 text-[#1c1c1c]/50">{selected.priceLabel}</span>
+          )}
         </span>
         <svg
           viewBox="0 0 24 24"
@@ -89,7 +91,9 @@ export function OptionDropdown({
                 }`}
               >
                 <span>{option.label}</span>
-                <span className="text-[#1c1c1c]/50">{option.priceLabel}</span>
+                {option.priceLabel && (
+                  <span className="text-[#1c1c1c]/50">{option.priceLabel}</span>
+                )}
               </button>
             </li>
           ))}

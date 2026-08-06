@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fallbackProductCategories, getCategoryBySlug } from "@/data/catalog";
+import { buildWhatsAppLink } from "@/data/site";
 import { PriceCalculator } from "@/components/katalog/price-calculator";
 import { ProductGallery } from "@/components/katalog/product-gallery";
 
@@ -63,16 +64,39 @@ export default async function KatalogDetailPage({
         </div>
       </section>
 
-      <section className="bg-[#EEF5F5] py-12 sm:py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-heading text-xl font-semibold tracking-tight text-[#1c1c1c] sm:text-2xl">
-            Hitung Estimasi Harga
-          </h2>
-          <div className="mt-6">
-            <PriceCalculator categories={categories} fixedCategoryId={category.id} />
+      {category.id === "lanyard" ? (
+        <section className="bg-[#EEF5F5] py-12 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="font-heading text-xl font-semibold tracking-tight text-[#1c1c1c] sm:text-2xl">
+              Tertarik Pesan {category.name}?
+            </h2>
+            <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-[#1c1c1c]/70">
+              Konsultasikan kebutuhan dan jumlah pesanan langsung dengan admin kami via WhatsApp.
+            </p>
+            <a
+              href={buildWhatsAppLink(
+                `Hi Admin Jonifer Seragam, saya ingin memesan ${category.name}. Mohon info lebih lanjut, terima kasih.`
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center justify-center rounded-full bg-[#51ACAD] px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#3b8384]"
+            >
+              Order via WhatsApp
+            </a>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="bg-[#EEF5F5] py-12 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <h2 className="font-heading text-xl font-semibold tracking-tight text-[#1c1c1c] sm:text-2xl">
+              Hitung Estimasi Harga
+            </h2>
+            <div className="mt-6">
+              <PriceCalculator categories={categories} fixedCategoryId={category.id} />
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
