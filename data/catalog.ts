@@ -32,20 +32,21 @@ export const fallbackProductCategories: ProductCategory[] = [
     image:
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4134.PNG?tr=w-800,q-75,f-auto",
     galleryImages: [
+      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4856.HEIC?tr=w-700,q-70,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4985.PNG?tr=w-700,q-70,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_8312.HEIC?tr=w-700,q-70,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_9112.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_7302.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_9116.HEIC?tr=w-700,q-70,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_0993.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_7318.HEIC?tr=w-700,q-70,f-auto",
-      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4985.PNG?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_5906.HEIC?tr=w-700,q-70,f-auto",
-      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_9112.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_7314.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_7315.HEIC?tr=w-700,q-70,f-auto",
-      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4856.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_7720.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_7756.JPG?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_5905.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_8056.HEIC?tr=w-700,q-70,f-auto",
-      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_0993.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_1094.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_7319.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_8306.HEIC?tr=w-700,q-70,f-auto",
@@ -55,7 +56,6 @@ export const fallbackProductCategories: ProductCategory[] = [
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_7748.JPG?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_7753.JPG?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_8307.HEIC?tr=w-700,q-70,f-auto",
-      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_8312.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_0981.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_8311.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_5908.HEIC?tr=w-700,q-70,f-auto",
@@ -100,6 +100,7 @@ export const fallbackProductCategories: ProductCategory[] = [
     image:
       "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_8429.HEIC?tr=w-800,q-75,f-auto",
     galleryImages: [
+      "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_8429.HEIC?tr=w-800,q-75,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_7644.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_5552.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_7645.HEIC?tr=w-700,q-70,f-auto",
@@ -566,7 +567,7 @@ export const embroideryOptions: EmbroideryOption[] = [
   },
 ];
 
-export const orderQuantity = { min: 20, max: 1000, default: 20 };
+export const orderQuantity = { min: 6, max: 1000, default: 6 };
 
 export function getCategoryBySlug(
   categories: ProductCategory[],
