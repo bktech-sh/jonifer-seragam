@@ -29,6 +29,17 @@ function PlayBadge() {
 
 export function ProductGallery({ name, images }: ProductGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [startOffset, setStartOffset] = useState(0);
+
+  useEffect(() => {
+    if (lightboxIndex !== null || images.length <= 4) return;
+
+    const id = setInterval(() => {
+      setStartOffset((prev) => (prev + 1) % images.length);
+    }, 10000);
+
+    return () => clearInterval(id);
+  }, [lightboxIndex, images.length]);
 
   const close = useCallback(() => setLightboxIndex(null), []);
   const showPrev = useCallback(
@@ -62,41 +73,46 @@ export function ProductGallery({ name, images }: ProductGalleryProps) {
   if (images.length === 0) return null;
 
   const visibleCount = Math.min(images.length, 4);
-  const visible = images.slice(0, visibleCount);
   const remaining = images.length - visibleCount;
+  const visible = Array.from({ length: visibleCount }, (_, i) => {
+    const realIndex = (startOffset + i) % images.length;
+    return { src: images[realIndex], realIndex };
+  });
   const activeSrc = lightboxIndex === null ? null : images[lightboxIndex];
 
   return (
     <>
       <div className="mt-6 grid grid-cols-4 auto-rows-50 gap-3 sm:auto-rows-60 lg:auto-rows-70">
-        {visible.map((src, index) => {
+        {visible.map(({ src, realIndex }, index) => {
           const isOverlayTile = index === visibleCount - 1 && remaining > 0;
           const video = isVideoUrl(src);
 
           return (
             <button
-              key={src}
+              key={index}
               type="button"
-              onClick={() => setLightboxIndex(index)}
+              onClick={() => setLightboxIndex(realIndex)}
               className={`group relative overflow-hidden rounded-xl bg-black/5 ${tileSpanClass(index, visibleCount)}`}
             >
               {video ? (
                 <video
+                  key={src}
                   src={src}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full animate-fade-in object-cover"
                   muted
                   playsInline
                   preload="metadata"
                 />
               ) : (
                 <Image
+                  key={src}
                   src={src}
-                  alt={`${name} ${index + 1}`}
+                  alt={`${name} ${realIndex + 1}`}
                   fill
                   loading={index === 0 ? undefined : "lazy"}
                   priority={index === 0}
                   sizes="(min-width: 1024px) 400px, 50vw"
-                  className="object-cover transition duration-300 group-hover:scale-105"
+                  className="animate-fade-in object-cover transition duration-300 group-hover:scale-105"
                 />
               )}
               {video && !isOverlayTile && <PlayBadge />}
