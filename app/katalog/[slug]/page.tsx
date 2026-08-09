@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { fallbackProductCategories, getCategoryBySlug } from "@/data/catalog";
+import {
+  fallbackProductCategories,
+  getCategoryBySlug,
+  getKatalogGalleryImages,
+} from "@/data/catalog";
 import { buildWhatsAppLink } from "@/data/site";
 import { PriceCalculator } from "@/components/katalog/price-calculator";
 import { ProductGallery } from "@/components/katalog/product-gallery";
@@ -43,6 +47,10 @@ export default async function KatalogDetailPage({
     notFound();
   }
 
+  const liveGalleryImages = await getKatalogGalleryImages(category.id);
+  const galleryImages =
+    liveGalleryImages.length > 0 ? liveGalleryImages : category.galleryImages;
+
   return (
     <div className="flex flex-col">
       <section className="bg-white py-8 sm:py-12">
@@ -60,7 +68,7 @@ export default async function KatalogDetailPage({
             {category.explanation}
           </p>
 
-          <ProductGallery name={category.name} images={category.galleryImages} />
+          <ProductGallery name={category.name} images={galleryImages} />
         </div>
       </section>
 

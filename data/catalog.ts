@@ -1,3 +1,4 @@
+import ImageKit from "@imagekit/nodejs";
 import { csvToObjects } from "@/lib/csv";
 
 export type FabricType = {
@@ -696,6 +697,32 @@ const VIDEO_EXTENSIONS = [".mp4", ".mov", ".webm", ".m4v"];
 export function isVideoUrl(url: string): boolean {
   const path = url.split("?")[0].toLowerCase();
   return VIDEO_EXTENSIONS.some((ext) => path.endsWith(ext));
+}
+
+// Katalog gallery images are browsed live from the ImageKit media library
+// (root folder named after the category id, e.g. /pdh-standar) so new
+// photos show up without a code change. Videos are filtered out — the
+// katalog gallery only ever shows images.
+export async function getKatalogGalleryImages(categoryId: string): Promise<string[]> {
+  const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+  if (!privateKey) return [];
+
+  const client = new ImageKit({ privateKey });
+
+  try {
+    const files = await client.assets.list({
+      path: `/${categoryId}`,
+      type: "file",
+      limit: 100,
+    });
+
+    return files
+      .map((file) => file.url)
+      .filter((url): url is string => Boolean(url))
+      .filter((url) => !isVideoUrl(url));
+  } catch {
+    return [];
+  }
 }
 
 // Public Google Sheet (CSV export) — same spreadsheet as the portfolio sheet,
