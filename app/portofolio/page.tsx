@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getPortfolioItems } from "@/data/portofolio";
-import { PortfolioGrid } from "@/components/portofolio/portfolio-grid";
+import { getPortfolioSegments } from "@/data/portofolio";
+import { PortfolioBrowser } from "@/components/portofolio/portfolio-browser";
 
 export const metadata: Metadata = {
   title: "Portofolio — Jonifer Seragam",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function PortofolioPage() {
-  const portfolioItems = await getPortfolioItems();
+  const segments = await getPortfolioSegments();
 
   return (
     <div className="flex flex-col">
@@ -41,7 +41,13 @@ export default async function PortofolioPage() {
 
       <section className="bg-white py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <PortfolioGrid items={portfolioItems} />
+          {segments.length === 0 ? (
+            <p className="text-center text-sm text-[#1c1c1c]/60">
+              Belum ada portofolio untuk ditampilkan.
+            </p>
+          ) : (
+            <PortfolioBrowser segments={segments} />
+          )}
         </div>
       </section>
     </div>

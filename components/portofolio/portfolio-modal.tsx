@@ -2,31 +2,33 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import type { PortfolioItem } from "@/data/portofolio";
+import type { PortfolioProject } from "@/data/portofolio";
+import { isVideoUrl } from "@/data/catalog";
 import { buildWhatsAppLink } from "@/data/site";
 
 export function PortfolioModal({
-  item,
+  project,
   onClose,
 }: {
-  item: PortfolioItem;
+  project: PortfolioProject;
   onClose: () => void;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeSrc = project.images[activeIndex];
 
   useEffect(() => {
     setActiveIndex(0);
-  }, [item]);
+  }, [project]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") onClose();
       if (event.key === "ArrowRight") {
-        setActiveIndex((prev) => (prev + 1) % item.images.length);
+        setActiveIndex((prev) => (prev + 1) % project.images.length);
       }
       if (event.key === "ArrowLeft") {
         setActiveIndex(
-          (prev) => (prev - 1 + item.images.length) % item.images.length
+          (prev) => (prev - 1 + project.images.length) % project.images.length
         );
       }
     }
@@ -37,15 +39,15 @@ export function PortfolioModal({
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [item.images.length, onClose]);
+  }, [project.images.length, onClose]);
 
   function goToNext() {
-    setActiveIndex((prev) => (prev + 1) % item.images.length);
+    setActiveIndex((prev) => (prev + 1) % project.images.length);
   }
 
   function goToPrev() {
     setActiveIndex(
-      (prev) => (prev - 1 + item.images.length) % item.images.length
+      (prev) => (prev - 1 + project.images.length) % project.images.length
     );
   }
 
@@ -53,7 +55,7 @@ export function PortfolioModal({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={item.product}
+      aria-label={project.name}
       className="fixed inset-0 z-50 flex items-center justify-center bg-[#1c1c1c]/80 p-4"
       onClick={onClose}
     >
@@ -63,15 +65,25 @@ export function PortfolioModal({
       >
         {/* Carousel */}
         <div className="relative h-1/2 w-full shrink-0 bg-[#1c1c1c] sm:h-full sm:w-3/5">
-          <Image
-            src={item.images[activeIndex]}
-            alt={`${item.product} ${activeIndex + 1}`}
-            fill
-            sizes="(min-width: 640px) 60vw, 100vw"
-            className="object-cover"
-          />
+          {isVideoUrl(activeSrc) ? (
+            <video
+              src={activeSrc}
+              className="h-full w-full object-contain"
+              controls
+              autoPlay
+              playsInline
+            />
+          ) : (
+            <Image
+              src={activeSrc}
+              alt={`${project.name} ${activeIndex + 1}`}
+              fill
+              sizes="(min-width: 640px) 60vw, 100vw"
+              className="object-contain"
+            />
+          )}
 
-          {item.images.length > 1 && (
+          {project.images.length > 1 && (
             <>
               <button
                 type="button"
@@ -112,7 +124,7 @@ export function PortfolioModal({
                 </svg>
               </button>
               <div className="absolute inset-x-0 bottom-3 flex justify-center gap-1.5">
-                {item.images.map((image, index) => (
+                {project.images.map((image, index) => (
                   <button
                     key={image}
                     type="button"
@@ -131,9 +143,9 @@ export function PortfolioModal({
         {/* Detail */}
         <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-6 sm:p-8">
           <div className="flex items-start justify-between gap-4">
-            <span className="w-fit rounded-full bg-[#EEF5F5] px-2.5 py-1 text-xs font-semibold text-[#3b8384] uppercase">
-              {item.category}
-            </span>
+            <h2 className="font-heading text-xl font-semibold text-[#1c1c1c]">
+              {project.name}
+            </h2>
             <button
               type="button"
               onClick={onClose}
@@ -154,30 +166,10 @@ export function PortfolioModal({
               </svg>
             </button>
           </div>
-          <h2 className="font-heading text-xl font-semibold text-[#1c1c1c]">
-            {item.client}
-          </h2>
-          <p className="text-sm font-semibold text-[#3b8384]">{item.product}</p>
-          <p className="text-sm leading-relaxed text-[#1c1c1c]/70">
-            {item.description}
-          </p>
-
-          <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-black/5 pt-4">
-            {item.specs.map((spec) => (
-              <div key={spec.label}>
-                <dt className="text-xs text-[#1c1c1c]/50 uppercase">
-                  {spec.label}
-                </dt>
-                <dd className="mt-0.5 text-sm font-medium text-[#1c1c1c]">
-                  {spec.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
 
           <a
             href={buildWhatsAppLink(
-              `Hi Admin Jonifer Seragam, saya ingin buat pesanan seperti "${item.product}" yang dibuat untuk ${item.client}. Boleh minta info lebih lanjut?`
+              `Hi Admin Jonifer Seragam, saya ingin buat pesanan seperti "${project.name}". Boleh minta info lebih lanjut?`
             )}
             target="_blank"
             rel="noopener noreferrer"

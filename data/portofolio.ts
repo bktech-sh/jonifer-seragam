@@ -1,271 +1,95 @@
-import { csvToObjects } from "@/lib/csv";
+import ImageKit from "@imagekit/nodejs";
+import { fallbackProductCategories, getCategoryBySlug, isVideoUrl } from "@/data/catalog";
 
-export type PortfolioItem = {
+export type PortfolioProject = {
+  name: string;
   images: string[];
-  client: string;
-  product: string;
-  category: string;
-  description: string;
-  specs: { label: string; value: string }[];
 };
 
-// Fallback data used when PORTFOLIO_SHEET_CSV_URL is not set or the fetch fails.
-// Once the client's Google Sheet is live, set the env var and this array becomes
-// a safety net rather than the primary source.
-export const fallbackPortfolioItems: PortfolioItem[] = [
-  {
-    images: [
-      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Komunitas Motor Jakarta",
-    product: "Kaos custom untuk kegiatan touring",
-    category: "Kaos",
-    description:
-      "Produksi 120 pcs kaos custom untuk kegiatan touring tahunan komunitas, dengan sablon logo di bagian dada dan punggung.",
-    specs: [
-      { label: "Bahan", value: "Cotton Combed 30" },
-      { label: "Jumlah", value: "120 pcs" },
-      { label: "Sablon", value: "3 warna, dada & punggung" },
-      { label: "Durasi", value: "10 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "PT Cipta Sejahtera",
-    product: "PDH Standar untuk seragam kantor",
-    category: "PDH Standar",
-    description:
-      "Seragam PDH Standar untuk 80 karyawan, menggunakan Cotton Combed 30 dengan bordir nama dan logo perusahaan.",
-    specs: [
-      { label: "Bahan", value: "Cotton Combed 30" },
-      { label: "Jumlah", value: "80 pcs" },
-      { label: "Bordir", value: "Nama & logo perusahaan" },
-      { label: "Durasi", value: "14 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Dinas Perhubungan Kota",
-    product: "PDH Tunik untuk seragam instansi",
-    category: "PDH Tunik",
-    description:
-      "Seragam PDH Tunik untuk staf instansi, dipesan dalam jumlah besar dengan potongan yang konsisten di setiap ukuran.",
-    specs: [
-      { label: "Bahan", value: "Cotton Combed 20s" },
-      { label: "Jumlah", value: "200 pcs" },
-      { label: "Model", value: "Tunik, lengan panjang" },
-      { label: "Durasi", value: "21 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Tim SAR Relawan",
-    product: "PDH Tactical untuk kebutuhan lapangan",
-    category: "PDH Tactical",
-    description:
-      "PDH Tactical dengan bahan Cotton Bambu yang lebih kuat, dirancang untuk aktivitas lapangan tim relawan.",
-    specs: [
-      { label: "Bahan", value: "Cotton Bambu" },
-      { label: "Jumlah", value: "60 pcs" },
-      { label: "Fitur", value: "Jahitan ganda, saku tambahan" },
-      { label: "Durasi", value: "12 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Universitas Nusantara",
-    product: "Jaket almamater angkatan 2026",
-    category: "Almamater",
-    description:
-      "Jaket almamater untuk angkatan baru, menggunakan bahan Drill American dengan bordir logo fakultas.",
-    specs: [
-      { label: "Bahan", value: "Drill American" },
-      { label: "Jumlah", value: "300 pcs" },
-      { label: "Bordir", value: "Logo fakultas & nama angkatan" },
-      { label: "Durasi", value: "25 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "EO Acara Kreatif",
-    product: "Rompi custom untuk kerja lapangan",
-    category: "Rompi",
-    description:
-      "Rompi custom untuk panitia event, dengan bahan Parasut yang ringan dan mudah dipakai di atas pakaian apa pun.",
-    specs: [
-      { label: "Bahan", value: "Parasut" },
-      { label: "Jumlah", value: "45 pcs" },
-      { label: "Sablon", value: "Logo panitia, 2 warna" },
-      { label: "Durasi", value: "7 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Startup Digital Kreasi",
-    product: "Jaket custom dengan desain sesuai permintaan",
-    category: "Jaket Custom",
-    description:
-      "Jaket custom bahan Fleece untuk merchandise internal startup, dengan sablon logo pada bagian dada.",
-    specs: [
-      { label: "Bahan", value: "Fleece" },
-      { label: "Jumlah", value: "50 pcs" },
-      { label: "Sablon", value: "Logo dada, 1 warna" },
-      { label: "Durasi", value: "9 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Koperasi Karyawan Sejahtera",
-    product: "Bordir logo pada kaos seragam",
-    category: "Bordir",
-    description:
-      "Layanan bordir logo koperasi pada kaos seragam anggota, dikerjakan dengan detail presisi dan warna benang tahan lama.",
-    specs: [
-      { label: "Bahan", value: "Cotton Combed 30" },
-      { label: "Jumlah", value: "90 pcs" },
-      { label: "Bordir", value: "Logo koperasi, 4 titik" },
-      { label: "Durasi", value: "10 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Klinik Sehat Bersama",
-    product: "Seragam kerja dengan bordir nama",
-    category: "Bordir",
-    description:
-      "Seragam kerja staf klinik dengan bordir nama masing-masing karyawan pada bagian dada.",
-    specs: [
-      { label: "Bahan", value: "Cotton Combed 24s" },
-      { label: "Jumlah", value: "35 pcs" },
-      { label: "Bordir", value: "Nama karyawan, per pcs" },
-      { label: "Durasi", value: "8 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Komunitas Basket Kota",
-    product: "Kaos sablon dengan warna tajam",
-    category: "Sablon",
-    description:
-      "Kaos jersey komunitas basket dengan sablon full color, warna tajam dan tidak mudah pudar setelah dicuci berkali-kali.",
-    specs: [
-      { label: "Bahan", value: "Dry-fit Polyester" },
-      { label: "Jumlah", value: "40 pcs" },
-      { label: "Sablon", value: "Full color, DTF" },
-      { label: "Durasi", value: "8 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Toko Retail Fashion",
-    product: "Seragam staf toko custom",
-    category: "PDH Standar",
-    description:
-      "Seragam staf toko retail dengan desain simpel dan bordir nama brand pada bagian lengan.",
-    specs: [
-      { label: "Bahan", value: "Cotton Combed 30" },
-      { label: "Jumlah", value: "25 pcs" },
-      { label: "Bordir", value: "Nama brand, lengan kiri" },
-      { label: "Durasi", value: "7 hari kerja" },
-    ],
-  },
-  {
-    images: [
-      "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?auto=format&fit=crop&w=1000&q=75",
-      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=1000&q=75",
-    ],
-    client: "Bank Swasta Nasional",
-    product: "Seragam formal untuk kebutuhan korporat",
-    category: "PDH Standar",
-    description:
-      "Seragam formal untuk staf front office bank, menggunakan bahan premium dengan potongan yang rapi dan profesional.",
-    specs: [
-      { label: "Bahan", value: "Cotton Combed 24s Premium" },
-      { label: "Jumlah", value: "150 pcs" },
-      { label: "Bordir", value: "Logo bank, dada kiri" },
-      { label: "Durasi", value: "18 hari kerja" },
-    ],
-  },
-];
+export type PortfolioSegment = {
+  slug: string;
+  name: string;
+  projects: PortfolioProject[];
+};
 
-function rowToPortfolioItem(row: Record<string, string>): PortfolioItem | null {
-  if (!row.client || !row.product) return null;
+const PORTFOLIO_ROOT = "/portofolio";
+const SEGMENT_SUFFIX = "-porto";
 
-  const images = [row.image_1, row.image_2, row.image_3].filter(
-    (url): url is string => Boolean(url)
-  );
-  if (images.length === 0) return null;
-
-  const specs = [
-    { label: "Bahan", value: row.spec_bahan },
-    { label: "Jumlah", value: row.spec_jumlah },
-    { label: "Detail", value: row.spec_detail },
-    { label: "Durasi", value: row.spec_durasi },
-  ].filter((spec) => Boolean(spec.value));
-
-  return {
-    images,
-    client: row.client,
-    product: row.product,
-    category: row.category || "Lainnya",
-    description: row.description || "",
-    specs,
-  };
+function segmentSlugFromFolderName(folderName: string): string {
+  return folderName.endsWith(SEGMENT_SUFFIX)
+    ? folderName.slice(0, -SEGMENT_SUFFIX.length)
+    : folderName;
 }
 
-// Public Google Sheet (CSV export). The sheet only contains publicly-displayed
-// portfolio data, so the URL itself is not sensitive.
-const PORTFOLIO_SHEET_CSV_URL =
-  "https://docs.google.com/spreadsheets/d/1yWL7rxMMSPI57xVXCUk2Bl4tW3RyaIN0AbVgjt3X400/export?format=csv&gid=278327958";
+function segmentDisplayName(slug: string): string {
+  const category = getCategoryBySlug(fallbackProductCategories, slug);
+  return category?.name ?? slug;
+}
 
-// Falls back to fallbackPortfolioItems if the fetch fails, so the page never
-// breaks due to a sheet outage or misconfiguration.
-export async function getPortfolioItems(): Promise<PortfolioItem[]> {
+export function getProjectCover(project: PortfolioProject): string | null {
+  return project.images.find((url) => !isVideoUrl(url)) ?? null;
+}
+
+// Portfolio is browsed live from the ImageKit media library folder tree
+// (/portofolio/{segment}-porto/{project name}/...files) rather than a CSV,
+// so new client project folders show up without a code change.
+export async function getPortfolioSegments(): Promise<PortfolioSegment[]> {
+  const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+  if (!privateKey) return [];
+
+  const client = new ImageKit({ privateKey });
+
   try {
-    const response = await fetch(PORTFOLIO_SHEET_CSV_URL, {
-      next: { revalidate: false },
+    const segmentFolders = await client.assets.list({
+      path: PORTFOLIO_ROOT,
+      type: "folder",
+      limit: 100,
     });
-    if (!response.ok) return fallbackPortfolioItems;
 
-    const csvText = await response.text();
-    const rows = csvToObjects(csvText);
-    const items = rows
-      .map(rowToPortfolioItem)
-      .filter((item): item is PortfolioItem => item !== null);
+    const segments = await Promise.all(
+      segmentFolders
+        .filter((folder): folder is typeof folder & { name: string } => Boolean(folder.name))
+        .map(async (folder): Promise<PortfolioSegment> => {
+        const slug = segmentSlugFromFolderName(folder.name);
+        const segmentPath = `${PORTFOLIO_ROOT}/${folder.name}`;
 
-    return items.length > 0 ? items : fallbackPortfolioItems;
+        const projectFolders = await client.assets.list({
+          path: segmentPath,
+          type: "folder",
+          limit: 100,
+        });
+
+        const projects = await Promise.all(
+          projectFolders
+            .filter((projectFolder): projectFolder is typeof projectFolder & { name: string } =>
+              Boolean(projectFolder.name)
+            )
+            .map(async (projectFolder): Promise<PortfolioProject> => {
+            const files = await client.assets.list({
+              path: `${segmentPath}/${projectFolder.name}`,
+              type: "file",
+              limit: 100,
+            });
+
+            return {
+              name: projectFolder.name,
+              images: files
+                .map((file) => file.url)
+                .filter((url): url is string => Boolean(url)),
+            };
+          })
+        );
+
+        return {
+          slug,
+          name: segmentDisplayName(slug),
+          projects: projects.filter((project) => project.images.length > 0),
+        };
+      })
+    );
+
+    return segments.filter((segment) => segment.projects.length > 0);
   } catch {
-    return fallbackPortfolioItems;
+    return [];
   }
 }
