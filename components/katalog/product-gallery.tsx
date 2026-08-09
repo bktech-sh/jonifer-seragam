@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { isVideoUrl } from "@/data/catalog";
 
@@ -8,6 +8,9 @@ type ProductGalleryProps = {
   name: string;
   images: string[];
 };
+
+const PAGE_SIZE = 4;
+const AUTOPLAY_MS = 6000;
 
 function tileSpanClass(index: number, total: number): string {
   if (total === 1) return "col-span-2 row-span-2";
@@ -29,17 +32,69 @@ function PlayBadge() {
 
 export function ProductGallery({ name, images }: ProductGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [startOffset, setStartOffset] = useState(0);
+  const [page, setPage] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+
+  const pages = useMemo(() => {
+    const chunks: { src: string; realIndex: number }[][] = [];
+    for (let i = 0; i < images.length; i += PAGE_SIZE) {
+      chunks.push(
+        images.slice(i, i + PAGE_SIZE).map((src, j) => ({ src, realIndex: i + j }))
+      );
+    }
+    return chunks;
+  }, [images]);
+
+  const scrollToPage = useCallback((index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const target = track.children[index] as HTMLElement | undefined;
+    target?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+  }, []);
 
   useEffect(() => {
-    if (lightboxIndex !== null || images.length <= 4) return;
+    if (lightboxIndex !== null || pages.length <= 1) return;
 
     const id = setInterval(() => {
-      setStartOffset((prev) => (prev + 1) % images.length);
-    }, 10000);
+      setPage((prev) => {
+        const next = (prev + 1) % pages.length;
+        scrollToPage(next);
+        return next;
+      });
+    }, AUTOPLAY_MS);
 
     return () => clearInterval(id);
-  }, [lightboxIndex, images.length]);
+  }, [lightboxIndex, pages.length, scrollToPage]);
+
+  const handleScroll = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const index = Math.round(track.scrollLeft / track.clientWidth);
+    setPage((prev) => (prev === index ? prev : index));
+  }, []);
+
+  const onPointerDown = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
+    const track = trackRef.current;
+    if (!track) return;
+    isDragging.current = true;
+    dragStartX.current = event.clientX;
+    dragScrollLeft.current = track.scrollLeft;
+  }, []);
+
+  const onPointerMove = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
+    const track = trackRef.current;
+    if (!track || !isDragging.current) return;
+    track.scrollLeft = dragScrollLeft.current - (event.clientX - dragStartX.current);
+  }, []);
+
+  const endDrag = useCallback(() => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    scrollToPage(page);
+  }, [page, scrollToPage]);
 
   const close = useCallback(() => setLightboxIndex(null), []);
   const showPrev = useCallback(
@@ -70,61 +125,117 @@ export function ProductGallery({ name, images }: ProductGalleryProps) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [lightboxIndex, close, showPrev, showNext]);
 
+  const goToPage = useCallback(
+    (index: number) => {
+      const next = (index + pages.length) % pages.length;
+      setPage(next);
+      scrollToPage(next);
+    },
+    [pages.length, scrollToPage]
+  );
+
   if (images.length === 0) return null;
 
-  const visibleCount = Math.min(images.length, 4);
-  const remaining = images.length - visibleCount;
-  const visible = Array.from({ length: visibleCount }, (_, i) => {
-    const realIndex = (startOffset + i) % images.length;
-    return { src: images[realIndex], realIndex };
-  });
   const activeSrc = lightboxIndex === null ? null : images[lightboxIndex];
 
   return (
     <>
-      <div className="mt-6 grid grid-cols-4 auto-rows-50 gap-3 sm:auto-rows-60 lg:auto-rows-70">
-        {visible.map(({ src, realIndex }, index) => {
-          const isOverlayTile = index === visibleCount - 1 && remaining > 0;
-          const video = isVideoUrl(src);
+      <div className="relative mt-6">
+      <div
+        ref={trackRef}
+        onScroll={handleScroll}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerLeave={endDrag}
+        className="flex snap-x snap-mandatory gap-0 overflow-x-auto scroll-smooth scrollbar-none"
+      >
+        {pages.map((pageImages, pageIndex) => (
+          <div
+            key={pageIndex}
+            className="grid w-full flex-none snap-start grid-cols-4 auto-rows-50 gap-3 sm:auto-rows-60 lg:auto-rows-70"
+          >
+            {pageImages.map(({ src, realIndex }, index) => {
+              const video = isVideoUrl(src);
 
-          return (
+              return (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={() => setLightboxIndex(realIndex)}
+                  className={`group relative overflow-hidden rounded-xl bg-black/5 ${tileSpanClass(index, pageImages.length)}`}
+                >
+                  {video ? (
+                    <video
+                      src={src}
+                      className="h-full w-full animate-fade-in object-cover"
+                      muted
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <Image
+                      src={src}
+                      alt={`${name} ${realIndex + 1}`}
+                      fill
+                      loading={pageIndex === 0 && index === 0 ? undefined : "lazy"}
+                      priority={pageIndex === 0 && index === 0}
+                      sizes="(min-width: 1024px) 400px, 50vw"
+                      className="animate-fade-in object-cover transition duration-300 group-hover:scale-105"
+                    />
+                  )}
+                  {video && <PlayBadge />}
+                </button>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+
+      {pages.length > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={() => goToPage(page - 1)}
+            className="absolute left-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#51ACAD] text-white shadow transition hover:bg-[#3b8384]"
+            aria-label="Galeri sebelumnya"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 -translate-x-0.5">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => goToPage(page + 1)}
+            className="absolute right-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#51ACAD] text-white shadow transition hover:bg-[#3b8384]"
+            aria-label="Galeri berikutnya"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 translate-x-0.5">
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </button>
+        </>
+      )}
+      </div>
+
+      {pages.length > 1 && (
+        <div className="mt-4 flex items-center justify-center gap-2">
+          {pages.map((_, index) => (
             <button
               key={index}
               type="button"
-              onClick={() => setLightboxIndex(realIndex)}
-              className={`group relative overflow-hidden rounded-xl bg-black/5 ${tileSpanClass(index, visibleCount)}`}
-            >
-              {video ? (
-                <video
-                  key={src}
-                  src={src}
-                  className="h-full w-full animate-fade-in object-cover"
-                  muted
-                  playsInline
-                  preload="metadata"
-                />
-              ) : (
-                <Image
-                  key={src}
-                  src={src}
-                  alt={`${name} ${realIndex + 1}`}
-                  fill
-                  loading={index === 0 ? undefined : "lazy"}
-                  priority={index === 0}
-                  sizes="(min-width: 1024px) 400px, 50vw"
-                  className="animate-fade-in object-cover transition duration-300 group-hover:scale-105"
-                />
-              )}
-              {video && !isOverlayTile && <PlayBadge />}
-              {isOverlayTile && (
-                <span className="absolute inset-0 flex items-center justify-center bg-black/50 text-lg font-semibold text-white">
-                  +{remaining}
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </div>
+              onClick={() => {
+                setPage(index);
+                scrollToPage(index);
+              }}
+              aria-label={`Halaman galeri ${index + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                index === page ? "w-6 bg-[#51ACAD]" : "w-2 bg-[#1c1c1c]/20"
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
       {activeSrc !== null && lightboxIndex !== null && (
         <div
