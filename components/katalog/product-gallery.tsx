@@ -52,7 +52,8 @@ export function ProductGallery({ name, images }: ProductGalleryProps) {
     const track = trackRef.current;
     if (!track) return;
     const target = track.children[index] as HTMLElement | undefined;
-    target?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    if (!target) return;
+    track.scrollTo({ left: target.offsetLeft, behavior: "smooth" });
   }, []);
 
   useEffect(() => {
