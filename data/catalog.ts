@@ -676,6 +676,24 @@ export function getStartingPrice(category: ProductCategory): number {
   return Math.min(...category.fabricTypes.map((fabric) => fabric.pricePerPc));
 }
 
+// Jenis bahan photos are shared across every category's fabric variants
+// (e.g. "American Drill" looks the same whether it's for PDH or Rok), so
+// the image is resolved from the fabric name instead of being duplicated
+// per fabricType entry.
+const JENIS_BAHAN_IMAGES: { match: string; file: string }[] = [
+  { match: "american drill", file: "american-drill.JPG" },
+  { match: "ventura", file: "ventura.HEIC" },
+  { match: "verlando", file: "verlando.JPG" },
+];
+
+export function getFabricImage(fabricName: string): string {
+  const normalized = fabricName.toLowerCase();
+  const match = JENIS_BAHAN_IMAGES.find((entry) => normalized.includes(entry.match));
+  return match
+    ? `https://ik.imagekit.io/jgcvqpss3/jenis-bahan/${match.file}?tr=w-600,q-75,f-auto`
+    : "";
+}
+
 const VIDEO_EXTENSIONS = [".mp4", ".mov", ".webm", ".m4v"];
 
 export function isVideoUrl(url: string): boolean {

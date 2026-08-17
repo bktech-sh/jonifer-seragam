@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import {
   embroideryOptions,
+  getFabricImage,
   orderQuantity,
   type ProductCategory,
 } from "@/data/catalog";
@@ -208,7 +209,7 @@ export function PriceCalculator({
                 >
                   <div className="relative aspect-square w-14 shrink-0 overflow-hidden rounded-lg">
                     <Image
-                      src={f.image}
+                      src={getFabricImage(f.name) || f.image}
                       alt={f.name}
                       fill
                       sizes="56px"
