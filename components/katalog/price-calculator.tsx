@@ -35,7 +35,7 @@ export function PriceCalculator({
     () => categories.find((c) => c.id === categoryId)!,
     [categoryId]
   );
-  const hideEmbroidery = category.id === "celana" || category.id === "rok";
+  const hideEmbroidery = category.id === "stelan-rok-celana";
   const hideFabric = category.id === "vendor-bordir";
   const unlimitedQty = category.id === "vendor-bordir";
   const requireEmbroidery = category.id === "vendor-bordir";

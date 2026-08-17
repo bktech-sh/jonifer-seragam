@@ -25,7 +25,7 @@ export function CategoriesSection() {
                   fill
                   loading="lazy"
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 50vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <div className="flex flex-col gap-1 px-3 pb-3 sm:px-5 sm:pb-6">

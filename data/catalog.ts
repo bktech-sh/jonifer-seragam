@@ -31,7 +31,7 @@ export const fallbackProductCategories: ProductCategory[] = [
     explanation:
       "Seragam organisasi yang dirancang untuk mencerminkan identitas dan profesionalisme tim. Cocok untuk himpunan mahasiswa, BEM, UKM, komunitas, maupun instansi.",
     image:
-      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4134.PNG?tr=w-800,q-75,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4856.HEIC?updatedAt=1785600613220?tr=w-800,q-75,f-auto",
     galleryImages: [
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4856.HEIC?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-standar/IMG_4985.PNG?tr=w-700,q-70,f-auto",
@@ -99,7 +99,7 @@ export const fallbackProductCategories: ProductCategory[] = [
     explanation:
       "Seragam dengan potongan lebih panjang sekitar 10 cm dibanding model standar, memberikan kenyamanan dan tampilan yang lebih sesuai untuk muslimah tanpa mengurangi kesan profesional.",
     image:
-      "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_8429.HEIC?tr=w-800,q-75,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_8613.HEIC?updatedAt=1785600678522?tr=w-800,q-75,f-auto",
     galleryImages: [
       "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_8429.HEIC?tr=w-800,q-75,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/pdh-tunik/IMG_7644.HEIC?tr=w-700,q-70,f-auto",
@@ -387,7 +387,7 @@ export const fallbackProductCategories: ProductCategory[] = [
     explanation:
       "Pilihan seragam yang nyaman dengan tampilan semi formal. Cocok digunakan untuk kegiatan kantor, gathering, komunitas, maupun instansi.",
     image:
-      "https://ik.imagekit.io/jgcvqpss3/polo/Salinan%20DSC04909.JPG?tr=w-800,q-75,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/polo/Polo_Velmont%20Hotel.png?updatedAt=1785600887399?tr=w-800,q-75,f-auto",
     galleryImages: [
       "https://ik.imagekit.io/jgcvqpss3/polo/84E58F0F-8540-43C2-A64F-D7CBA30C61FE.jpg?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/polo/0644a0a2-943a-4e4e-86ba-d18c6ed3051b.jpg?tr=w-700,q-70,f-auto",
@@ -429,7 +429,7 @@ export const fallbackProductCategories: ProductCategory[] = [
     explanation:
       "Jaket custom untuk angkatan sekolah, universitas, komunitas, dan perusahaan yang ingin tampil lebih kompak, profesional, dan memiliki identitas yang kuat.",
     image:
-      "https://ik.imagekit.io/jgcvqpss3/jaket/IMG_4991.PNG?tr=w-800,q-75,f-auto",
+      "https://ik.imagekit.io/jgcvqpss3/jaket/1%20(1).png?tr=w-800,q-75,f-auto",
     galleryImages: [
       "https://ik.imagekit.io/jgcvqpss3/jaket/IMG_4990.PNG?tr=w-700,q-70,f-auto",
       "https://ik.imagekit.io/jgcvqpss3/jaket/IMG_4987.PNG?tr=w-700,q-70,f-auto",
@@ -462,21 +462,21 @@ export const fallbackProductCategories: ProductCategory[] = [
     ],
   },
   {
-    id: "celana",
-    name: "Celana",
+    id: "stelan-rok-celana",
+    name: "Stelan Rok/Celana",
     description:
-      "Celana seragam custom yang dirancang untuk kenyamanan dan ketahanan pemakaian harian, cocok untuk organisasi, instansi, maupun komunitas.",
+      "Setelan seragam kantor PNS maupun setelan khusus sesuai identitas instansi Anda.",
     explanation:
-      "Celana seragam custom yang dirancang untuk kenyamanan dan ketahanan pemakaian harian, cocok untuk organisasi, instansi, maupun komunitas.",
+      "Setelan seragam kantor PNS maupun setelan khusus sesuai identitas instansi Anda.",
     image:
-      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/rok-celana/1%20(2).png?auto=format&fit=crop&w=800&q=70",
     galleryImages: [
-      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=700&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/rok-celana/1%20(2).png?auto=format&fit=crop&w=700&q=70",
     ],
     fabricTypes: [
       {
         id: "american-drill-celana",
-        name: "American Drill",
+        name: "American Drill - Celana",
         description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
         pricePerPc: 130000,
         image:
@@ -484,7 +484,7 @@ export const fallbackProductCategories: ProductCategory[] = [
       },
       {
         id: "ventura-celana",
-        name: "Ventura",
+        name: "Ventura - Celana",
         description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
         pricePerPc: 150000,
         image:
@@ -492,30 +492,15 @@ export const fallbackProductCategories: ProductCategory[] = [
       },
       {
         id: "verlando-celana",
-        name: "Verlando",
+        name: "Verlando - Celana",
         description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
         pricePerPc: 150000,
         image:
           "https://images.unsplash.com/photo-1594938328870-9623159c8c99?auto=format&fit=crop&w=600&q=70",
       },
-    ],
-  },
-  {
-    id: "rok",
-    name: "Rok",
-    description:
-      "Rok seragam custom dengan potongan rapi dan nyaman, cocok untuk organisasi, instansi, maupun komunitas.",
-    explanation:
-      "Rok seragam custom dengan potongan rapi dan nyaman, cocok untuk organisasi, instansi, maupun komunitas.",
-    image:
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=70",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=70",
-    ],
-    fabricTypes: [
       {
         id: "american-drill-rok",
-        name: "American Drill",
+        name: "American Drill - Rok",
         description: "Paling umum & hemat, cocok untuk kampus/pemakaian harian.",
         pricePerPc: 115000,
         image:
@@ -523,7 +508,7 @@ export const fallbackProductCategories: ProductCategory[] = [
       },
       {
         id: "ventura-rok",
-        name: "Ventura",
+        name: "Ventura - Rok",
         description: "Lebih kokoh & nyaman, cocok untuk kantor/indoor.",
         pricePerPc: 135000,
         image:
@@ -531,7 +516,7 @@ export const fallbackProductCategories: ProductCategory[] = [
       },
       {
         id: "verlando-rok",
-        name: "Verlando",
+        name: "Verlando - Rok",
         description: "Lebih kaku tapi awet, cocok untuk outdoor/aktivitas berat.",
         pricePerPc: 135000,
         image:
@@ -573,10 +558,9 @@ export const fallbackProductCategories: ProductCategory[] = [
     explanation:
       "Layanan bordir untuk berbagai kebutuhan seragam organisasi, instansi, perusahaan, sekolah, dan komunitas.",
     image:
-      "https://ik.imagekit.io/jgcvqpss3/IMG_5433%20(1).PNG?auto=format&fit=crop&w=800&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/bordir-seragam/IMG_6811.HEIC?auto=format&fit=crop&w=800&q=70",
     galleryImages: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=70",
-      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=700&q=70",
+      "https://ik.imagekit.io/jgcvqpss3/bordir-seragam/IMG_6811.HEIC?auto=format&fit=crop&w=700&q=70",
     ],
     fabricTypes: [
       {
