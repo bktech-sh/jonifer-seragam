@@ -16,8 +16,7 @@ export function ProfilHero() {
           Mengenal {siteConfig.name} Lebih Dekat
         </h1>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-          Partner produksi kaos, seragam, dan selempang custom yang mengutamakan
-          kualitas, kecepatan, dan transparansi harga.
+          Konveksi penyedia Seragam PDH, PDH 2in1, Tactical, Almamater, Rompi, Jaket terdepan di Kota Bukittinggi
         </p>
       </div>
     </section>

@@ -11,11 +11,13 @@ export function TestimonialCarousel({
   images: string[];
 }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
-    if (!scroller) return;
+    const track = trackRef.current;
+    if (!scroller || !track) return;
 
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) return;
@@ -29,10 +31,10 @@ export function TestimonialCarousel({
       lastTime = time;
 
       if (!pausedRef.current) {
-        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
-        if (maxScroll > 0) {
+        const loopWidth = track.scrollWidth / 2;
+        if (loopWidth > 0) {
           const next = scroller.scrollLeft + PIXELS_PER_SECOND * delta;
-          scroller.scrollLeft = next >= maxScroll ? 0 : next;
+          scroller.scrollLeft = next >= loopWidth ? next - loopWidth : next;
         }
       }
 
@@ -67,23 +69,25 @@ export function TestimonialCarousel({
   return (
     <div
       ref={scrollerRef}
-      className="scrollbar-hidden -mx-4 mt-10 flex gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:gap-6 sm:px-6 lg:-mx-8 lg:px-8"
+      className="scrollbar-hidden -mx-4 mt-10 overflow-x-hidden px-4 pb-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
     >
-      {images.map((image) => (
-        <div
-          key={image}
-          className="flex h-80 shrink-0 overflow-hidden rounded-2xl bg-[#EEF5F5] sm:h-96"
-        >
-          <Image
-            src={image}
-            alt="Testimoni pelanggan"
-            width={600}
-            height={800}
-            loading="lazy"
-            className="h-full w-auto object-contain"
-          />
-        </div>
-      ))}
+      <div ref={trackRef} className="flex w-max gap-4 sm:gap-6">
+        {[...images, ...images].map((image, index) => (
+          <div
+            key={`${image}-${index}`}
+            className="flex h-80 shrink-0 overflow-hidden rounded-2xl bg-[#EEF5F5] sm:h-96"
+          >
+            <Image
+              src={image}
+              alt="Testimoni pelanggan"
+              width={600}
+              height={800}
+              loading="lazy"
+              className="h-full w-auto object-contain"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
