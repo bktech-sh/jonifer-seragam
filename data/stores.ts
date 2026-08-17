@@ -14,6 +14,7 @@ export const stores = [
     images: [
       "https://ik.imagekit.io/jgcvqpss3/toko/Gemini_Generated_Image_omne8pomne8pomne.png",
       "https://ik.imagekit.io/jgcvqpss3/toko/Screenshot%202026-07-20%20at%2001.25.29.png",
+      "https://ik.imagekit.io/jgcvqpss3/toko/DSC_4540.jpg",
     ],
     address: "Sungai Pua, Agam, Sumatera Barat",
     hours: "Senin - Sabtu, 09.00 - 18.00 WIB",
