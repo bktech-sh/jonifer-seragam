@@ -1,19 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
-
-type Testimonial = {
-  quote: string;
-  name: string;
-  role: string;
-};
 
 const PIXELS_PER_SECOND = 40;
 
 export function TestimonialCarousel({
-  testimonials,
+  images,
 }: {
-  testimonials: Testimonial[];
+  images: string[];
 }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
@@ -74,20 +69,19 @@ export function TestimonialCarousel({
       ref={scrollerRef}
       className="scrollbar-hidden -mx-4 mt-10 flex gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:gap-6 sm:px-6 lg:-mx-8 lg:px-8"
     >
-      {testimonials.map((testimonial) => (
+      {images.map((image) => (
         <div
-          key={testimonial.name}
-          className="flex w-[85%] shrink-0 flex-col gap-4 rounded-2xl bg-[#EEF5F5] p-6 sm:w-[45%] sm:p-8 lg:w-[30%]"
+          key={image}
+          className="relative aspect-4/5 w-[75%] shrink-0 overflow-hidden rounded-2xl bg-[#EEF5F5] sm:w-[40%] lg:w-[28%]"
         >
-          <p className="text-base leading-relaxed text-[#1c1c1c]/80">
-            &ldquo;{testimonial.quote}&rdquo;
-          </p>
-          <div>
-            <p className="text-sm font-semibold text-[#1c1c1c]">
-              {testimonial.name}
-            </p>
-            <p className="text-sm text-[#1c1c1c]/60">{testimonial.role}</p>
-          </div>
+          <Image
+            src={image}
+            alt="Testimoni pelanggan"
+            fill
+            loading="lazy"
+            sizes="(min-width: 1024px) 28vw, (min-width: 640px) 40vw, 75vw"
+            className="object-cover"
+          />
         </div>
       ))}
     </div>
