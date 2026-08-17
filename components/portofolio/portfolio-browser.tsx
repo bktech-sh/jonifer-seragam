@@ -7,37 +7,19 @@ import { getProjectCover } from "@/data/portofolio";
 import { PortfolioModal } from "@/components/portofolio/portfolio-modal";
 
 export function PortfolioBrowser({ segments }: { segments: PortfolioSegment[] }) {
-  const [activeSlug, setActiveSlug] = useState(segments[0]?.slug ?? "");
   const [activeProject, setActiveProject] = useState<PortfolioProject | null>(null);
 
-  const activeSegment = segments.find((segment) => segment.slug === activeSlug) ?? segments[0];
+  const allProjects = segments.flatMap((segment) => segment.projects);
 
   return (
     <>
-      <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-        {segments.map((segment) => (
-          <button
-            key={segment.slug}
-            type="button"
-            onClick={() => setActiveSlug(segment.slug)}
-            className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-              segment.slug === activeSegment?.slug
-                ? "bg-[#51ACAD] text-white"
-                : "bg-[#EEF5F5] text-[#1c1c1c]/70 hover:bg-[#EEF5F5]/70"
-            }`}
-          >
-            {segment.name}
-          </button>
-        ))}
-      </div>
-
-      <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
-        {activeSegment?.projects.map((project, index) => {
+      <div className="grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+        {allProjects.map((project, index) => {
           const cover = getProjectCover(project);
 
           return (
             <button
-              key={project.name}
+              key={`${project.name}-${index}`}
               type="button"
               onClick={() => setActiveProject(project)}
               className="group flex cursor-pointer flex-col gap-2 overflow-hidden rounded-xl border border-black/5 text-left transition-all hover:border-[#51ACAD]/40 hover:shadow-lg hover:shadow-black/5 sm:gap-3 sm:rounded-2xl"
