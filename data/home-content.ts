@@ -248,7 +248,7 @@ export const usps = [
       "https://ik.imagekit.io/jgcvqpss3/c0492b3a-9918-4e46-acf2-158a86a47cf2.jpg?tr=w-800,q-75,f-auto",
   },
   {
-    title: "Bordir Premium",
+    title: "Bordir 100% persis",
     description:
       "Kami tidak hanya fokus pada kerapian bordir, tetapi juga pada akurasi warna benang. Setiap logo diusahakan menggunakan warna yang mendekati desain asli, sehingga identitas sekolah, instansi, maupun perusahaan tetap terjaga dengan baik. Selain itu kami didukung dengan armada 5 mesin bordir dengan total 48 kepala bordir agar pesanan dapat selesai sesuai deadline.",
     image: "https://ik.imagekit.io/jgcvqpss3/IMG_5433.PNG?tr=w-800,q-75,f-auto",
@@ -256,7 +256,7 @@ export const usps = [
   {
     title: "Berpengalaman",
     description:
-      "Dengan berpengalaman dalam industri tekstil selama lebih dari 20 tahun, kami telah dipercaya berbagai instansi, sekolah, perusahaan, dan komunitas di Sumatera Barat.",
+      "Dengan berpengalaman dalam industri tekstil selama lebih dari 20 tahun, kami begitu banyak belajar sehingga menghasilkan sistem kerja dan SOP kerja yang solid membuat kami tetep dipercaya oleh berbagai instansi, sekolah, perusahaan, dan komunitas di Sumatera Barat.",
     image: "https://ik.imagekit.io/jgcvqpss3/DSC_3493.JPG?tr=w-800,q-75,f-auto",
   },
 ];

@@ -18,14 +18,14 @@ export const differentiators = [
       "Mulai dari konsultasi, desain, pemilihan bahan, penjahitan, bordir, hingga quality control, seluruh proses ditangani langsung oleh tim Jonifer Seragam. Dengan proses produksi yang terintegrasi dalam satu atap, kualitas lebih terkontrol, komunikasi lebih mudah, dan hasil lebih konsisten.",
   },
   {
-    title: "Bordir Premium",
+    title: "Bordir 100% persis",
     description:
       "Kami tidak hanya fokus pada kerapian bordir, tetapi juga pada akurasi warna benang. Setiap logo diusahakan menggunakan warna yang mendekati desain asli, sehingga identitas instansi, maupun perusahaan tetap terjaga dengan baik. Selain itu kami didukung",
   },
   {
     title: "Berpengalaman",
     description:
-      "Dengan berpengalaman dalam industri tekstil selama lebih dari 20 tahun, kami telah dipercaya berbagai instansi, sekolah, perusahaan, dan komunitas di Sumatera Barat.",
+      "Dengan berpengalaman dalam industri tekstil selama lebih dari 20 tahun, kami begitu banyak belajar sehingga menghasilkan sistem kerja dan SOP kerja yang solid membuat kami tetep dipercaya oleh berbagai instansi, sekolah, perusahaan, dan komunitas di Sumatera Barat.",
   },
 ];
 

@@ -7,7 +7,7 @@ export function CompanyStory() {
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div className="relative order-2 aspect-4/3 w-full overflow-hidden rounded-3xl lg:order-1">
             <Image
-              src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1000&q=75"
+              src="https://ik.imagekit.io/jgcvqpss3/toko/IMG_0665.HEIC?updatedAt=1784485325460?tr=w-800,q-75,f-auto"
               alt="Ruang produksi dan showroom Jonifer Seragam"
               fill
               loading="lazy"
