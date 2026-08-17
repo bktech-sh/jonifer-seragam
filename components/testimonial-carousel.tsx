@@ -72,15 +72,15 @@ export function TestimonialCarousel({
       {images.map((image) => (
         <div
           key={image}
-          className="relative aspect-4/5 w-[75%] shrink-0 overflow-hidden rounded-2xl bg-[#EEF5F5] sm:w-[40%] lg:w-[28%]"
+          className="flex h-80 shrink-0 overflow-hidden rounded-2xl bg-[#EEF5F5] sm:h-96"
         >
           <Image
             src={image}
             alt="Testimoni pelanggan"
-            fill
+            width={600}
+            height={800}
             loading="lazy"
-            sizes="(min-width: 1024px) 28vw, (min-width: 640px) 40vw, 75vw"
-            className="object-cover"
+            className="h-full w-auto object-contain"
           />
         </div>
       ))}
