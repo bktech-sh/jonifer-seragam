@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { siteConfig } from "@/data/site";
 
 export function AboutSection() {
   return (
@@ -10,7 +9,7 @@ export function AboutSection() {
             Tentang Kami
           </p>
           <h2 className="font-heading mt-4 text-2xl font-semibold tracking-tight text-[#1c1c1c] sm:text-4xl">
-            Di balik setiap seragam yang kami produksi, ada tanggung jawab untuk menjaga kepercayaan pelanggan.
+            Dibalik setiap seragam yang kami produksi, ada tanggung jawab untuk menjaga kepercayaan pelanggan.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-[#1c1c1c]/70">
             Kepercayaan pelanggan adalah alasan kami terus berkembang. Karena bagi kami, setiap seragam yang kami produksi akan menjadi bagian dari cerita, identitas, dan kebanggaan tim yang memakainya.
