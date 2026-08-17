@@ -4,7 +4,7 @@ export function CaraPemesananHero() {
   return (
     <section className="relative overflow-hidden bg-[#1c1c1c] py-16 sm:py-24">
       <Image
-        src="https://ik.imagekit.io/jgcvqpss3/DSC_1620.jpg?updatedAt=1784183815475"
+        src="https://ik.imagekit.io/jgcvqpss3/cara%20pemesanan_heading.png?tr=w-2000,q-80,f-auto"
         alt=""
         fill
         priority
