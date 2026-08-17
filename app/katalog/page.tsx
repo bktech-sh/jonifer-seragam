@@ -15,17 +15,15 @@ export default async function KatalogPage() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative flex min-h-[320px] items-center overflow-hidden sm:min-h-[380px]">
+      <section className="relative flex min-h-80 items-center overflow-hidden sm:min-h-95">
         <Image
-          src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=2000&q=80"
+          src="https://ik.imagekit.io/jgcvqpss3/Katalog_Heading.png?auto=format&fit=crop&w=2000&q=80"
           alt="Katalog produk Jonifer Seragam"
           fill
           priority
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-[#1c1c1c]/85 via-[#1c1c1c]/60 to-[#1c1c1c]/30" />
-
         <div className="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <p className="text-sm font-semibold tracking-[0.2em] text-[#a9d6d6] uppercase">
             Katalog
