@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { getPortfolioSegments } from "@/data/portofolio";
+import { getPortfolioHeroImages, getPortfolioSegments } from "@/data/portofolio";
 import { PortfolioBrowser } from "@/components/portofolio/portfolio-browser";
+import { ImageCarousel } from "@/components/home/image-carousel";
 
 export const metadata: Metadata = {
   title: "Portofolio — Jonifer Seragam",
@@ -10,19 +10,15 @@ export const metadata: Metadata = {
 };
 
 export default async function PortofolioPage() {
-  const segments = await getPortfolioSegments();
+  const [segments, heroImages] = await Promise.all([
+    getPortfolioSegments(),
+    getPortfolioHeroImages(),
+  ]);
 
   return (
     <div className="flex flex-col">
-      <section className="relative flex min-h-[320px] items-center overflow-hidden sm:min-h-[380px]">
-        <Image
-          src="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?auto=format&fit=crop&w=2000&q=80"
-          alt="Portofolio hasil produksi Jonifer Seragam"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+      <section className="relative flex min-h-[320px] items-center overflow-hidden bg-[#1c1c1c] sm:min-h-[380px]">
+        <ImageCarousel images={heroImages} alt="Portofolio hasil produksi Jonifer Seragam" />
         <div className="absolute inset-0 bg-linear-to-r from-[#1c1c1c]/85 via-[#1c1c1c]/60 to-[#1c1c1c]/30" />
 
         <div className="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">

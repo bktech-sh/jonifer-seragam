@@ -8,6 +8,7 @@ type ProductGalleryProps = {
   name: string;
   images: string[];
   pages?: string[][];
+  autoplay?: boolean;
 };
 
 const PAGE_SIZE = 4;
@@ -31,7 +32,12 @@ function PlayBadge() {
   );
 }
 
-export function ProductGallery({ name, images, pages: explicitPages }: ProductGalleryProps) {
+export function ProductGallery({
+  name,
+  images,
+  pages: explicitPages,
+  autoplay = true,
+}: ProductGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [page, setPage] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -65,7 +71,7 @@ export function ProductGallery({ name, images, pages: explicitPages }: ProductGa
   }, []);
 
   useEffect(() => {
-    if (lightboxIndex !== null || pages.length <= 1) return;
+    if (!autoplay || lightboxIndex !== null || pages.length <= 1) return;
 
     const id = setInterval(() => {
       setPage((prev) => {
@@ -76,7 +82,7 @@ export function ProductGallery({ name, images, pages: explicitPages }: ProductGa
     }, AUTOPLAY_MS);
 
     return () => clearInterval(id);
-  }, [lightboxIndex, pages.length, scrollToPage]);
+  }, [autoplay, lightboxIndex, pages.length, scrollToPage]);
 
   const handleScroll = useCallback(() => {
     const track = trackRef.current;

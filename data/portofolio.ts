@@ -13,6 +13,32 @@ export type PortfolioSegment = {
 };
 
 const PORTFOLIO_ROOT = "/portofolio-jonifer";
+const PORTFOLIO_HEADER_PATH = "/portofolio-header";
+
+// Hero carousel images for the portfolio page, browsed live from ImageKit
+// and ordered by the numeric prefix on each file name (e.g. "1. ...jpg").
+export async function getPortfolioHeroImages(): Promise<string[]> {
+  const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+  if (!privateKey) return [];
+
+  const client = new ImageKit({ privateKey });
+
+  try {
+    const files = await client.assets.list({
+      path: PORTFOLIO_HEADER_PATH,
+      type: "file",
+      limit: 100,
+    });
+
+    return [...files]
+      .sort((a, b) => leadingNumber(a.name ?? "") - leadingNumber(b.name ?? ""))
+      .map((file) => file.url)
+      .filter((url): url is string => Boolean(url))
+      .filter((url) => !isVideoUrl(url));
+  } catch {
+    return [];
+  }
+}
 
 export function getProjectCover(project: PortfolioProject): string | null {
   return project.images.find((url) => !isVideoUrl(url)) ?? null;
