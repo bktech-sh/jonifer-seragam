@@ -7,6 +7,7 @@ import { ClientsSection } from "@/components/home/clients-section";
 import { StatsSection } from "@/components/home/stats-section";
 import { PortfolioPreviewSection } from "@/components/home/portfolio-preview-section";
 import { TestimonialSection } from "@/components/home/testimonial-section";
+import { GoogleReviewSection } from "@/components/home/google-review-section";
 import { CtaSection } from "@/components/home/cta-section";
 
 export default function HomePage() {
@@ -21,6 +22,7 @@ export default function HomePage() {
       <StatsSection />
       <PortfolioPreviewSection />
       <TestimonialSection />
+      <GoogleReviewSection />
       <CtaSection />
     </div>
   );

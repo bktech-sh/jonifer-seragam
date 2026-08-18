@@ -37,36 +37,78 @@ export const steps = [
   },
 ];
 
-export const testimonials = [
+export const googleMapsUrl = "https://maps.app.goo.gl/zVUvbsbAUuhNo3VG6";
+
+// Manually transcribed from Google Maps reviews (screenshotted by admin) —
+// add one entry per review here. Section is hidden when this is empty.
+// "date" is copied verbatim from the screenshot (e.g. "5 months ago"), so it
+// reflects when the screenshot was taken rather than staying live-relative.
+export const googleReviews: { quote: string; name: string; rating: number; date: string }[] = [
   {
-    quote:
-      "Prosesnya jelas dari awal, harga sudah kelihatan sebelum order. Hasil sablonnya juga rapi dan sesuai contoh.",
-    name: "Rangga P.",
-    role: "Ketua Panitia Acara Kampus",
+    quote: "Pelayanan baik dan bagus, adminnya ramah, semoga pesanan saya cepat selesai😊",
+    name: "Dika Rahmadani",
+    rating: 5,
+    date: "5 months ago",
   },
   {
-    quote:
-      "Seragam kantor kami dikerjakan tepat waktu dan kualitas bahannya konsisten untuk pesanan ratusan pcs.",
-    name: "Dewi S.",
-    role: "HR Manager, Perusahaan Swasta",
+    quote: "Bahan bagus kualitas baik rekomen banget siu",
+    name: "Gebby Roselia Anjelina",
+    rating: 5,
+    date: "10 months ago",
   },
   {
-    quote:
-      "Bordir nama dan logo timnya rapi banget, presisi sampai ke detail kecil. Bakal repeat order lagi.",
-    name: "Fajar A.",
-    role: "Ketua Komunitas Motor",
+    quote: "Pelayanan nya bagus, mantapp 👍",
+    name: "Lathifah Ath Thahirah",
+    rating: 5,
+    date: "4 years ago",
   },
   {
-    quote:
-      "Almamater buat angkatan kami selesai lebih cepat dari perkiraan, bahannya juga adem dipakai seharian.",
-    name: "Nadia S.",
-    role: "Ketua BEM Fakultas",
+    quote: "Pelayanannya bagus dan hasilnya memuaskan",
+    name: "Tasya Fadila",
+    rating: 5,
+    date: "4 years ago",
   },
   {
-    quote:
-      "Order rompi lapangan untuk 150 orang, semua ukuran pas dan pengiriman tepat waktu.",
-    name: "Bagus T.",
-    role: "Koordinator Lapangan, EO Event",
+    quote: "Pelayanan nya keren bgtt, hasilnya juga ga kalah keren 👍",
+    name: "Viska Rahma Puspita",
+    rating: 5,
+    date: "4 years ago",
+  },
+  {
+    quote: "Pelayanan mantap sekali, owner juga ramah 👍",
+    name: "Arrahman Hajir",
+    rating: 5,
+    date: "4 years ago",
+  },
+  {
+    quote: "sangat memuaskan hasilnya, Mantap Kali",
+    name: "Rizki Ardiansyah Harahap",
+    rating: 5,
+    date: "4 years ago",
+  },
+  {
+    quote: "Baju nya bagus2",
+    name: "Mico Lanasea",
+    rating: 5,
+    date: "11 months ago",
+  },
+  {
+    quote: "Pelayanan dan kelengkapan sangat baik sekali bro.",
+    name: "Muhammad Khairi Adi Putra",
+    rating: 5,
+    date: "6 years ago",
+  },
+  {
+    quote: "Pelayanannya ramah 👍",
+    name: "Arif Rahman",
+    rating: 5,
+    date: "4 years ago",
+  },
+  {
+    quote: "Sangat baguss... Recommended bangett pokoknya",
+    name: "Emil Ananda Putri",
+    rating: 5,
+    date: "4 years ago",
   },
 ];
 
@@ -248,7 +290,7 @@ export const usps = [
       "https://ik.imagekit.io/jgcvqpss3/c0492b3a-9918-4e46-acf2-158a86a47cf2.jpg?tr=w-800,q-75,f-auto",
   },
   {
-    title: "Bordir 100% persis",
+    title: "Bordir 99.99% persis",
     description:
       "Kami tidak hanya fokus pada kerapian bordir, tetapi juga pada akurasi warna benang. Setiap logo diusahakan menggunakan warna yang mendekati desain asli, sehingga identitas sekolah, instansi, maupun perusahaan tetap terjaga dengan baik. Selain itu kami didukung dengan armada 5 mesin bordir dengan total 48 kepala bordir agar pesanan dapat selesai sesuai deadline.",
     image: "https://ik.imagekit.io/jgcvqpss3/IMG_5433.PNG?tr=w-800,q-75,f-auto",

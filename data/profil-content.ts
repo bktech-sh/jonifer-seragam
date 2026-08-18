@@ -18,7 +18,7 @@ export const differentiators = [
       "Mulai dari konsultasi, desain, pemilihan bahan, penjahitan, bordir, hingga quality control, seluruh proses ditangani langsung oleh tim Jonifer Seragam. Dengan proses produksi yang terintegrasi dalam satu atap, kualitas lebih terkontrol, komunikasi lebih mudah, dan hasil lebih konsisten.",
   },
   {
-    title: "Bordir 100% persis",
+    title: "Bordir 99.99% persis",
     description:
       "Kami tidak hanya fokus pada kerapian bordir, tetapi juga pada akurasi warna benang. Setiap logo diusahakan menggunakan warna yang mendekati desain asli, sehingga identitas instansi, maupun perusahaan tetap terjaga dengan baik. Selain itu kami didukung",
   },
