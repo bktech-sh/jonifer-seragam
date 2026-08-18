@@ -1,5 +1,5 @@
 import ImageKit from "@imagekit/nodejs";
-import { fallbackProductCategories, getCategoryBySlug, isVideoUrl } from "@/data/catalog";
+import { isVideoUrl } from "@/data/catalog";
 
 export type PortfolioProject = {
   name: string;
@@ -12,55 +12,29 @@ export type PortfolioSegment = {
   projects: PortfolioProject[];
 };
 
-const PORTFOLIO_ROOT = "/portofolio";
-const SEGMENT_SUFFIX = "-porto";
-
-// All product category slugs get a filter chip even before any client
-// project has been uploaded for them in ImageKit, so the filter always
-// mirrors the full category list — not just whatever folders exist today.
-const ALL_CATEGORY_SLUGS = [
-  "pdh-standar",
-  "pdh-tunik",
-  "pdh-tactical",
-  "pdh-2in1",
-  "almamater",
-  "rompi",
-  "polo",
-  "jaket",
-  "stelan-rok-celana",
-  "lanyard",
-];
-
-function segmentSlugFromFolderName(folderName: string): string {
-  return folderName.endsWith(SEGMENT_SUFFIX)
-    ? folderName.slice(0, -SEGMENT_SUFFIX.length)
-    : folderName;
-}
-
-function segmentDisplayName(slug: string): string {
-  const category = getCategoryBySlug(fallbackProductCategories, slug);
-  return category?.name ?? slug;
-}
+const PORTFOLIO_ROOT = "/portofolio-jonifer";
 
 export function getProjectCover(project: PortfolioProject): string | null {
   return project.images.find((url) => !isVideoUrl(url)) ?? null;
 }
 
-const UNCATEGORIZED_SLUG = "lainnya";
+function toPascalCase(folderName: string): string {
+  return folderName
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
 
-// Loose files dropped directly in /portofolio (not inside a segment/project
-// folder) are grouped into one "Lainnya" segment, each file as its own
-// single-image project, so they still show up without needing to be sorted
-// into the folder structure first.
-function projectNameFromLooseFile(fileName: string): string {
-  const withoutExt = fileName.replace(/\.[^.]+$/, "");
-  const [, client] = withoutExt.split("_");
-  return (client ?? withoutExt).trim();
+function leadingNumber(name: string): number {
+  const match = name.match(/^(\d+)/);
+  return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
 }
 
 // Portfolio is browsed live from the ImageKit media library folder tree
-// (/portofolio/{segment}-porto/{project name}/...files) rather than a CSV,
-// so new client project folders show up without a code change.
+// (/portofolio-jonifer/{folder anak}/{folder cucu}/...files). Each "folder
+// anak" becomes a filter chip, each "folder cucu" inside it becomes one
+// project card, so new folders show up without a code change.
 export async function getPortfolioSegments(): Promise<PortfolioSegment[]> {
   const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
   if (!privateKey) return [];
@@ -68,90 +42,58 @@ export async function getPortfolioSegments(): Promise<PortfolioSegment[]> {
   const client = new ImageKit({ privateKey });
 
   try {
-    // ImageKit's list endpoint only returns folder entries when queried with
-    // type: "folder" explicitly — an untyped/mixed listing silently omits
-    // them, so folders and loose files must be fetched separately.
-    const [folderItems, fileItems] = await Promise.all([
-      client.assets.list({ path: PORTFOLIO_ROOT, type: "folder", limit: 100 }),
-      client.assets.list({ path: PORTFOLIO_ROOT, type: "file", limit: 100 }),
-    ]);
+    const segmentFolders = await client.assets.list({
+      path: PORTFOLIO_ROOT,
+      type: "folder",
+      limit: 200,
+    });
 
-    const segmentFolders = folderItems.filter(
-      (item): item is typeof item & { name: string } => Boolean(item.name)
-    );
-    const looseFiles = fileItems.filter(
-      (item): item is typeof item & { name: string; url: string } =>
-        Boolean(item.name) && Boolean(item.url)
-    );
+    const segments = await Promise.all(
+      segmentFolders
+        .filter((folder): folder is typeof folder & { name: string } => Boolean(folder.name))
+        .map(async (folder): Promise<PortfolioSegment> => {
+          const segmentPath = `${PORTFOLIO_ROOT}/${folder.name}`;
 
-    const foundSegments = await Promise.all(
-      segmentFolders.map(async (folder): Promise<PortfolioSegment> => {
-        const slug = segmentSlugFromFolderName(folder.name);
-        const segmentPath = `${PORTFOLIO_ROOT}/${folder.name}`;
+          const projectFolders = await client.assets.list({
+            path: segmentPath,
+            type: "folder",
+            limit: 200,
+          });
 
-        const projectFolders = await client.assets.list({
-          path: segmentPath,
-          type: "folder",
-          limit: 100,
-        });
+          const projects = await Promise.all(
+            projectFolders
+              .filter((projectFolder): projectFolder is typeof projectFolder & { name: string } =>
+                Boolean(projectFolder.name)
+              )
+              .map(async (projectFolder): Promise<PortfolioProject> => {
+                const files = await client.assets.list({
+                  path: `${segmentPath}/${projectFolder.name}`,
+                  type: "file",
+                  limit: 100,
+                });
 
-        const projects = await Promise.all(
-          projectFolders
-            .filter((projectFolder): projectFolder is typeof projectFolder & { name: string } =>
-              Boolean(projectFolder.name)
-            )
-            .map(async (projectFolder): Promise<PortfolioProject> => {
-            const files = await client.assets.list({
-              path: `${segmentPath}/${projectFolder.name}`,
-              type: "file",
-              limit: 100,
-            });
+                return {
+                  name: projectFolder.name,
+                  images: files
+                    .map((file) => file.url)
+                    .filter((url): url is string => Boolean(url)),
+                };
+              })
+          );
 
-            return {
-              name: projectFolder.name,
-              images: files
-                .map((file) => file.url)
-                .filter((url): url is string => Boolean(url)),
-            };
-          })
-        );
+          const sortedProjects = [...projects].sort(
+            (a, b) => leadingNumber(a.name) - leadingNumber(b.name)
+          );
 
-        return {
-          slug,
-          name: segmentDisplayName(slug),
-          projects: projects.filter((project) => project.images.length > 0),
-        };
-      })
+          return {
+            slug: folder.name,
+            name: toPascalCase(folder.name),
+            projects: sortedProjects.filter((project) => project.images.length > 0),
+          };
+        })
     );
 
-    // Every category gets a chip, even ones with no projects uploaded yet —
-    // fill in the gaps with empty segments so the filter always shows the
-    // full category list.
-    const missingSlugs = ALL_CATEGORY_SLUGS.filter(
-      (slug) => !foundSegments.some((segment) => segment.slug === slug)
-    );
-    const emptySegments = missingSlugs.map(
-      (slug): PortfolioSegment => ({
-        slug,
-        name: segmentDisplayName(slug),
-        projects: [],
-      })
-    );
-
-    const segments = [...foundSegments, ...emptySegments];
-
-    if (looseFiles.length > 0) {
-      segments.push({
-        slug: UNCATEGORIZED_SLUG,
-        name: "Lainnya",
-        projects: looseFiles.map((file) => ({
-          name: projectNameFromLooseFile(file.name),
-          images: [file.url],
-        })),
-      });
-    }
-
-    return segments;
+    return segments.filter((segment) => segment.projects.length > 0);
   } catch {
     return [];
   }

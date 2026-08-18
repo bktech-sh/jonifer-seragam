@@ -18,7 +18,7 @@ export function CategoriesSection() {
               href={`/katalog/${category.id}`}
               className="group flex flex-col gap-2 overflow-hidden rounded-xl border border-black/5 transition-all duration-150 active:scale-[0.97] sm:gap-4 sm:rounded-2xl sm:active:scale-100 hover:shadow-lg hover:shadow-black/10"
             >
-              <div className="relative aspect-4/3 w-full overflow-hidden">
+              <div className="relative aspect-3/4 w-full overflow-hidden">
                 <Image
                   src={category.image}
                   alt={category.name}

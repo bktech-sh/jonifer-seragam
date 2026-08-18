@@ -47,7 +47,7 @@ export function PortfolioBrowser({ segments }: { segments: PortfolioSegment[] })
                 onClick={() => setActiveProject(project)}
                 className="group flex cursor-pointer flex-col gap-2 overflow-hidden rounded-xl border border-black/5 text-left transition-all hover:border-[#51ACAD]/40 hover:shadow-lg hover:shadow-black/5 sm:gap-3 sm:rounded-2xl"
               >
-                <div className="relative aspect-4/3 w-full overflow-hidden bg-black/5">
+                <div className="relative aspect-3/4 w-full overflow-hidden bg-black/5">
                   {cover && (
                     <Image
                       src={cover}
