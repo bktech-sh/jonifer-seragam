@@ -7,6 +7,7 @@ import { isVideoUrl } from "@/data/catalog";
 type ProductGalleryProps = {
   name: string;
   images: string[];
+  pages?: string[][];
 };
 
 const PAGE_SIZE = 4;
@@ -30,7 +31,7 @@ function PlayBadge() {
   );
 }
 
-export function ProductGallery({ name, images }: ProductGalleryProps) {
+export function ProductGallery({ name, images, pages: explicitPages }: ProductGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [page, setPage] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -39,6 +40,13 @@ export function ProductGallery({ name, images }: ProductGalleryProps) {
   const dragScrollLeft = useRef(0);
 
   const pages = useMemo(() => {
+    if (explicitPages) {
+      let cursor = 0;
+      return explicitPages.map((group) =>
+        group.map((src) => ({ src, realIndex: cursor++ }))
+      );
+    }
+
     const chunks: { src: string; realIndex: number }[][] = [];
     for (let i = 0; i < images.length; i += PAGE_SIZE) {
       chunks.push(
@@ -46,7 +54,7 @@ export function ProductGallery({ name, images }: ProductGalleryProps) {
       );
     }
     return chunks;
-  }, [images]);
+  }, [images, explicitPages]);
 
   const scrollToPage = useCallback((index: number) => {
     const track = trackRef.current;

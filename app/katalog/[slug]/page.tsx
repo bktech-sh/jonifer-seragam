@@ -7,6 +7,7 @@ import {
   getCategoryBySlug,
   getKatalogFolderImages,
   getKatalogGalleryImages,
+  getKatalogGridPages,
 } from "@/data/catalog";
 import { buildWhatsAppLink } from "@/data/site";
 import { PriceCalculator } from "@/components/katalog/price-calculator";
@@ -57,6 +58,8 @@ export default async function KatalogDetailPage({
   }
 
   const isBordirSeragam = category.id === BORDIR_SERAGAM_SLUG;
+
+  const gridPages = isBordirSeragam ? [] : await getKatalogGridPages(category.id);
 
   const liveGalleryImages = isBordirSeragam
     ? []
@@ -113,6 +116,12 @@ export default async function KatalogDetailPage({
                 </div>
               ))}
             </>
+          ) : gridPages.length > 0 ? (
+            <ProductGallery
+              name={category.name}
+              images={gridPages.flat()}
+              pages={gridPages}
+            />
           ) : (
             <ProductGallery name={category.name} images={galleryImages} />
           )}

@@ -731,6 +731,66 @@ export async function getKatalogGalleryImages(categoryId: string): Promise<strin
   return getKatalogFolderImages(`/${categoryId}`);
 }
 
+const IMAGES_PER_GRID_PAGE = 4;
+
+// Some category ids don't match their /katalog-detail-grid child folder name
+// 1:1 (e.g. "stelan-rok-celana" category vs "setelan" folder).
+const KATALOG_GRID_FOLDER_OVERRIDES: Record<string, string> = {
+  "stelan-rok-celana": "setelan",
+};
+
+function leadingNumber(name: string): number {
+  const match = name.match(/^(\d+)/);
+  return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
+}
+
+// Each category can have a /katalog-detail-grid/{folder} directory containing
+// one subfolder per client ("grandchild" folder, e.g. "1. Prodi Biologi -
+// STKIP Ahlusunnah Bukittinggi"), each holding a handful of photos for that
+// client's order. One bento-grid "page" (one swipe) should show exactly one
+// client's photos, so grandchild folders are fetched and kept as separate
+// groups instead of being flattened and re-chunked by a fixed page size.
+export async function getKatalogGridPages(categoryId: string): Promise<string[][]> {
+  const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+  if (!privateKey) return [];
+
+  const folderName = KATALOG_GRID_FOLDER_OVERRIDES[categoryId] ?? categoryId;
+  const client = new ImageKit({ privateKey });
+
+  try {
+    const grandchildFolders = await client.assets.list({
+      path: `/katalog-detail-grid/${folderName}`,
+      type: "folder",
+      limit: 200,
+    });
+
+    const sortedFolders = [...grandchildFolders].sort(
+      (a, b) => leadingNumber(a.name ?? "") - leadingNumber(b.name ?? "")
+    );
+
+    const pages = await Promise.all(
+      sortedFolders.map(async (folder) => {
+        const files = await client.assets.list({
+          path: `/katalog-detail-grid/${folderName}/${folder.name}`,
+          type: "file",
+          limit: 20,
+        });
+
+        return [...files]
+          .sort((a, b) => leadingNumber(a.name ?? "") - leadingNumber(b.name ?? ""))
+          .map((file) => file.url)
+          .filter((url): url is string => Boolean(url))
+          .filter((url) => !isVideoUrl(url))
+          .slice(0, IMAGES_PER_GRID_PAGE);
+      })
+    );
+
+    return pages.filter((page) => page.length > 0);
+  } catch {
+    return [];
+  }
+}
+
 // Public Google Sheet (CSV export) — same spreadsheet as the portfolio sheet,
 // different tabs (gid). The sheet only contains publicly-displayed catalog
 // data, so the URLs themselves are not sensitive.
