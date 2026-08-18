@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   fallbackProductCategories,
   getCategoryBySlug,
+  getKatalogFolderImages,
   getKatalogGalleryImages,
 } from "@/data/catalog";
 import { buildWhatsAppLink } from "@/data/site";
 import { PriceCalculator } from "@/components/katalog/price-calculator";
 import { ProductGallery } from "@/components/katalog/product-gallery";
+
+const BORDIR_SERAGAM_SLUG = "bordir-seragam";
+const BORDIR_HERO_IMAGE = "https://ik.imagekit.io/jgcvqpss3/katalog-detail/Heading.png";
+const BORDIR_SUB_KATALOG = [
+  { title: "Bordir Standar", folder: "/katalog-detail/bordir-standar" },
+  { title: "Bordir Timbul", folder: "/katalog-detail/bordir-timbul" },
+];
 
 export async function generateStaticParams() {
   const categories = fallbackProductCategories;
@@ -47,9 +56,22 @@ export default async function KatalogDetailPage({
     notFound();
   }
 
-  const liveGalleryImages = await getKatalogGalleryImages(category.id);
+  const isBordirSeragam = category.id === BORDIR_SERAGAM_SLUG;
+
+  const liveGalleryImages = isBordirSeragam
+    ? []
+    : await getKatalogGalleryImages(category.id);
   const galleryImages =
     liveGalleryImages.length > 0 ? liveGalleryImages : category.galleryImages;
+
+  const subKatalog = isBordirSeragam
+    ? await Promise.all(
+        BORDIR_SUB_KATALOG.map(async (item) => {
+          const images = await getKatalogFolderImages(item.folder);
+          return { ...item, images: images.length > 0 ? images : [category.image] };
+        })
+      )
+    : [];
 
   return (
     <div className="flex flex-col">
@@ -68,11 +90,36 @@ export default async function KatalogDetailPage({
             {category.explanation}
           </p>
 
-          <ProductGallery name={category.name} images={galleryImages} />
+          {isBordirSeragam ? (
+            <>
+              <div className="relative mt-6 mx-auto w-full overflow-hidden rounded-2xl">
+                <Image
+                  src={BORDIR_HERO_IMAGE}
+                  alt={category.name}
+                  width={1600}
+                  height={900}
+                  priority
+                  sizes="(min-width: 1024px) 1152px, 100vw"
+                  className="mx-auto h-auto w-full object-contain"
+                />
+              </div>
+
+              {subKatalog.map((item) => (
+                <div key={item.title} className="mt-10 first:mt-8">
+                  <h2 className="font-heading text-lg font-semibold text-[#1c1c1c] sm:text-xl">
+                    {item.title}
+                  </h2>
+                  <ProductGallery name={item.title} images={item.images} />
+                </div>
+              ))}
+            </>
+          ) : (
+            <ProductGallery name={category.name} images={galleryImages} />
+          )}
         </div>
       </section>
 
-      {category.id === "lanyard" ? (
+      {["lanyard", "bordir-seragam", "vendor-bordir"].includes(category.id) ? (
         <section className="bg-[#EEF5F5] py-12 sm:py-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="font-heading text-xl font-semibold tracking-tight text-[#1c1c1c] sm:text-2xl">

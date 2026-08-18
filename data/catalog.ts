@@ -702,10 +702,10 @@ export function isVideoUrl(url: string): boolean {
 }
 
 // Katalog gallery images are browsed live from the ImageKit media library
-// (root folder named after the category id, e.g. /pdh-standar) so new
+// (folder path, e.g. /pdh-standar or /katalog-detail/bordir-standar) so new
 // photos show up without a code change. Videos are filtered out — the
 // katalog gallery only ever shows images.
-export async function getKatalogGalleryImages(categoryId: string): Promise<string[]> {
+export async function getKatalogFolderImages(folderPath: string): Promise<string[]> {
   const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
   if (!privateKey) return [];
 
@@ -713,7 +713,7 @@ export async function getKatalogGalleryImages(categoryId: string): Promise<strin
 
   try {
     const files = await client.assets.list({
-      path: `/${categoryId}`,
+      path: folderPath,
       type: "file",
       limit: 100,
     });
@@ -725,6 +725,10 @@ export async function getKatalogGalleryImages(categoryId: string): Promise<strin
   } catch {
     return [];
   }
+}
+
+export async function getKatalogGalleryImages(categoryId: string): Promise<string[]> {
+  return getKatalogFolderImages(`/${categoryId}`);
 }
 
 // Public Google Sheet (CSV export) — same spreadsheet as the portfolio sheet,

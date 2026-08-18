@@ -15,6 +15,22 @@ export type PortfolioSegment = {
 const PORTFOLIO_ROOT = "/portofolio";
 const SEGMENT_SUFFIX = "-porto";
 
+// All product category slugs get a filter chip even before any client
+// project has been uploaded for them in ImageKit, so the filter always
+// mirrors the full category list — not just whatever folders exist today.
+const ALL_CATEGORY_SLUGS = [
+  "pdh-standar",
+  "pdh-tunik",
+  "pdh-tactical",
+  "pdh-2in1",
+  "almamater",
+  "rompi",
+  "polo",
+  "jaket",
+  "stelan-rok-celana",
+  "lanyard",
+];
+
 function segmentSlugFromFolderName(folderName: string): string {
   return folderName.endsWith(SEGMENT_SUFFIX)
     ? folderName.slice(0, -SEGMENT_SUFFIX.length)
@@ -68,7 +84,7 @@ export async function getPortfolioSegments(): Promise<PortfolioSegment[]> {
         Boolean(item.name) && Boolean(item.url)
     );
 
-    const segments = await Promise.all(
+    const foundSegments = await Promise.all(
       segmentFolders.map(async (folder): Promise<PortfolioSegment> => {
         const slug = segmentSlugFromFolderName(folder.name);
         const segmentPath = `${PORTFOLIO_ROOT}/${folder.name}`;
@@ -108,6 +124,22 @@ export async function getPortfolioSegments(): Promise<PortfolioSegment[]> {
       })
     );
 
+    // Every category gets a chip, even ones with no projects uploaded yet —
+    // fill in the gaps with empty segments so the filter always shows the
+    // full category list.
+    const missingSlugs = ALL_CATEGORY_SLUGS.filter(
+      (slug) => !foundSegments.some((segment) => segment.slug === slug)
+    );
+    const emptySegments = missingSlugs.map(
+      (slug): PortfolioSegment => ({
+        slug,
+        name: segmentDisplayName(slug),
+        projects: [],
+      })
+    );
+
+    const segments = [...foundSegments, ...emptySegments];
+
     if (looseFiles.length > 0) {
       segments.push({
         slug: UNCATEGORIZED_SLUG,
@@ -119,7 +151,7 @@ export async function getPortfolioSegments(): Promise<PortfolioSegment[]> {
       });
     }
 
-    return segments.filter((segment) => segment.projects.length > 0);
+    return segments;
   } catch {
     return [];
   }

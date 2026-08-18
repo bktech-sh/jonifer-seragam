@@ -154,7 +154,7 @@ export function ProductGallery({ name, images }: ProductGalleryProps) {
         {pages.map((pageImages, pageIndex) => (
           <div
             key={pageIndex}
-            className="grid w-full flex-none snap-start grid-cols-4 auto-rows-50 gap-3 sm:auto-rows-60 lg:auto-rows-70"
+            className="grid w-full flex-none snap-start grid-cols-4 auto-rows-35 gap-3 sm:auto-rows-60 lg:auto-rows-70"
           >
             {pageImages.map(({ src, realIndex }, index) => {
               const video = isVideoUrl(src);
@@ -198,20 +198,20 @@ export function ProductGallery({ name, images }: ProductGalleryProps) {
           <button
             type="button"
             onClick={() => goToPage(page - 1)}
-            className="absolute left-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#51ACAD] text-white shadow transition hover:bg-[#3b8384]"
+            className="absolute left-1 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#51ACAD] text-white shadow transition hover:bg-[#3b8384] sm:left-2 sm:h-12 sm:w-12"
             aria-label="Galeri sebelumnya"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 -translate-x-0.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 -translate-x-0.5 sm:h-6 sm:w-6">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
           <button
             type="button"
             onClick={() => goToPage(page + 1)}
-            className="absolute right-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#51ACAD] text-white shadow transition hover:bg-[#3b8384]"
+            className="absolute right-1 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#51ACAD] text-white shadow transition hover:bg-[#3b8384] sm:right-2 sm:h-12 sm:w-12"
             aria-label="Galeri berikutnya"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 translate-x-0.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 translate-x-0.5 sm:h-6 sm:w-6">
               <path d="M9 6l6 6-6 6" />
             </svg>
           </button>
