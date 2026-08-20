@@ -52,24 +52,32 @@ export function TestimonialCarousel({
 
     scroller.addEventListener("pointerdown", pause);
     scroller.addEventListener("pointerup", resume);
+    scroller.addEventListener("pointercancel", resume);
     scroller.addEventListener("pointerleave", resume);
     scroller.addEventListener("mouseenter", pause);
     scroller.addEventListener("mouseleave", resume);
+    scroller.addEventListener("touchstart", pause, { passive: true });
+    scroller.addEventListener("touchend", resume);
+    scroller.addEventListener("touchcancel", resume);
 
     return () => {
       cancelAnimationFrame(frameId);
       scroller.removeEventListener("pointerdown", pause);
       scroller.removeEventListener("pointerup", resume);
+      scroller.removeEventListener("pointercancel", resume);
       scroller.removeEventListener("pointerleave", resume);
       scroller.removeEventListener("mouseenter", pause);
       scroller.removeEventListener("mouseleave", resume);
+      scroller.removeEventListener("touchstart", pause);
+      scroller.removeEventListener("touchend", resume);
+      scroller.removeEventListener("touchcancel", resume);
     };
   }, []);
 
   return (
     <div
       ref={scrollerRef}
-      className="scrollbar-hidden -mx-4 mt-10 overflow-x-hidden px-4 pb-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
+      className="scrollbar-hidden -mx-4 mt-10 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8"
     >
       <div ref={trackRef} className="flex w-max gap-4 sm:gap-6">
         {[...images, ...images].map((image, index) => (
